@@ -7,22 +7,18 @@ export default function Login() {
       <div className="login-wrapper">
         <h1>Database Login</h1>
         <br></br>
-        <div classname="login-group">
+        <div className="login-group">
           <form>
             <label>
               <p>Username</p>
-              <input class="loginInput" type="text" />
+              <input className="loginInput" type="text" />
             </label>
-            <br></br>
-            <br></br>
             <label>
               <p>Password</p>
-              <input class="loginInput" type="password" />
+              <input className="loginInput" type="password" />
             </label>
-            <br></br>
-            <br></br>
-            <div>
-              <button class="loginButton" type="submit">
+            <div className="button-wrapper">
+              <button className="loginButton" type="submit">
                 Login
               </button>
             </div>

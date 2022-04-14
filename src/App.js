@@ -1,13 +1,40 @@
 import { React, useState } from "react";
-import LoginForm from "./components/LoginForm.js";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-const loginDetails = {
-  username: "testuser",
-  password: "testpass",
-};
+import "./app.css";
+import LoginForm from "./components/LoginForm/LoginForm.js";
+import Dashboard from "./components/Dashboard/Dashboard";
+
+// const loginDetails = {
+//   username: "testuser",
+//   password: "testpass",
+// };
 
 function App() {
-  const [user, setUser] = useState({ username: ""});
+  const [token, setToken] = useState();
+  if (!token) {
+    return (
+      <div className="app">
+        <LoginForm setToken={setToken} />
+      </div>
+    );
+  }
+
+  return (
+    <div className="app">
+      <h1>Application</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
+
+/*const [user, setUser] = useState({ username: "" });
   const [error, setError] = useState("");
 
   const Login = (details) => {
@@ -18,12 +45,12 @@ function App() {
     ) {
       console.log("Logged in");
       setUser({
-        username: details.username
+        username: details.username,
       });
     } else {
       setError("Details do not match");
-      console.log("Details do not match")
-    };
+      console.log("Details do not match");
+    }
   };
 
   const Logout = () => {
@@ -41,13 +68,12 @@ function App() {
             Welcome, <span>{user.username}</span>
           </h2>
           <br></br>
-          <button class="loginButton" onClick={Logout}>Logout</button>
+          <button class="loginButton" onClick={Logout}>
+            Logout
+          </button>
         </div>
       ) : (
         <LoginForm Login={Login} error={error} />
       )}
     </div>
-  );
-}
-
-export default App;
+  );*/

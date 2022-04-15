@@ -9,10 +9,15 @@
   color: white;
 }
 
-.app {
+.login {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #1e1e1e;
+}
+
+.app {
+  height: 100vh;
   background-color: #1e1e1e;
 }

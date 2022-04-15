@@ -1,16 +1,17 @@
-import { React, useState } from "react";
+import { React } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
 import "./app.css";
+
 import LoginForm from "./components/LoginForm/LoginForm.js";
+import useToken from "./components/LoginForm/useToken";
 import Dashboard from "./components/Dashboard/Dashboard";
 
 function App() {
-  const [token, setToken] = useState();
+  const { token, setToken } = useToken();
 
   if (!token) {
     return (
-      <div className="app">
+      <div className="login">
         <LoginForm setToken={setToken} />
       </div>
     );

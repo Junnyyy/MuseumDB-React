@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import "./LoginForm.css";
 
 async function authUser(credentials) {
-  return fetch("http://localhost:8080/auth/login", {
+  return fetch("https://cst2-api.azurewebsites.net/auth/login", {
     method: "POST",
-    header: {
+    headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(credentials),
@@ -16,9 +16,12 @@ export default function Login({ setToken }) {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
-  const submitHandler = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await authUser({ username, password });
+    const token = await authUser({
+      username,
+      password,
+    });
     setToken(token);
   };
 
@@ -28,7 +31,7 @@ export default function Login({ setToken }) {
         <h1>Database Login</h1>
         <br></br>
         <div className="login-group">
-          <form onSubmit={submitHandler}>
+          <form onSubmit={handleSubmit}>
             <label>
               <p>Username</p>
               <input

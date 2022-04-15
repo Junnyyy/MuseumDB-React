@@ -5,13 +5,9 @@ import "./app.css";
 import LoginForm from "./components/LoginForm/LoginForm.js";
 import Dashboard from "./components/Dashboard/Dashboard";
 
-// const loginDetails = {
-//   username: "testuser",
-//   password: "testpass",
-// };
-
 function App() {
   const [token, setToken] = useState();
+
   if (!token) {
     return (
       <div className="app">
@@ -33,6 +29,11 @@ function App() {
 }
 
 export default App;
+
+// const loginDetails = {
+//   username: "testuser",
+//   password: "testpass",
+// };
 
 /*const [user, setUser] = useState({ username: "" });
   const [error, setError] = useState("");

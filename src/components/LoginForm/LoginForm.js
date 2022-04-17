@@ -40,6 +40,7 @@ export default function Login({ setToken }) {
                 onChange={(e) => setUsername(e.target.value)}
               />
             </label>
+            <br></br>
             <label>
               <p>Password</p>
               <input

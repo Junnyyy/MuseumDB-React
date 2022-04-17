@@ -8,6 +8,7 @@ async function authUser(credentials) {
     headers: {
       "Content-Type": "application/json",
     },
+    mode: "cors",
     body: JSON.stringify(credentials),
   }).then((data) => data.json());
 }

@@ -21,14 +21,3 @@
   height: 100vh;
   background-color: #1e1e1e;
 }
-
-.info {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.textContainer {
-  font-size: 20px;
-}

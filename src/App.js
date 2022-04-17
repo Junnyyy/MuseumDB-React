@@ -6,6 +6,7 @@ import "./app.css";
 import LoginForm from "./components/LoginForm/LoginForm.js";
 import useToken from "./components/LoginForm/useToken";
 
+import Home from "./pages/Home/Home";
 import Insert from "./pages/Insert/Insert";
 import Delete from "./pages/Delete/Delete";
 import Modify from "./pages/Modify/Modify";
@@ -31,6 +32,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/Insert" element={<Insert />} />
           <Route path="/Delete" element={<Delete />} />
           <Route path="/Modify" element={<Modify />} />
@@ -39,12 +41,6 @@ function App() {
           <Route path="/About" element={<About />} />
         </Routes>
       </BrowserRouter>
-      <div className="info">
-        <div className="textContainer">
-          <h2>Welcome 📢</h2>
-          <p>Hello World</p>
-        </div>
-      </div>
     </div>
   );
 }

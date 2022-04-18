@@ -23,9 +23,9 @@ class ReportEmployee extends component{
     renderReport(){
         let recordReport= []
         this.state.records.map(record => {
-            return recordList.push(`<li key= {record.id'} > {record.name}</li>`)
+            return recordReport.push(`<li key= {record.id'} > {record.name}</li>`)
         })
-        return recordList;
+        return recordReport;
     }
 
     render(){

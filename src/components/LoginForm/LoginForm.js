@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import "./LoginForm.css";
 
 async function authUser(credentials) {
-  // return fetch("https://cst2-api.azurewebsites.net/auth/login", {
-  return fetch("http://localhost:8080/auth/login", {
+  return fetch("https://cst2-api.azurewebsites.net/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

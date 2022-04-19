@@ -9,9 +9,11 @@ export default function Insert() {
     setValue(e);
   };
 
-  if (value === "artpiece") {
-    formType = <Artpiece />;
+  switch (value) {
+    case "artpiece":
+      formType = <Artpiece />;
   }
+
   return (
     <div className="insert-wrapper">
       <div className="selection">

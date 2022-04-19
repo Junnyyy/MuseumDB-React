@@ -1,7 +1,13 @@
 import React from "react";
-import { Container, Navbar, Nav } from "react-bootstrap";
+import { Container, Navbar, Nav, Button } from "react-bootstrap";
 
 export default function Navigationbar() {
+  function logout() {
+    // remove user from local storage to log user out
+    sessionStorage.removeItem("token");
+    window.location.reload(false);
+  }
+
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
@@ -16,7 +22,10 @@ export default function Navigationbar() {
             <Nav.Link href="/Search">Search 🔍</Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="/About">About 👤</Nav.Link>
+            <Button variant="danger" onClick={logout}>
+              Logout
+            </Button>
+            {/* <Nav.Link href="/About">About 👤</Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

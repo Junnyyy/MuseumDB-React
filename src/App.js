@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./app.css";
 
-import LoginForm from "./components/LoginForm/LoginForm.js";
+import LoginForm from "./components/LoginForm/LoginForm";
 import useToken from "./components/LoginForm/useToken";
 
 import Home from "./pages/Home/Home";

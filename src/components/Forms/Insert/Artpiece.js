@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import "./Artpiece.css";
 // import PropTypes from "prop-types";
 
 const getToken = () => {
@@ -54,7 +55,7 @@ export default function Art_Piece() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="artForm">
       <h1>Art Piece</h1>
 
       <div>

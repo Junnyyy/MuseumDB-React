@@ -5,6 +5,7 @@ export default function Search() {
     <div>
       <br></br>
       <h2>Search</h2>
+      
     </div>
   );
 }

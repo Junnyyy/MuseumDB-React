@@ -14,7 +14,7 @@ export default function Ticket_Transaction(props) {
         </div>
         <div>
         <label >Ticket Total Bill</label>
-        <input type="date"  id="Ticket Total Bill"  />
+        <input type="datebox"  id="Ticket Total Bill"  />
         </div>
         <div>
         <label >Ticket Exhibit ID</label>

@@ -68,11 +68,11 @@ export default function Exhibit() {
         </div>
         <div>
         <label >Arrival Date</label>
-        <input type="date"  className="exhibit" onChange={(e) => setarr(e.target.value)}  />
+        <input type="date"  className="datebox" onChange={(e) => setarr(e.target.value)}  />
         </div>
         <div>
         <label >Departute Date</label>
-        <input type="date" className="exhibit" onChange={(e) => setdepart(e.target.value)}  />
+        <input type="date" className="datebox" onChange={(e) => setdepart(e.target.value)}  />
         </div>
         <div>
         <label >Permanent</label>

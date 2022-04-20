@@ -70,7 +70,7 @@ export default function Art_Piece() {
         <label className="box">Date Created</label>
         <input
           type="date"
-          className="artpiece"
+          className="datebox"
           onChange={(e) => setcreated(e.target.value)}
         />
       </div>

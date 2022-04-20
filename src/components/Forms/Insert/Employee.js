@@ -67,7 +67,7 @@ export default function Employee() {
         </div>
         <div>
         <label >Employee Middle Name</label>
-        <input type="date"  className="Employee" onChange={(e) => setEmployeeMiddleName(e.target.value)}  />
+        <input type="date"  className="datebox" onChange={(e) => setEmployeeMiddleName(e.target.value)}  />
         </div>
         <div>
         <label >Employee Last Name</label>

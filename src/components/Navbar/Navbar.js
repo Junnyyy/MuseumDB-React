@@ -3,8 +3,8 @@ import { Container, Navbar, Nav, Button } from "react-bootstrap";
 
 export default function Navigationbar() {
   function logout() {
-    // remove user from local storage to log user out
-    sessionStorage.removeItem("token");
+    // Clears session storage and reloads
+    sessionStorage.clear();
     window.location.reload(false);
   }
 

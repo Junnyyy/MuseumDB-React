@@ -1,30 +1,56 @@
-import React from "react";
+import { React, useState } from "react";
+import "./Insert.css";
+// import PropTypes from "prop-types";
 
-export default function Ticket_Transaction(props) {
+const getToken = () => {
+  const tokenString = sessionStorage.getItem("token");
+  const userToken = JSON.parse(tokenString);
+  return userToken?.token;
+};
+
+async function tickettransaction(data) {
+    return fetch("https://cst2-api.azurewebsites.net/tickettransaction", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${getToken()}`,
+      },
+      mode: "cors",
+      body: JSON.stringify(data),
+    }).then((data) => data.json());
+  }
+
+  export default function Ticket_Transaction() {
+
+    const [CID,setCID ] = useState();
+    const [EID,setEID ] = useState();
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const token = await tickettransaction({
+
+     CID,
+     IID,
+
+    });
+
+  };
+
   return (
+
     <main>
         <h1>Ticket Transaction</h1>
         <div>
-        <label >Ticket Transaction ID</label>
-        <input type="text"  id="Ticket Transaction ID"  />
+        <label >Customer ID</label>
+        <input type="text"  className="tickettransaction" onChange={(e) => setCID(e.target.value)}   />
         </div>
         <div>
-        <label >Ticket Customer ID</label>
-        <input type="text"  id="Ticket Customer ID"  />
+        <label >Exhibit ID</label>
+        <input type="text"  className="tickettransaction" onChange={(e) => setEID(e.target.value)}  />
         </div>
-        <div>
-        <label >Ticket Total Bill</label>
-        <input type="datebox"  id="Ticket Total Bill"  />
-        </div>
-        <div>
-        <label >Ticket Exhibit ID</label>
-        <input type="text"  id="Ticket Exhibit ID"  />
-        </div>
-        <div>
-        <label >Ticket Transaction Date</label>
-        <input type="text"  id="Ticket Transaction Date"  />
-        </div>
-      
+        
     
         <button className="submit">Submit</button>
      

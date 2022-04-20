@@ -9,7 +9,7 @@ const getToken = () => {
 };
 
 async function storeitem(data) {
-    return fetch("https://cst2-api.azurewebsites.net/employee", {
+    return fetch("https://cst2-api.azurewebsites.net/storeitem", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,7 +27,7 @@ async function storeitem(data) {
 // price (FLOAT)
 
 
-export default function Store_Item(props) {
+export default function Store_Item() {
 
     const [name,setname ] = useState();
     const [quantity,setquantity ] = useState();
@@ -49,7 +49,7 @@ export default function Store_Item(props) {
 
   return (
     <main>
-        <h1>Item</h1>
+        <h1>Store Item</h1>
         <div>
         <label >Item Name</label>
         <input type="text"  className="storeitem" onChange={(e) => setname(e.target.value)}   />

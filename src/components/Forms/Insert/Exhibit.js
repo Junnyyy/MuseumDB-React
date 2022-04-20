@@ -9,7 +9,7 @@ const getToken = () => {
 };
 
 async function exihibit(data) {
-    return fetch("https://cst2-api.azurewebsites.net/employee", {
+    return fetch("https://cst2-api.azurewebsites.net/exhibit", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,7 @@ async function exihibit(data) {
 // manager (Must be a department name, should do a drop down of department names)
 // loc (Gallery name, should do a drop down)
 
-export default function Exhibit(props) {
+export default function Exhibit() {
 
  
     const [name,setname ] = useState();

@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap%22");
+
+.artpiece {
+  background: #2d2d30;
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.customer{
+  background: #2d2d30;
+  border-radius: 8px;
+  padding: 2px;
+
+}
+
+.department{
+  background: #2d2d30;
+  border-radius: 8px;
+  padding: 2px;
+
+}
+
+.Employee{
+  background: #2d2d30;
+  border-radius: 8px;
+  padding: 2px;
+
+}
+
+.exhibit{
+  background: #2d2d30;
+  border-radius: 8px;
+  padding: 2px;
+
+}
+
+.submit {
+  background: #2d2d30;
+  border-radius: 8px;
+  padding: 2px;
+}
+

@@ -17,7 +17,9 @@ async function artInsert(data) {
     },
     mode: "cors",
     body: JSON.stringify(data),
-  }).then((data) => data.json());
+  }).then((data) => {
+    data.json();
+  });
 }
 
 export default function Art_Piece() {

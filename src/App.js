@@ -5,6 +5,7 @@ import "./app.css";
 
 import LoginForm from "./components/LoginForm/LoginForm";
 import useToken from "./components/LoginForm/useToken";
+import useUser from "./pages/Home/useUser";
 
 import Home from "./pages/Home/Home";
 import Insert from "./pages/Insert/Insert";
@@ -18,11 +19,12 @@ import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   const { token, setToken } = useToken();
+  const { user, setUser } = useUser();
 
   if (!token) {
     return (
       <div className="login">
-        <LoginForm setToken={setToken} />
+        <LoginForm setToken={setToken} setUser={setUser} />
       </div>
     );
   }
@@ -32,7 +34,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home user={user} />} />
           <Route path="/Insert" element={<Insert />} />
           <Route path="/Delete" element={<Delete />} />
           <Route path="/Modify" element={<Modify />} />

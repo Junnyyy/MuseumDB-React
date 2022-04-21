@@ -95,7 +95,7 @@ return (
     const [manager,setmanager ] = useState();
     const [loc,setloc ] = useState();
 
-
+    const [errStatus, setErrStatus] = useState(undefined);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -109,8 +109,13 @@ return (
      manager,
      loc,
 
-    });
-
+    })
+    .then(() => {
+      setErrStatus({type: 'success'});
+    })
+    .catch((error) => {
+      setErrStatus({type: 'error', error});
+    })
   };
 
     
@@ -156,6 +161,10 @@ return (
        
     
         <button className="submit">Submit</button>
+
+        {errStatus?.type === 'success' && <p>"Submit Successful"</p>}
+        {errStatus?.type === 'error' && (
+        <p>"Error: Submit Failed"</p>)}
      
     </main>
   );

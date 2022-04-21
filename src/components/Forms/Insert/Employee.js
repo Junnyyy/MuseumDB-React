@@ -66,7 +66,7 @@ export default function Employee() {
   const [DepartmentName, setDepartmentName] = useState("Administration");
   const [EmployeeUsername, setEmployeeUsername] = useState();
   const [Employeepassword, setEmployeepassword] = useState();
-  const [EmployeeEmail, setEmployeeEamil] = useState();
+  const [EmployeeEmail, setEmployeeEmail] = useState();
   const [EmployeeSalary, setEmployeeSalary] = useState();
   const [EmployeeDOB, setEmployeeDOB] = useState();
 
@@ -151,7 +151,7 @@ export default function Employee() {
         <input
           type="text"
           className="Employee"
-          onChange={(e) => setEmployeeEamil(e.target.value)}
+          onChange={(e) => setEmployeeEmail(e.target.value)}
         />
       </div>
       <div>

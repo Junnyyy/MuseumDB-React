@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import TableRows from "./TableRows"
-
+import "./modify.css"
 
 
 function AddDeleteTableRows(){
@@ -92,7 +92,7 @@ function AddDeleteTableRows(){
                           <th>Width</th>
                           <th>Gallery</th>
                           <th>Exhibit ID</th>
-                          <th><button className="btn btn-outline-success" onClick={addTableRows} >+</button></th>
+                          <th>Action</th>
                       </tr>
                     </thead>
                    <tbody>

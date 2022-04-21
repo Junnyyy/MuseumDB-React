@@ -53,6 +53,7 @@ export default function Insert() {
     <div className="insert-wrapper">
       <div className="selection">
         <p>Please select a table to modify.</p>
+
         <DropdownButton
           id="dropdown-basic-button"
           title="Select Table"
@@ -72,8 +73,11 @@ export default function Insert() {
             Ticket Transaction
           </Dropdown.Item>
         </DropdownButton>
+        <br></br>
       </div>
       <div className="render">{formType}</div>
+      
     </div>
+      
   );
 }

@@ -8,12 +8,8 @@ const getToken = () => {
   return userToken?.token;
 };
 
-
-
 async function ArtInsert(data) {
-
-  return fetch("https://cst2-api.azurewebsites.net/artpiece", 
-  {
+  return fetch("https://cst2-api.azurewebsites.net/artpiece", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -22,55 +18,58 @@ async function ArtInsert(data) {
     mode: "cors",
     body: JSON.stringify(data),
   })
-  .then(response => {
-    return response.json()})
-  .then((data) => data.json())
-  .catch((err) => {
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => data.json())
+    .catch((err) => {
       console.log(err);
-      <h2>Error: {err}</h2>
-  })
+      <h2>Error: {err}</h2>;
+    });
 }
 
 export default function Art_Piece() {
-
-
-  const [exhibitData, setExData] = useState([])
+  const [exhibitData, setExData] = useState([]);
 
   const fetchExData = () => {
-      fetch("https://cst2-api.azurewebsites.net/exhibit", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${getToken()}`,
-        },
-        mode: "cors",
-      })
-      .then(response => {
+    fetch("https://cst2-api.azurewebsites.net/exhibit", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${getToken()}`,
+      },
+      mode: "cors",
+    })
+      .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not OK');
+          throw new Error("Network response was not OK");
         }
-          return response.json()
+        return response.json();
       })
-      .then(data => {
-          setExData(data)
-      })
-  }
+      .then((data) => {
+        setExData(data);
+      });
+  };
 
-useEffect(() => {
-      fetchExData()
-  }, [])
+  useEffect(() => {
+    fetchExData();
+  }, []);
 
-console.log(exhibitData)
+  console.log(exhibitData);
 
-let exhibitIDs = exhibitData.length > 0 && exhibitData.map((item, i) => {
-  return (
-    <option key={i} value={item.Exhibit_ID}>{item.Exhibit_Name}</option>
-  )
-})
+  let exhibitIDs =
+    exhibitData.length > 0 &&
+    exhibitData.map((item, i) => {
+      return (
+        <option key={i} value={item.Exhibit_ID}>
+          {item.Exhibit_Name}
+        </option>
+      );
+    });
 
-const [galleryData, setGaData] = useState([])
+  const [galleryData, setGaData] = useState([]);
 
-const fetchGaData = () => {
+  const fetchGaData = () => {
     fetch("https://cst2-api.azurewebsites.net/gallery", {
       method: "GET",
       headers: {
@@ -79,28 +78,32 @@ const fetchGaData = () => {
       },
       mode: "cors",
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not OK');
-      }
-        return response.json()
-    })
-    .then(data => {
-        setGaData(data)
-    })
-}
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setGaData(data);
+      });
+  };
 
-useEffect(() => {
-    fetchGaData()
-}, [])
+  useEffect(() => {
+    fetchGaData();
+  }, []);
 
-console.log(galleryData)
+  console.log(galleryData);
 
-let galleryNames = galleryData.length > 0 && galleryData.map((item, i) => {
-return (
-  <option key={i} value={item.Gallery_Name}>{item.Gallery_Name}</option>
-)
-})
+  let galleryNames =
+    galleryData.length > 0 &&
+    galleryData.map((item, i) => {
+      return (
+        <option key={i} value={item.Gallery_Name}>
+          {item.Gallery_Name}
+        </option>
+      );
+    });
 
   const [title, settitle] = useState();
   const [created, setcreated] = useState();
@@ -182,7 +185,8 @@ return (
       <div>
         <label className="box">Being Refurbished</label>
         <select
-          className="artpiece" defaultValue={"1"}
+          className="artpiece"
+          defaultValue={"1"}
           onChange={(e) => setrefurbishedstatus(e.target.value)}
         >
           <option value="1">Yes</option>
@@ -192,7 +196,8 @@ return (
       <div>
         <label className="box">On Display</label>
         <select
-          className="artpiece" defaultValue={"1"}
+          className="artpiece"
+          defaultValue={"1"}
           onChange={(e) => setdisplaystatus(e.target.value)}
         >
           <option value="1">Yes</option>
@@ -233,13 +238,20 @@ return (
       </div>
       <div>
         <label className="box">Gallery</label>
-        <select className="artpiece" onChange={(e) => setgalLoc(e.target.value)}>
+        <select
+          className="artpiece"
+          onChange={(e) => setgalLoc(e.target.value)}
+        >
           {galleryNames}
         </select>
       </div>
       <div>
         <label className="box">Exhibit</label>
-        <select type="text" className="artpiece" onChange={(e) => setEID(e.target.value)}>
+        <select
+          type="text"
+          className="artpiece"
+          onChange={(e) => setEID(e.target.value)}
+        >
           {exhibitIDs}
         </select>
       </div>

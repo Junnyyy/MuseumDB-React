@@ -9,91 +9,100 @@ const getToken = () => {
 };
 
 async function department(data) {
-    return fetch("https://cst2-api.azurewebsites.net/department", {
-      method: "POST",
+  return fetch("https://cst2-api.azurewebsites.net/department", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${getToken()}`,
+    },
+    mode: "cors",
+    body: JSON.stringify(data),
+  }).then((data) => data.json());
+}
+
+export default function Department() {
+  const [employeeData, setData] = useState([]);
+
+  const fetchData = () => {
+    fetch("https://cst2-api.azurewebsites.net/employee", {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${getToken()}`,
       },
       mode: "cors",
-      body: JSON.stringify(data),
-    }).then((data) => data.json());
-  }
-
-  
-
-
-export default function Department() {
-
-
-  const [employeeData, setData] = useState([])
-
-  const fetchData = () => {
-      fetch("https://cst2-api.azurewebsites.net/employee", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${getToken()}`,
-        },
-        mode: "cors",
-      })
-      .then(response => {
+    })
+      .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not OK');
+          throw new Error("Network response was not OK");
         }
-          return response.json()
+        return response.json();
       })
-      .then(data => {
-          setData(data)
-      })
-  }
+      .then((data) => {
+        setData(data);
+      });
+  };
 
-useEffect(() => {
-      fetchData()
-  }, [])
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-console.log(employeeData)
+  console.log(employeeData);
 
-let employeeIDs = employeeData.length > 0 && employeeData.map((item, i) => {
-  return (
-    <option key={i} value={item.Employee_ID}>{item.Employee_ID}</option>
-  )
-})
+  let employeeIDs =
+    employeeData.length > 0 &&
+    employeeData.map((item, i) => {
+      return (
+        <option key={i} value={item.Employee_ID}>
+          {item.Employee_ID}
+        </option>
+      );
+    });
 
   const [name, setname] = useState();
-  const [loc,setloc ] = useState();
-  const [SID,setSID ] = useState(1);
-  
+  const [loc, setloc] = useState();
+  const [SID, setSID] = useState(1);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = await department({
-   name,
-   loc,
-   SID
+      name,
+      loc,
+      SID,
     });
-
   };
 
   return (
-    <form onSubmit={handleSubmit} >
-        <h1>Department</h1>
-        <div>
-        <label >Name</label>
-        <input type="text"  className="department" onChange={(e) => setname(e.target.value)}  />
-        </div>
-        <div>
-        <label >Location</label>
-        <input type="text"  className="department" onChange={(e) => setloc(e.target.value)}  />
-        </div>
-        <div>
-        <label >Supervisor ID</label>
-        <select type="text"  className="department" onChange={(e) => setSID(e.target.value)}>
+    <form onSubmit={handleSubmit}>
+      <h1>Department</h1>
+      <div>
+        <label>Name</label>
+        <input
+          type="text"
+          className="department"
+          onChange={(e) => setname(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Location</label>
+        <input
+          type="text"
+          className="department"
+          onChange={(e) => setloc(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Supervisor ID</label>
+        <select
+          type="text"
+          className="department"
+          onChange={(e) => setSID(e.target.value)}
+        >
           {employeeIDs}
         </select>
-        </div>
+      </div>
 
-        <button className="submit">Submit</button>
-     
+      <button className="submit">Submit</button>
     </form>
   );
 }

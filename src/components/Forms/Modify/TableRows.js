@@ -23,8 +23,8 @@ function TableRows({rowsData, deleteTableRows, handleChange}) {
                 <td><input type="text" value={Piece_Width} onChange={(evnt)=>(handleChange(index, evnt))} name="Piece_Width" className="form-control"/> </td>
                 <td><input type="text" value={Gallery_Loc}  onChange={(evnt)=>(handleChange(index, evnt))} name="Gallery_Loc" className="form-control"/> </td>
                 <td><input type="text" value={Exhibit_ID}  onChange={(evnt)=>(handleChange(index, evnt))} name="Exhibit_ID" className="form-control" /> </td>
-                <td><button className="btn btn-outline-danger" onClick={()=>(deleteTableRows(index))}>Edit</button></td>
-                <td><button className="btn btn-outline-danger" onClick={()=>(deleteTableRows(index))}>x</button></td>
+                <td><button className="btn btn-outline-success" onClick={()=>(deleteTableRows(index))}>Edit</button></td>
+                <td><button className="btn btn-outline-danger" onClick={()=>(deleteTableRows(index))}>Delete</button></td>
                 
             </tr>
 

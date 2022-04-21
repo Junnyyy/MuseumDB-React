@@ -1,14 +1,14 @@
 import { React, useState } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import Artpiece from "../../components/Forms/Modify/Artpiece";
-import Customer from "../../components/Forms/Insert/Customer"
-import Department from "../../components/Forms/Insert/Department";
-import Employee from "../../components/Forms/Insert/Employee";
-import Exhibit from "../../components/Forms/Insert/Exhibit";
-import Gallery from "../../components/Forms/Insert/Gallery";
-import Store_Item from "../../components/Forms/Insert/Storeitem";
-import Store_Transaction from "../../components/Forms/Insert/Storetransaction";
-import Ticket_Transaction from "../../components/Forms/Insert/Tickettransaction";
+import Customer from "../../components/Forms/Modify/Customer"
+import Department from "../../components/Forms/Modify/Department";
+import Employee from "../../components/Forms/Modify/Employee";
+import Exhibit from "../../components/Forms/Modify/Exhibit";
+import Gallery from "../../components/Forms/Modify/Gallery";
+import Store_Item from "../../components/Forms/Modify/Storeitem";
+import Store_Transaction from "../../components/Forms/Modify/Storetransaction";
+import Ticket_Transaction from "../../components/Forms/Modify/Tickettransaction";
 
 
 

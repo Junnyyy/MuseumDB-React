@@ -14,7 +14,7 @@ function AddDeleteTableRows(){
       const [artData, setData] = useState([])
 
       const fetchData = () => {
-          fetch("https://cst2-api.azurewebsites.net/storetransaction", {
+          fetch("https://cst2-api.azurewebsites.net/storeitem", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",

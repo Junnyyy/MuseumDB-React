@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap%22");
+
+.employee {
+  background: #4d4d54;
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.Employeebutton {
+  background: #434347;
+  border-radius: 9px;
+  padding: 3px;
+}

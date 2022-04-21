@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import TableRows from "./ArtpieceTable"
+import Artpiece_Table from "./ArtpieceTable";
 import "./modify.css"
 
 
@@ -96,8 +96,8 @@ function AddDeleteTableRows(){
                       </tr>
                     </thead>
                    <tbody>
-                   <TableRows rowsData={artData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
-                   <TableRows rowsData={rowsData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
+                   <Artpiece_Table rowsData={artData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
+                   <Artpiece_Table rowsData={rowsData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
                    </tbody> 
                 </table>
 

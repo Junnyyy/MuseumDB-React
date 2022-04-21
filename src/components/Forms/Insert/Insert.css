@@ -77,14 +77,14 @@
 }
 
 select {
-  width: 10%;
+  width: 15%;
   height: 35px;
   padding:10px;
   border-radius:10px;
   
 }
 .datebox {
-  width: 10%;
+  width: 15%;
   height: 35px;
   padding:4px;
   border-radius:10px;

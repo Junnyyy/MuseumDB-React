@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 export default function Home(props) {
   return (
-    <div className="info" style = {{ backgroundImage: `url("https://static.mfah.com/images/mfah-at-home.5545251485772177919.jpg")`}}>
+    <div className="info" style = {{ backgroundImage: `url("https://static.mfah.com/images/mfah-at-home.5545251485772177919.jpg")` , backgroundSize: `cover`}}>
       <div className="textContainer">
         <h2 className = "welcome">Welcome {props.user}! 📢</h2>
         <ul className = "link"> 

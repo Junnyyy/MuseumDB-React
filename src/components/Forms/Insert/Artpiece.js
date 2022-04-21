@@ -22,6 +22,8 @@ async function ArtInsert(data) {
     mode: "cors",
     body: JSON.stringify(data),
   })
+  .then(response => {
+    return response.json()})
   .then((data) => data.json())
   .catch((err) => {
       console.log(err);

@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import Artpiece from "../../components/Forms/Modify/Artpiece";
-import Customer from "../../components/Forms/Modify/Customer"
+import Customer from "../../components/Forms/Modify/Customer";
 import Department from "../../components/Forms/Modify/Department";
 import Employee from "../../components/Forms/Modify/Employee";
 import Exhibit from "../../components/Forms/Modify/Exhibit";
@@ -9,8 +9,6 @@ import Gallery from "../../components/Forms/Modify/Gallery";
 import Store_Item from "../../components/Forms/Modify/Storeitem";
 import Store_Transaction from "../../components/Forms/Modify/Storetransaction";
 import Ticket_Transaction from "../../components/Forms/Modify/Tickettransaction";
-
-
 
 export default function Insert() {
   var formType = <></>;
@@ -22,31 +20,31 @@ export default function Insert() {
   switch (value) {
     case "artpiece":
       formType = <Artpiece />;
-      break
-    case"customer":
-      formType = <Customer/>;
-      break
-    case"department":
-      formType = <Department/>;
-      break
-    case"employee":
-      formType = <Employee/>;
-      break
-    case"exhibit":
-      formType = <Exhibit/>;
-      break
-    case"gallery":
-      formType = <Gallery/>;
-      break
-    case"store-item":
-      formType = <Store_Item/>;
-      break
-    case"store-transaction":
-      formType = <Store_Transaction/>;
-      break
-    case"ticket-transaction":
-      formType = <Ticket_Transaction/>;
-      break
+      break;
+    case "customer":
+      formType = <Customer />;
+      break;
+    case "department":
+      formType = <Department />;
+      break;
+    case "employee":
+      formType = <Employee />;
+      break;
+    case "exhibit":
+      formType = <Exhibit />;
+      break;
+    case "gallery":
+      formType = <Gallery />;
+      break;
+    case "store-item":
+      formType = <Store_Item />;
+      break;
+    case "store-transaction":
+      formType = <Store_Transaction />;
+      break;
+    case "ticket-transaction":
+      formType = <Ticket_Transaction />;
+      break;
   }
 
   return (
@@ -76,8 +74,6 @@ export default function Insert() {
         <br></br>
       </div>
       <div className="render">{formType}</div>
-      
     </div>
-      
   );
 }

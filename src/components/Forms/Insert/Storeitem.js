@@ -27,7 +27,7 @@ async function storeitem(data) {
 // price (FLOAT)
 
 
-export default function Store_Item() {
+export default function StoreItem() {
 
     const [name,setname ] = useState();
     const [quantity,setquantity ] = useState();
@@ -56,11 +56,11 @@ export default function Store_Item() {
         </div>
         <div>
         <label >Item Quantity</label>
-        <input type="text" className="storeitem" onChange={(e) => setquantity(e.target.value)}  />
+        <input type="number" className="storeitem" onChange={(e) => setquantity(e.target.value)}  />
         </div>
         <div>
         <label >Item Price</label>
-        <input type="text"  className="storeitem" onChange={(e) => setprice(e.target.value)}  />
+        <input type="number"  className="storeitem" onChange={(e) => setprice(e.target.value)}  />
         </div>
     
       

@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import "./Insert.css";
 // import PropTypes from "prop-types";
 
@@ -21,6 +21,38 @@ async function employee(data) {
   }
 
 export default function Employee() {
+
+
+  const [departmentData, setData] = useState([])
+
+  const fetchData = () => {
+      fetch("https://cst2-api.azurewebsites.net/department", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${getToken()}`,
+        },
+        mode: "cors",
+      })
+      .then(response => {
+          return response.json()
+      })
+      .then(data => {
+          setData(data)
+      })
+  }
+
+useEffect(() => {
+      fetchData()
+  }, [])
+
+console.log(departmentData)
+
+let departmentNames = departmentData.length > 0 && departmentData.map((item, i) => {
+  return (
+    <option key={i} value={item.id}>{item.Department_Name}</option>
+  )
+})
 
   const [EmployeeID, setEmployeeID] = useState();
   const [EmployeeFirstName,setEmployeeFirstName ] = useState();
@@ -59,42 +91,44 @@ export default function Employee() {
         <h1>Employee Info</h1>
         <div>
         <label >Employee ID</label>
-        <input type="text"  className="Employee" onChange={(e) => setEmployeeID(e.target.value)}  />
+        <input type="number"  className="Employee" onChange={(e) => setEmployeeID(e.target.value)}  />
         </div>
         <div>
-        <label >Employee First Name</label>
+        <label >First Name</label>
         <input type="text"  className="Employee" onChange={(e) => setEmployeeFirstName(e.target.value)}  />
         </div>
         <div>
-        <label >Employee Middle Name</label>
+        <label >Middle Name</label>
         <input type="date"  className="datebox" onChange={(e) => setEmployeeMiddleName(e.target.value)}  />
         </div>
         <div>
-        <label >Employee Last Name</label>
+        <label >Last Name</label>
         <input type="text"  className="Employee" onChange={(e) => setEmployeeLastName(e.target.value)}  />
         </div>
         <div>
         <label >Department Name</label>
-        <input type="text"  className="Employee" onChange={(e) => setDepartmentName(e.target.value)} />
+        <select className="Employee" onChange={(e) => setDepartmentName(e.target.value)}>
+          {departmentNames}
+        </select>
         </div>
         <div>
-        <label >Employee Salary</label>
-        <input type="text"  className="Employee" onChange={(e) => setEmployeeSalary(e.target.value)} />
+        <label >Salary</label>
+        <input type="number"  className="Employee" onChange={(e) => setEmployeeSalary(e.target.value)} />
         </div>
         <div>
-        <label >Employee DOB</label>
-        <input type="text"  className="Employee" onChange={(e) => setEmployeeDOB(e.target.value)}  />
+        <label >Date of Birth</label>
+        <input type="date"  className="Employee" onChange={(e) => setEmployeeDOB(e.target.value)}  />
         </div>
         <div>
-        <label >Employee Email</label>
+        <label >Email</label>
         <input type="text"  className="Employee" onChange={(e) => setEmployeeEamil(e.target.value)} />
         </div>
         <div>
-        <label >Employee Username</label>
+        <label >Username</label>
         <input type="text"  className="Employee" onChange={(e) => setEmployeeUsername(e.target.value)}  />
         </div>
         <div>
-        <label >Employee Password</label>
+        <label >Password</label>
         <input type="text"  className="Employee" onChange={(e) => setEmployeepassword(e.target.value)}  />
         </div>
        

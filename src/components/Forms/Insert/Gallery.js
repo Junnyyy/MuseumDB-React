@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import "./Insert.css";
 // import PropTypes from "prop-types";
 
@@ -22,9 +22,37 @@ async function gallery(data) {
 
 export default function Gallery() {
 
-    // name
-    // manager (department name, should be a drop down)
-    // capacity (INT)
+  const [departmentData, setData] = useState([])
+
+  const fetchData = () => {
+      fetch("https://cst2-api.azurewebsites.net/department", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${getToken()}`,
+        },
+        mode: "cors",
+      })
+      .then(response => {
+          return response.json()
+      })
+      .then(data => {
+          setData(data)
+      })
+  }
+
+useEffect(() => {
+      fetchData()
+  }, [])
+
+console.log(departmentData)
+
+let departmentNames = departmentData.length > 0 && departmentData.map((item, i) => {
+  return (
+    <option key={i} value={item.id}>{item.Department_Name}</option>
+  )
+})
+
     const [name,setname ] = useState();
     const [manager,setmanager ] = useState();
     const [capacity,setcapacity ] = useState();
@@ -55,17 +83,12 @@ export default function Gallery() {
         <div>
         <label >Managing Department </label>
         <select className="gallery" onChange={(e) => setmanager(e.target.value)}>
-          <option value="Administration">Administration</option>
-          <option value="American Painting and Sculpture">American Painting and Sculpture</option>
-          <option value="Antiquities">Antiquities</option>
-          <option value="Curation">Curation</option>
-          <option value="European Ar">European Art</option>
-          <option value="Gift Shop">Gift Shop</option>
+          {departmentNames}
         </select>
         </div>
         <div>
         <label >Capacity</label>
-        <input type="text"  className="gallery" onChange={(e) => setname(e.target.value)}   />
+        <input type="number"  className="gallery" onChange={(e) => setcapacity(e.target.value)}   />
         </div>
         
        

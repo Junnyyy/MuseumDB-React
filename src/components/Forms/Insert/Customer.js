@@ -36,7 +36,6 @@ export default function Customer() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = await customer({
-  
      fname,
      mname,
      lname,
@@ -44,6 +43,7 @@ export default function Customer() {
      user,
      password,
      email
+     
     });
   };
 
@@ -53,31 +53,35 @@ export default function Customer() {
         <h1>Customer</h1>
      
         <div>
-        <label >Customer First Name</label>
+        <label >First Name</label>
         <input type="text"  className="customer" onChange={(e) => setfname(e.target.value)}  />
         </div>
         <div>
-        <label >Customer Middle Name</label>
+        <label >Middle Name</label>
         <input type="text"  className="customer" onChange={(e) => setmname(e.target.value)}  />
         </div>
         <div>
-        <label >Customer Last Name</label>
+        <label >Last Name</label>
         <input type="text"  className="customer" onChange={(e) => setlname(e.target.value)} />
         </div>
         <div>
-        <label >Membership Status</label>
-        <input type="text"  className="customer" onChange={(e) => setstatus(e.target.value)}  />
+        <label> Membership Status</label>
+          <select
+          className="customer" onChange={(e) => setstatus(e.target.value)}>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
         </div>
         <div>
-        <label >Customer Username</label>
+        <label >Username</label>
         <input type="text"  className="customer" onChange={(e) => setuser(e.target.value)}  />
         </div>
         <div>
-        <label >Customer Password</label>
+        <label >Password</label>
         <input type="text"  className="customer" onChange={(e) => setpassword(e.target.value)}  />
         </div>
         <div>
-        <label >Customer Email</label>
+        <label >Email</label>
         <input type="text"  className="customer" onChange={(e) => setemail(e.target.value)} />
         </div>
        

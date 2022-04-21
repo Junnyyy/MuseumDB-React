@@ -1,6 +1,9 @@
 import { React, useState } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
-import Artpiece from "../../components/Forms/Insert/ArtPieceSearch";
+import ArtPieceSearch from "../../components/Forms/Insert/Search/ArtPieceSearch";
+import CustomerSearch from "../../components/Forms/Insert/Search/CustomerSearch";
+import EmployeeSearch from "../../components/Forms/Insert/Search/EmployeeSearch";
+import DepartmentSearch from "../../components/Forms/Insert/Search/DepartmentSearch";
 
 export default function Search() {
     var formType = <></>;
@@ -10,7 +13,17 @@ export default function Search() {
     };
   
     if (value === "artpiece") {
-      formType = <Artpiece />;
+      formType = <ArtPieceSearch/>;
+    }
+    if (value === "Member") {
+      formType = <CustomerSearch/>;
+    }
+    if (value === "Employee") {
+      formType = <EmployeeSearch/>;
+    }
+
+    if (value === "Department") {
+      formType = <DepartmentSearch/>;
     }
     return(
       <div className="insert-wrapper">
@@ -21,12 +34,12 @@ export default function Search() {
             title="Search options"
             onSelect={handleSelect}>
             <Dropdown.Item eventKey="artpiece">Art Pieces</Dropdown.Item>
-            <Dropdown.Item eventKey="department">Department</Dropdown.Item>
-            <Dropdown.Item eventKey="employee">Employee</Dropdown.Item>
+            <Dropdown.Item eventKey="Department">Department</Dropdown.Item>
+            <Dropdown.Item eventKey="Employee">Employee</Dropdown.Item>
             <Dropdown.Item eventKey="exhibit">Exhibit</Dropdown.Item>
             <Dropdown.Item eventKey="gallery">Gallery</Dropdown.Item>
             <Dropdown.Item eventKey="store-item">Store Item</Dropdown.Item>
-            <Dropdown.Item eventKey="store-transaction"> Store Transaction</Dropdown.Item>
+            <Dropdown.Item eventKey="Member"> Member </Dropdown.Item>
             <Dropdown.Item value="ticket-transaction">Ticket Transaction </Dropdown.Item>
           </DropdownButton>
         </div>

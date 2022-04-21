@@ -3,7 +3,7 @@ import Artpiece_Table from "./ArtpieceTable";
 import "./modify.css"
 
 
-function AddDeleteTableRows(){
+function ArtPieceTable(){
 
     const getToken = () => {
         const tokenString = sessionStorage.getItem("token");
@@ -57,7 +57,7 @@ function AddDeleteTableRows(){
         setRowsData([...rowsData, rowsInput])
     }
 
-   const deleteTableRows = (index)=>
+   const deleteArtpiece_Table = (index)=>
    {
         const rows = [...rowsData];
         rows.splice(index, 1);
@@ -92,12 +92,12 @@ function AddDeleteTableRows(){
                           <th>Width</th>
                           <th>Gallery</th>
                           <th>Exhibit ID</th>
-                          <th>Action</th>
+                          <th>Action </th>
                       </tr>
                     </thead>
                    <tbody>
-                   <Artpiece_Table rowsData={artData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
-                   <Artpiece_Table rowsData={rowsData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
+                   <Artpiece_Table rowsData={artData} deleteArtpiece_Table={deleteArtpiece_Table} handleChange={handleChange} />
+                   <Artpiece_Table rowsData={rowsData} deleteArtpiece_Table={deleteArtpiece_Table} handleChange={handleChange} />
                    </tbody> 
                 </table>
 
@@ -108,4 +108,4 @@ function AddDeleteTableRows(){
     )
 
 }
-export default AddDeleteTableRows
+export default ArtPieceTable

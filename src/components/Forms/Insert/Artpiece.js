@@ -1,5 +1,5 @@
-import { React, useState } from "react";
-import "./Artpiece.css";
+import { React, useState, useEffect } from "react";
+import "./Insert.css";
 // import PropTypes from "prop-types";
 
 const getToken = () => {
@@ -8,7 +8,7 @@ const getToken = () => {
   return userToken?.token;
 };
 
-async function artInsert(data) {
+async function ArtInsert(data) {
   return fetch("https://cst2-api.azurewebsites.net/artpiece", {
     method: "POST",
     headers: {
@@ -17,10 +17,94 @@ async function artInsert(data) {
     },
     mode: "cors",
     body: JSON.stringify(data),
-  }).then((data) => data.json());
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => data.json())
+    .catch((err) => {
+      console.log(err);
+      <h2>Error: {err}</h2>;
+    });
 }
 
 export default function Art_Piece() {
+  const [exhibitData, setExData] = useState([]);
+
+  const fetchExData = () => {
+    fetch("https://cst2-api.azurewebsites.net/exhibit", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${getToken()}`,
+      },
+      mode: "cors",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setExData(data);
+      });
+  };
+
+  useEffect(() => {
+    fetchExData();
+  }, []);
+
+  console.log(exhibitData);
+
+  let exhibitIDs =
+    exhibitData.length > 0 &&
+    exhibitData.map((item, i) => {
+      return (
+        <option key={i} value={item.Exhibit_ID}>
+          {item.Exhibit_Name}
+        </option>
+      );
+    });
+
+  const [galleryData, setGaData] = useState([]);
+
+  const fetchGaData = () => {
+    fetch("https://cst2-api.azurewebsites.net/gallery", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${getToken()}`,
+      },
+      mode: "cors",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setGaData(data);
+      });
+  };
+
+  useEffect(() => {
+    fetchGaData();
+  }, []);
+
+  console.log(galleryData);
+
+  let galleryNames =
+    galleryData.length > 0 &&
+    galleryData.map((item, i) => {
+      return (
+        <option key={i} value={item.Gallery_Name}>
+          {item.Gallery_Name}
+        </option>
+      );
+    });
+
   const [title, settitle] = useState();
   const [created, setcreated] = useState();
   const [medium, setmedium] = useState();
@@ -37,7 +121,7 @@ export default function Art_Piece() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await artInsert({
+    const token = await ArtInsert({
       title,
       created,
       medium,
@@ -59,7 +143,7 @@ export default function Art_Piece() {
       <h1>Art Piece</h1>
 
       <div>
-        <label className="box">Art Piece Title</label>
+        <label className="box">Title</label>
         <input
           type="text"
           className="artpiece"
@@ -70,12 +154,12 @@ export default function Art_Piece() {
         <label className="box">Date Created</label>
         <input
           type="date"
-          className="artpiece"
+          className="datebox"
           onChange={(e) => setcreated(e.target.value)}
         />
       </div>
       <div>
-        <label className="box">medium</label>
+        <label className="box">Medium</label>
         <input
           type="text"
           className="artpiece"
@@ -102,6 +186,7 @@ export default function Art_Piece() {
         <label className="box">Being Refurbished</label>
         <select
           className="artpiece"
+          defaultValue={"1"}
           onChange={(e) => setrefurbishedstatus(e.target.value)}
         >
           <option value="1">Yes</option>
@@ -112,6 +197,7 @@ export default function Art_Piece() {
         <label className="box">On Display</label>
         <select
           className="artpiece"
+          defaultValue={"1"}
           onChange={(e) => setdisplaystatus(e.target.value)}
         >
           <option value="1">Yes</option>
@@ -119,7 +205,7 @@ export default function Art_Piece() {
         </select>
       </div>
       <div>
-        <label className="box">culture</label>
+        <label className="box">Culture</label>
         <input
           type="text"
           className="artpiece"
@@ -127,53 +213,50 @@ export default function Art_Piece() {
         />
       </div>
       <div>
-        <label className="box">Piece Height</label>
+        <label className="box">Height</label>
         <input
-          type="text"
+          type="number"
           className="artpiece"
           onChange={(e) => setheight(e.target.value)}
         />
       </div>
       <div>
-        <label className="box">Piece Length</label>
+        <label className="box">Length</label>
         <input
-          type="text"
+          type="number"
           className="artpiece"
           onChange={(e) => setlen(e.target.value)}
         />
       </div>
       <div>
-        <label className="box">Piece Width</label>
+        <label className="box">Width</label>
         <input
-          type="text"
+          type="number"
           className="artpiece"
           onChange={(e) => setwidth(e.target.value)}
         />
       </div>
       <div>
-        <label className="box">Gallery Location</label>
+        <label className="box">Gallery</label>
         <select
           className="artpiece"
           onChange={(e) => setgalLoc(e.target.value)}
         >
-          <option value="Academia Gallery">Academia Gallery</option>
-          <option value="America Room">America Room</option>
-          <option value="Audrey Jones Beck">Audrey Jones Beck</option>
-          <option value="Caroline Wiess Law">Caroline Wiess Law</option>
-          <option value="Jones Hall">Jones Hall</option>
-          <option value="Nancy and Rich Kinder">Nancy and Rich Kinder</option>
+          {galleryNames}
         </select>
       </div>
       <div>
-        <label className="box">Exhibit ID</label>
-        <input
+        <label className="box">Exhibit</label>
+        <select
           type="text"
           className="artpiece"
           onChange={(e) => setEID(e.target.value)}
-        />
+        >
+          {exhibitIDs}
+        </select>
       </div>
 
-      <button className="artpiecebutton">Submit</button>
+      <button className="submit">Submit</button>
     </form>
   );
 }

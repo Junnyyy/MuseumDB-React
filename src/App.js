@@ -14,6 +14,8 @@ import Modify from "./pages/Modify/Modify";
 import Report from "./pages/Report/Report";
 import Search from "./pages/Search/Search";
 import About from "./pages/About/About";
+import Shop from "./pages/Shop/Shop";
+import Collection from "./pages/Collection/Collection";
 
 import Navbar from "./components/Navbar/Navbar";
 
@@ -41,6 +43,8 @@ function App() {
           <Route path="/Report" element={<Report />} />
           <Route path="/Search" element={<Search />} />
           <Route path="/About" element={<About />} />
+          <Route path="/Shop" element={<Shop />} />
+          <Route path="/Collection" element={<Collection />} />
         </Routes>
       </BrowserRouter>
     </div>

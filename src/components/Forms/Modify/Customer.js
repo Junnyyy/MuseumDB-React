@@ -86,7 +86,6 @@ function AddDeleteTableRows(){
                           <th>Customer Last Name</th>
                           <th>Membership Status</th>
                           <th>Customer Username</th>
-                          <th>Customer Password</th>
                           <th>Customer Email</th>
                           <th>Action</th>
                       </tr>

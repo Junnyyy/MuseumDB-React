@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import TableRows from "./TableRows"
+import Gallery_Table from "./GalleryTable";
 import "./modify.css"
 
 
@@ -80,24 +80,16 @@ function AddDeleteTableRows(){
                 <table className="table">
                     <thead>
                       <tr>
-                          <th>Title</th>
-                          <th>Date Created</th>
-                          <th>Medium</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>Refurbished</th>
-                          <th>Culture</th>
-                          <th>Height</th>
-                          <th>Length</th>
-                          <th>Width</th>
-                          <th>Gallery</th>
-                          <th>Exhibit ID</th>
+                          <th>Gallery Name</th>
+                          <th>Managing Department</th>
+                          <th>Capacity</th>
+                          
                           <th>Action</th>
                       </tr>
                     </thead>
                    <tbody>
-                   <TableRows rowsData={artData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
-                   <TableRows rowsData={rowsData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
+                   <Gallery_Table rowsData={artData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
+                   <Gallery_Table rowsData={rowsData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
                    </tbody> 
                 </table>
 

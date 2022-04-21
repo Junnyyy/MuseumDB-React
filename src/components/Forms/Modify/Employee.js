@@ -81,18 +81,15 @@ function AddDeleteTableRows(){
                 <table className="table">
                     <thead>
                       <tr>
-                          <th>Title</th>
-                          <th>Date Created</th>
-                          <th>Medium</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>Refurbished</th>
-                          <th>Culture</th>
-                          <th>Height</th>
-                          <th>Length</th>
-                          <th>Width</th>
-                          <th>Gallery</th>
-                          <th>Exhibit ID</th>
+                            <th>Employee ID</th>
+                          <th>Employee First Name</th>
+                          <th>Employee Middle Name</th>
+                          <th>Employee Last Name</th>
+                          <th>Department Name</th>
+                          <th>Employee Salary</th>
+                          <th>Employee DOB</th>
+                          <th>Employee Email</th>
+                          <th>Emplyee Username</th>
                           <th>Action</th>
                       </tr>
                     </thead>

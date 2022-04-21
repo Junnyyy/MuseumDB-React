@@ -19,7 +19,6 @@ function Employee_Table({rowsData, deleteEmployee_Table, handleChange}) {
                 <td><input type="text" value={Employee_Salary}  onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_Salary" className="form-control" /> </td>
                 <td><input type="text" value={Employee_DOB}  onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_DOB" className="form-control"/> </td>
                 <td><input type="text" value={Employee_Email}  onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_Email" className="form-control"/> </td>
-                <td><input type="text" value={Employee_Password} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_Password" className="form-control"/> </td>
                 <td><input type="text" value={Employee_Username}  onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_Username" className="form-control"/> </td>
                 <td><button className="btn btn-outline-success" onClick={()=>(deleteEmployee_Table(index))}>Edit</button></td>
                 <td><button className="btn btn-outline-danger" onClick={()=>(deleteEmployee_Table(index))}>Delete</button></td>

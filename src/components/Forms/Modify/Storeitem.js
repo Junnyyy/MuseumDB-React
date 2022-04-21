@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import TableRows from "./TableRows"
+import Storeitem_Table from "./StoreitemTable";
 import "./modify.css"
+import { Store } from "@material-ui/icons";
 
 
 function AddDeleteTableRows(){
@@ -80,24 +81,18 @@ function AddDeleteTableRows(){
                 <table className="table">
                     <thead>
                       <tr>
-                          <th>Title</th>
-                          <th>Date Created</th>
-                          <th>Medium</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>Refurbished</th>
-                          <th>Culture</th>
-                          <th>Height</th>
-                          <th>Length</th>
-                          <th>Width</th>
-                          <th>Gallery</th>
-                          <th>Exhibit ID</th>
+                          <th>Item ID</th>
+                          <th>Item Name</th>
+                          <th>Quantity In Stock</th>
+                          <th>Item Price</th>
+                          <th>Number Sold</th>
+                          <th>Sold Status</th>
                           <th>Action</th>
                       </tr>
                     </thead>
                    <tbody>
-                   <TableRows rowsData={artData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
-                   <TableRows rowsData={rowsData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
+                   <Storeitem_Table rowsData={artData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
+                   <Storeitem_Table rowsData={rowsData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
                    </tbody> 
                 </table>
 

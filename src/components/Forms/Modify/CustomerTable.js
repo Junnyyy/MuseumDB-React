@@ -17,7 +17,6 @@ function Customer_Table({rowsData, deleteCustomer_Table, handleChange}) {
                 <td><input type="text" value={Customer_L_Name} onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_L_Name" className="form-control"/> </td>
                 <td><input type="text" value={Membership_Status}  onChange={(evnt)=>(handleChange(index, evnt))} name="Membership_Status" className="form-control"/> </td>
                 <td><input type="text" value={Customer_Username}  onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_Username" className="form-control" /> </td>
-                <td><input type="text" value={Customer_Password} onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_Password" className="form-control"/> </td>
                 <td><input type="text" value={Customer_Email}  onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_Email" className="form-control"/> </td>
                 <td><button className="btn btn-outline-success" onClick={()=>(deleteCustomer_Table(index))}>Edit</button></td>
                 <td><button className="btn btn-outline-danger" onClick={()=>(deleteCustomer_Table(index))}>Delete</button></td>

@@ -8,7 +8,7 @@ const getToken = () => {
   };
   
   async function DepartmentSearch (data) {
-      return fetch("https://cst2-api.azurewebsites.net/customer", {
+      return fetch("https://cst2-api.azurewebsites.net/department", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

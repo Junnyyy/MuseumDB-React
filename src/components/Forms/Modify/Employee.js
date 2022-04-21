@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import TableRows from "./TableRows"
+import TableRows from "./ArtpieceTable"
 import "./modify.css"
 import Employee_Table from "./EmployeeTable";
 

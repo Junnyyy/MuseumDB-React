@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import Storeitem_Table from "./StoreitemTable";
 import "./modify.css"
-import { Store } from "@material-ui/icons";
 
 
 function AddDeleteTableRows(){

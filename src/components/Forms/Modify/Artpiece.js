@@ -1,65 +1,33 @@
-import { useState } from "react"
-import TableRows from "./TableRows"
-function AddDeleteTableRows(){
+import React,{useEffect, useState} from "react"
+import {useQuery} from 'react-query'
 
+const getToken = () => {
+    const tokenString = sessionStorage.getItem("token");
+    const userToken = JSON.parse(tokenString);
+    return userToken?.token;
+  };
 
-    const [rowsData, setRowsData] = useState([]);
- 
-    const addTableRows = ()=>{
-  
-        const rowsInput={
-            fullName:'',
-            emailAddress:'',
-            salary:''  
-        } 
-        setRowsData([...rowsData, rowsInput])
-      
-    }
-   const deleteTableRows = (index)=>{
-        const rows = [...rowsData];
-        rows.splice(index, 1);
-        setRowsData(rows);
-   }
- 
-   const handleChange = (index, evnt)=>{
-    
-    const { name, value } = evnt.target;
-    const rowsInput = [...rowsData];
-    rowsInput[index][name] = value;
-    setRowsData(rowsInput);
-  
- 
- 
-}
-    return(
-        <div className="container">
-            <div className="row">
-                <div className="col-sm-8">
+function Artpiece_Modify() {
 
-                <table className="table">
-                    <thead>
-                      <tr>
-                          <th>Full Name</th>
-                          <th>Email Address</th>
-                          <th>Salary</th>
-                          <th><button className="btn btn-outline-success" onClick={addTableRows} >+</button></th>
-                      </tr>
+    const fetchartpieces = async () => {
+        const response = await fetch("https://cst2-api.azurewebsites.net/artpiece")
+        return response.json();
+      };
 
-                    </thead>
-                   <tbody>
+      const {data,error,isLoading} = useQuery("Art_Piece_Title",fetchartpieces);
 
-                   <TableRows rowsData={rowsData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
+    if (error) return <h1>Error: {error.message}, try again!</h1>;
+    if(isLoading) return <h1>Loading.......</h1>;
 
-                   </tbody> 
-                </table>
-
+    return (
+                <div>
+                {data.results.map((artpiece) => (
+                    <div> {artpiece.Art_Piece_Title}</div>
+                )
+                )}
                 </div>
-                <div className="col-sm-4">
 
-                </div>
-            </div>
-        </div>
-    )
+    );
 
-}
-export default AddDeleteTableRows
+ }
+ export default Artpiece_Modify;

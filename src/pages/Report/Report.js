@@ -30,7 +30,7 @@ export default function Report() {
         <p>Please select a report.</p>
         <DropdownButton
           id="dropdown-basic-button"
-          title="Select Table"
+          title="Select Report"
           onSelect={handleSelect}
         >
           <Dropdown.Item eventKey="EmployeeAddressBook">

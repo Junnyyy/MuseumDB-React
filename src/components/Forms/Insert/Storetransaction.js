@@ -9,23 +9,24 @@ const getToken = () => {
 };
 
 async function storetransaction(data) {
-    return fetch("https://cst2-api.azurewebsites.net/storetransaction", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${getToken()}`,
-      },
-      mode: "cors",
-      body: JSON.stringify(data),
-    }).then((data) => data.json());
-  }
+  return fetch("https://cst2-api.azurewebsites.net/storetransaction", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${getToken()}`,
+    },
+    mode: "cors",
+    body: JSON.stringify(data),
+  }).then((data) => data.json());
+}
 
-export default function StoreTransaction() {
+export default function Store_Transaction() {
 
   const [itemData, setItData] = useState([])
+  const [customerData, setCuData] = useState([])
 
-  const fetchItData = () => {
-      fetch("https://cst2-api.azurewebsites.net/storeitem", {
+  async function fetchItData () {
+      let storeResponse = await fetch("https://cst2-api.azurewebsites.net/storeitem", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -34,29 +35,32 @@ export default function StoreTransaction() {
         mode: "cors",
       })
       .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not OK');
+            }
           return response.json()
       })
       .then(data => {
         setItData(data)
       })
   }
-  
+
   useEffect(() => {
       fetchItData()
   }, [])
   
-  console.log(itemData)
+  
   
   let itemIDs = itemData.length > 0 && itemData.map((item, i) => {
   return (
-    <option key={i} value={item.id}>{item.Item_ID}</option>
+    <option key={i} value={item.Item_ID}>{item.Item_Name}</option>
   )
   })
 
-const [customerData, setCuData] = useState([])
 
-const fetchCuData = () => {
-    fetch("https://cst2-api.azurewebsites.net/customer", {
+
+  async function fetchCuData () {
+    return fetch("https://cst2-api.azurewebsites.net/customer", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -65,9 +69,10 @@ const fetchCuData = () => {
       mode: "cors",
     })
     .then(response => {
-        return response.json()
+        return  response.json()
     })
-    .then(data => {
+    .then(
+      data => {
       setCuData(data)
     })
 }
@@ -76,45 +81,45 @@ useEffect(() => {
     fetchCuData()
 }, [])
 
+
+
+
 console.log(customerData)
 
 let customerIDs = customerData.length > 0 && customerData.map((item, i) => {
 return (
-  <option key={i} value={item.id}>{item.Customer_ID}</option>
+  <option key={i} value={item.Customer_ID}>{item.Customer_F_Name +" "+ item.Customer_L_Name}</option>
 )
 })
 
 
-
-    const [CID,setCID ] = useState();
-    const [IID,setIID ] = useState();
-
+    const [CID,setCID ] = useState(1);
+    const [IID,setIID ] = useState(1);
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(CID)
     const token = await storetransaction({
-
      CID,
      IID
-
     });
-
+    
   };
 
-  return (
 
-    <main>
+  return (
+    <form onSubmit={handleSubmit} >
         <h1>Store Transaction</h1>
         <div>
-        <label >Customer ID</label>
-        <select   className="storetransaction" onChange={(e) => setCID(e.target.value)}>
+        <label >Customer</label>
+        <select  type="number" className="storetransaction" onChange={(e) => setCID(e.target.value)}>
           {customerIDs}
         </select>
         </div>
         <div>
-        <label >Item ID</label>
-        <select  className="storetransaction" onChange={(e) => setIID(e.target.value)}>
+        <label >Item</label>
+        <select type="number" className="storetransaction" onChange={(e) => setIID(e.target.value)}>
           {itemIDs}
         </select>
         </div>
@@ -122,7 +127,7 @@ return (
     
         <button className="submit">Submit</button>
      
-    </main>
+    </form>
   );
 }
 

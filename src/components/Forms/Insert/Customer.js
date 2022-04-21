@@ -67,7 +67,7 @@ export default function Customer() {
         <div>
         <label> Membership Status</label>
           <select
-          className="customer" onChange={(e) => setstatus(e.target.value)}>
+          className="customer" defaultValue = {"1"} onChange={(e) => setstatus(e.target.value)}>
           <option value="1">Yes</option>
           <option value="0">No</option>
         </select>

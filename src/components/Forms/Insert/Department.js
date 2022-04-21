@@ -38,6 +38,9 @@ export default function Department() {
         mode: "cors",
       })
       .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not OK');
+        }
           return response.json()
       })
       .then(data => {
@@ -53,13 +56,13 @@ console.log(employeeData)
 
 let employeeIDs = employeeData.length > 0 && employeeData.map((item, i) => {
   return (
-    <option key={i} value={item.id}>{item.Employee_ID}</option>
+    <option key={i} value={item.Employee_ID}>{item.Employee_ID}</option>
   )
 })
 
   const [name, setname] = useState();
   const [loc,setloc ] = useState();
-  const [SID,setSID ] = useState();
+  const [SID,setSID ] = useState(1);
   
   const handleSubmit = async (e) => {
     e.preventDefault();

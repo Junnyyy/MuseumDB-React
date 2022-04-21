@@ -44,6 +44,9 @@ export default function Art_Piece() {
         mode: "cors",
       })
       .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not OK');
+        }
           return response.json()
       })
       .then(data => {
@@ -59,7 +62,7 @@ console.log(exhibitData)
 
 let exhibitIDs = exhibitData.length > 0 && exhibitData.map((item, i) => {
   return (
-    <option key={i} value={item.id}>{item.Exhibit_ID}</option>
+    <option key={i} value={item.Exhibit_ID}>{item.Exhibit_Name}</option>
   )
 })
 
@@ -75,6 +78,9 @@ const fetchGaData = () => {
       mode: "cors",
     })
     .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not OK');
+      }
         return response.json()
     })
     .then(data => {
@@ -90,7 +96,7 @@ console.log(galleryData)
 
 let galleryNames = galleryData.length > 0 && galleryData.map((item, i) => {
 return (
-  <option key={i} value={item.id}>{item.Gallery_Name}</option>
+  <option key={i} value={item.Gallery_Name}>{item.Gallery_Name}</option>
 )
 })
 
@@ -174,7 +180,7 @@ return (
       <div>
         <label className="box">Being Refurbished</label>
         <select
-          className="artpiece"
+          className="artpiece" defaultValue={"1"}
           onChange={(e) => setrefurbishedstatus(e.target.value)}
         >
           <option value="1">Yes</option>
@@ -184,7 +190,7 @@ return (
       <div>
         <label className="box">On Display</label>
         <select
-          className="artpiece"
+          className="artpiece" defaultValue={"1"}
           onChange={(e) => setdisplaystatus(e.target.value)}
         >
           <option value="1">Yes</option>

@@ -21,12 +21,6 @@ async function storeitem(data) {
   }
 
 
-// Storeitem:
-// item (name, string)
-// quantity (INT)
-// price (FLOAT)
-
-
 export default function StoreItem() {
 
     const [name,setname ] = useState();

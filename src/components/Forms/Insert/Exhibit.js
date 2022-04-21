@@ -34,7 +34,11 @@ export default function Exhibit() {
         mode: "cors",
       })
       .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not OK');
+        }
           return response.json()
+          
       })
       .then(data => {
           setDeData(data)
@@ -49,7 +53,7 @@ console.log(departmentData)
 
 let departmentNames = departmentData.length > 0 && departmentData.map((item, i) => {
   return (
-    <option key={i} value={item.id}>{item.Department_Name}</option>
+    <option key={i} value={item.Department_Name}>{item.Department_Name}</option>
   )
 })
 
@@ -68,6 +72,9 @@ const fetchGaData = () => {
       mode: "cors",
     })
     .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not OK');
+      }
         return response.json()
     })
     .then(data => {
@@ -83,7 +90,7 @@ console.log(galleryData)
 
 let galleryNames = galleryData.length > 0 && galleryData.map((item, i) => {
 return (
-  <option key={i} value={item.id}>{item.Gallery_Name}</option>
+  <option key={i} value={item.Gallery_Name}>{item.Gallery_Name}</option>
 )
 })
  
@@ -92,8 +99,8 @@ return (
     const [depart,setdepart ] = useState();
     const [permanent,setpermanent] = useState();
     const [price,setprice ] = useState();
-    const [manager,setmanager ] = useState();
-    const [loc,setloc ] = useState();
+    const [manager,setmanager ] = useState("Administration");
+    const [loc,setloc ] = useState("Jones Hall");
 
     const [errStatus, setErrStatus] = useState(undefined);
 
@@ -137,7 +144,7 @@ return (
         </div>
         <div>
         <label >Permanent Exhibit</label>
-        <select className="exhibit" onChange={(e) => setpermanent(e.target.value)}>
+        <select className="exhibit" defaultState = {"1"} onChange={(e) => setpermanent(e.target.value)}>
           <option value="1">Yes</option>
           <option value="0">No</option>
         </select>

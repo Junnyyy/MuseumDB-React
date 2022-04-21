@@ -9,7 +9,7 @@ const getToken = () => {
 };
 
 async function EmployeeSearch (data) {
-    return fetch("https://cst2-api.azurewebsites.net/customer", {
+    return fetch("https://cst2-api.azurewebsites.net/employee", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -8,8 +8,12 @@ const getToken = () => {
   return userToken?.token;
 };
 
-async function artInsert(data) {
-  return fetch("https://cst2-api.azurewebsites.net/artpiece", {
+
+
+async function ArtInsert(data) {
+
+  return fetch("https://cst2-api.azurewebsites.net/artpiece", 
+  {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -17,7 +21,12 @@ async function artInsert(data) {
     },
     mode: "cors",
     body: JSON.stringify(data),
-  }).then((data) => data.json());
+  })
+  .then((data) => data.json())
+  .catch((err) => {
+      console.log(err);
+      <h2>Error: {err}</h2>
+  })
 }
 
 export default function Art_Piece() {
@@ -101,7 +110,7 @@ return (
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await artInsert({
+    const token = await ArtInsert({
       title,
       created,
       medium,

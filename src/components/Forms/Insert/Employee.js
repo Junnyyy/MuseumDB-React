@@ -165,7 +165,7 @@ export default function Employee() {
       <div>
         <label>Password</label>
         <input
-          type="text"
+          type="password"
           className="Employee"
           onChange={(e) => setEmployeepassword(e.target.value)}
         />

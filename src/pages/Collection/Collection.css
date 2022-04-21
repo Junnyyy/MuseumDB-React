@@ -1,0 +1,9 @@
+.table {
+    border: 10px solid black;
+    table-layout: fixed;
+    width: 1600px;
+    font-size: 12px;
+}
+.tr, .td {
+    font-size: 12px;
+}

@@ -52,7 +52,7 @@ export default function Insert() {
   return (
     <div className="insert-wrapper">
       <div className="selection">
-        <p>Please select a table to modify.</p>
+        <h2>Please select a table to Modify / Delete data</h2>
 
         <DropdownButton
           id="dropdown-basic-button"

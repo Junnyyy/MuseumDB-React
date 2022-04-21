@@ -1,10 +1,14 @@
 import "react-bootstrap";
-import AddDeleteTableRows from "./AddDeleteTableRows";
+import DisplayCollection from "./DisplayCollection";
 
-function Collection2() {
+function Collection() {
   return (
-    <AddDeleteTableRows />
+    <div>
+    <br></br>
+    <h2 className="title">Collection</h2>
+    <DisplayCollection />
+    </div>
   );
   }
 
-export default Collection2;
+export default Collection;

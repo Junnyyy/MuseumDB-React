@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react"
 import "./Collection.css"
 
-function TableRows({rowsData, deleteTableRows, handleChange}) {
+function CollectionRows({rowsData, deleteTableRows, handleChange}) {
 
 
     return(
@@ -16,14 +15,14 @@ function TableRows({rowsData, deleteTableRows, handleChange}) {
                 <td><input type="text" value={Medium}  onChange={(evnt)=>(handleChange(index, evnt))} name="Medium" className="form-control" /> </td>
                 <td><input type="text" value={Creator_F_Name} onChange={(evnt)=>(handleChange(index, evnt))} name="Creator_F_Name" className="form-control"/> </td>
                 <td><input type="text" value={Creator_L_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Creator_L_Name" className="form-control"/> </td>
-                <td><input type="text" value={Being_Refurbished}  onChange={(evnt)=>(handleChange(index, evnt))} name="Being_Refurbished" className="form-control" /> </td>
+                {/*<td><input type="text" value={Being_Refurbished}  onChange={(evnt)=>(handleChange(index, evnt))} name="Being_Refurbished" className="form-control" /> </td>*/}
                 <td><input type="text" value={Culture} onChange={(evnt)=>(handleChange(index, evnt))} name="Culture" className="form-control"/> </td>
                 <td><input type="text" value={Piece_Height}  onChange={(evnt)=>(handleChange(index, evnt))} name="Piece_Height" className="form-control"/> </td>
                 <td><input type="text" value={Piece_Length}  onChange={(evnt)=>(handleChange(index, evnt))} name="Piece_Length" className="form-control" /> </td>
                 <td><input type="text" value={Piece_Width} onChange={(evnt)=>(handleChange(index, evnt))} name="Piece_Width" className="form-control"/> </td>
                 <td><input type="text" value={Gallery_Loc}  onChange={(evnt)=>(handleChange(index, evnt))} name="Gallery_Loc" className="form-control"/> </td>
                 <td><input type="text" value={Exhibit_ID}  onChange={(evnt)=>(handleChange(index, evnt))} name="Exhibit_ID" className="form-control" /> </td>
-                <td><button className="btn btn-outline-danger" onClick={()=>(deleteTableRows(index))}>x</button></td>
+                {/*<td><button className="btn btn-outline-danger" onClick={()=>(deleteTableRows(index))}>x</button></td>*/}
             </tr>
 
             )
@@ -33,4 +32,4 @@ function TableRows({rowsData, deleteTableRows, handleChange}) {
     
 }
 
-export default TableRows;
+export default CollectionRows;

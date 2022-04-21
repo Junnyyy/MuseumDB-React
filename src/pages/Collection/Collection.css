@@ -1,9 +1,19 @@
-.table {
-    border: 10px solid black;
-    table-layout: fixed;
-    width: 1600px;
-    font-size: 12px;
+.table{
+    width: 100%;
+    font-size: 14px;
+    box-sizing: content-box;
+    border-radius: 8px;
+    display: table;
+    position: relative;
+    table-layout: auto;
 }
-.tr, .td {
+.col-sm-8, .row  {
+    width: 100%;
+    display: inline;
+}
+.tr, .td, .tbody, .form-control {
+    display:block;
+    width: 100%;
     font-size: 12px;
+    table-layout: auto;
 }

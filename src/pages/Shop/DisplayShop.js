@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react"
-import TableRows from "./TableRows"
-import "./Collection.css"
+import { useEffect, useState } from "react";
+import ShopRows from "./ShopRows";
+import "./Shop.css";
 
 
-function AddDeleteTableRows(){
+function DisplayShop(){
 
     const getToken = () => {
         const tokenString = sessionStorage.getItem("token");
@@ -14,7 +14,7 @@ function AddDeleteTableRows(){
       const [artData, setData] = useState([])
 
       const fetchData = () => {
-          fetch("https://cst2-api.azurewebsites.net/artpiece", {
+          fetch("https://cst2-api.azurewebsites.net/storeitem", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -41,18 +41,10 @@ function AddDeleteTableRows(){
     const addTableRows = ()=>{
 
         const rowsInput={
-            Art_Piece_Title:'',
-            Date_Created:'',
-            Medium:'',
-            Creator_F_Name:'',
-            Creator_L_Name:'',
-            Being_Refurbished:'',
-            Culture:'',
-            Piece_Height:'',
-            Piece_Length:'',
-            Piece_Width:'',
-            Gallery_Loc:'',
-            Exhibit_ID:''
+            Item_Name:'',
+            Item_Price: '',
+            Quantity_In_Stock:'',
+            Number_Sold:''
         } 
         setRowsData([...rowsData, rowsInput])
     }
@@ -76,28 +68,19 @@ function AddDeleteTableRows(){
         <div className="container" >
             <div className="row">
                 <div className="col-sm-8">
-
                 <table className="table">
                     <thead>
                       <tr>
-                          <th>Title</th>
-                          <th>Date Created</th>
-                          <th>Medium</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>Refurbished</th>
-                          <th>Culture</th>
-                          <th>Height</th>
-                          <th>Length</th>
-                          <th>Width</th>
-                          <th>Gallery</th>
-                          <th>Exhibit ID</th>
-                          <th><button className="btn btn-outline-success" onClick={addTableRows} >+</button></th>
+                          <th>Item Name</th>
+                          <th>Price</th>
+                          <th>Quantity</th>
+                          <th>Amount Sold</th>
+                          {/*<th><button className="btn btn-outline-success" onClick={addTableRows} >+</button></th>*/}
                       </tr>
                     </thead>
                    <tbody>
-                   <TableRows rowsData={artData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
-                   <TableRows rowsData={rowsData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
+                   <ShopRows rowsData={artData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
+                   {/*<TableRows rowsData={rowsData} deleteTableRows={deleteTableRows} handleChange={handleChange} />*/}
                    </tbody> 
                 </table>
 
@@ -108,4 +91,4 @@ function AddDeleteTableRows(){
     )
 
 }
-export default AddDeleteTableRows
+export default DisplayShop

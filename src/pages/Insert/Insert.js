@@ -7,8 +7,8 @@ import Employee from "../../components/Forms/Insert/Employee";
 import Exhibit from "../../components/Forms/Insert/Exhibit";
 import Gallery from "../../components/Forms/Insert/Gallery";
 import StoreItem from "../../components/Forms/Insert/Storeitem";
-import StoreTransaction from "../../components/Forms/Insert/Storetransaction";
-import TicketTransaction from "../../components/Forms/Insert/Tickettransaction";
+import Store_Transaction from "../../components/Forms/Insert/Storetransaction";
+import Ticket_Transaction from "../../components/Forms/Insert/Tickettransaction";
 
 
 
@@ -42,10 +42,10 @@ export default function Insert() {
       formType = <StoreItem/>;
       break
     case"store-transaction":
-      formType = <StoreTransaction/>;
+      formType = <Store_Transaction/>;
       break
     case"ticket-transaction":
-      formType = <TicketTransaction/>;
+      formType = <Ticket_Transaction/>;
       break
   }
 

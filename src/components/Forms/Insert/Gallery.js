@@ -34,6 +34,9 @@ export default function Gallery() {
         mode: "cors",
       })
       .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not OK');
+        }
           return response.json()
       })
       .then(data => {
@@ -49,12 +52,12 @@ console.log(departmentData)
 
 let departmentNames = departmentData.length > 0 && departmentData.map((item, i) => {
   return (
-    <option key={i} value={item.id}>{item.Department_Name}</option>
+    <option key={i} value={item.Department_Name}>{item.Department_Name}</option>
   )
 })
 
     const [name,setname ] = useState();
-    const [manager,setmanager ] = useState();
+    const [manager,setmanager ] = useState("Administration");
     const [capacity,setcapacity ] = useState();
 
 

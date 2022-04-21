@@ -22,7 +22,7 @@ async function tickettransaction(data) {
     }).then((data) => data.json());
   }
 
-export default function TicketTransaction() {
+export default function Ticket_Transaction() {
 
 
   const [exhibitData, setExData] = useState([])
@@ -37,6 +37,9 @@ export default function TicketTransaction() {
         mode: "cors",
       })
       .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not OK');
+        }
           return response.json()
       })
       .then(data => {
@@ -52,7 +55,7 @@ console.log(exhibitData)
 
 let exhibitIDs = exhibitData.length > 0 && exhibitData.map((item, i) => {
   return (
-    <option key={i} value={item.id}>{item.Exhibit_ID}</option>
+    <option key={i} value={item.Exhibit_ID}>{item.Exhibit_Name}</option>
   )
 })
   
@@ -83,13 +86,13 @@ console.log(customerData)
 
 let customerIDs = customerData.length > 0 && customerData.map((item, i) => {
 return (
-  <option key={i} value={item.id}>{item.Customer_ID}</option>
+  <option key={i} value={item.Customer_ID}>{item.Customer_F_Name +" "+ item.Customer_L_Name}</option>
 )
 })
 
 
-    const [CID,setCID ] = useState();
-    const [EID,setEID ] = useState();
+    const [CID,setCID ] = useState(1);
+    const [EID,setEID ] = useState(1);
 
 
 
@@ -105,18 +108,17 @@ return (
   };
 
   return (
-
-    <main>
+    <form onSubmit={handleSubmit} >
         <h1>Ticket Transaction</h1>
         <div>
-        <label >Customer ID</label>
-        <select  className="tickettransaction" onChange={(e) => setCID(e.target.value)}>
+        <label >Customer</label>
+        <select type="number"  className="tickettransaction" onChange={(e) => setCID(e.target.value)}>
           {customerIDs}
         </select>
         </div>
         <div>
-        <label >Exhibit ID</label>
-        <select  className="tickettransaction" onChange={(e) => setEID(e.target.value)}>
+        <label >Exhibit</label>
+        <select type="number"  className="tickettransaction" onChange={(e) => setEID(e.target.value)}>
           {exhibitIDs}
         </select>
         </div>
@@ -124,7 +126,7 @@ return (
     
         <button className="submit">Submit</button>
      
-    </main>
+    </form>
   );
 }
 

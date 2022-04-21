@@ -35,6 +35,9 @@ export default function Employee() {
         mode: "cors",
       })
       .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not OK');
+        }
           return response.json()
       })
       .then(data => {
@@ -50,7 +53,7 @@ console.log(departmentData)
 
 let departmentNames = departmentData.length > 0 && departmentData.map((item, i) => {
   return (
-    <option key={i} value={item.id}>{item.Department_Name}</option>
+    <option key={i} value={item.Department_Name}>{item.Department_Name}</option>
   )
 })
 
@@ -58,7 +61,7 @@ let departmentNames = departmentData.length > 0 && departmentData.map((item, i) 
   const [EmployeeFirstName,setEmployeeFirstName ] = useState();
   const [EmployeeMiddleName,setEmployeeMiddleName ] = useState();
   const [EmployeeLastName,setEmployeeLastName ] = useState();
-  const [DepartmentName,setDepartmentName] = useState();
+  const [DepartmentName,setDepartmentName] = useState("Administration");
   const [EmployeeUsername,setEmployeeUsername ] = useState();
   const [Employeepassword,setEmployeepassword ] = useState();
   const [EmployeeEmail,setEmployeeEamil ] = useState();

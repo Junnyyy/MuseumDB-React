@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Artpiece_Table from "./ArtpieceTable";
+import ArtpieceEditRows from "./ArtpieceEdit";
 import "./modify.css"
 
 
@@ -12,6 +13,7 @@ function ArtPieceTable(){
       };
 
       const [artData, setData] = useState([])
+      
 
       const fetchData = () => {
           fetch("https://cst2-api.azurewebsites.net/artpiece", {
@@ -57,7 +59,15 @@ function ArtPieceTable(){
         setRowsData([...rowsData, rowsInput])
     }
 
+
    const deleteArtpiece_Table = (index)=>
+   {
+        const rows = [...rowsData];
+        rows.splice(index, 1);
+        setRowsData(rows);
+   }
+
+   const editArtpiece_Table = (index)=>
    {
         const rows = [...rowsData];
         rows.splice(index, 1);
@@ -97,7 +107,7 @@ function ArtPieceTable(){
                     </thead>
                    <tbody>
                    <Artpiece_Table rowsData={artData} deleteArtpiece_Table={deleteArtpiece_Table} handleChange={handleChange} />
-                   <Artpiece_Table rowsData={rowsData} deleteArtpiece_Table={deleteArtpiece_Table} handleChange={handleChange} />
+                   <Artpiece_Table rowsData={rowsData} editArtpiece_Table={editArtpiece_Table} handleChange={handleChange} />
                    </tbody> 
                 </table>
 

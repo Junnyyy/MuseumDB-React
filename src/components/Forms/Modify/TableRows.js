@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import "./Collection.css"
+
 
 function TableRows({rowsData, deleteTableRows, handleChange}) {
 

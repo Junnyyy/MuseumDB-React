@@ -1,0 +1,7 @@
+.AlertBox {
+  justify-content: center;
+  top: 0px;
+  left: 0px;
+  border-radius: 8px;
+  z-index: 10;
+}

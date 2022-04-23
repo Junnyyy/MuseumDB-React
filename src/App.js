@@ -27,7 +27,10 @@ function App() {
   if (!token) {
     return (
       <div className="app">
-        <Alerts />
+        <Alerts
+          type="danger"
+          message="Your password or username was incorrect!"
+        />
         <div className="login">
           <LoginForm setToken={setToken} setUser={setUser} />
         </div>

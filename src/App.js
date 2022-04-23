@@ -18,6 +18,7 @@ import Shop from "./pages/Shop/Shop";
 import Collection from "./pages/Collection/Collection";
 
 import Navbar from "./components/Navbar/Navbar";
+import Alerts from "./components/Alerts/Alerts";
 
 function App() {
   const { token, setToken } = useToken();
@@ -25,8 +26,10 @@ function App() {
 
   if (!token) {
     return (
-      <div className="login">
-        <LoginForm setToken={setToken} setUser={setUser} />
+      <div className="app">
+        <div className="login">
+          <LoginForm setToken={setToken} setUser={setUser} />
+        </div>
       </div>
     );
   }
@@ -35,6 +38,7 @@ function App() {
     <div className="app">
       <BrowserRouter>
         <Navbar />
+        <Alerts />
         <Routes>
           <Route path="/" element={<Home user={user} />} />
           <Route path="/Insert" element={<Insert />} />

@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import PropTypes from "prop-types";
 import "./LoginForm.css";
+import Alerts from "../Alerts/Alerts";
 
 async function authUser(credentials) {
   return fetch("https://cst2-api.azurewebsites.net/auth/login", {

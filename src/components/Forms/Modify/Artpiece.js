@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import Artpiece_Table from "./ArtpieceTable";
-import ArtpieceEditRows from "./ArtpieceEdit";
+import ArtpieceEdit from "./ArtpieceEdit";
 import "./modify.css";
+import { Fragment } from "react";
 
 function ArtPieceTable() {
   const getToken = () => {
@@ -10,7 +11,22 @@ function ArtPieceTable() {
     return userToken?.token;
   };
 
+  const [editFormData, setEditFormData] = useState({
+    Art_Piece_Title: "",
+    Date_Created: "",
+    Medium: "",
+    Creator_F_Name: "",
+    Creator_L_Name: "",
+    Being_Refurbished: "",
+    Culture: "",
+    Piece_Height: "",
+    Piece_Length: "",
+    Piece_Width: "",
+    Gallery_Loc: "",
+    Exhibit_ID: "",
+  })
   const [artData, setData] = useState([]);
+  const[editartID,setEditartID] = useState(null);
 
   const fetchData = () => {
     fetch("https://cst2-api.azurewebsites.net/artpiece", {
@@ -37,50 +53,52 @@ function ArtPieceTable() {
 
   const [rowsData, setRowsData] = useState([]);
 
-  const addTableRows = () => {
-    const rowsInput = {
-      Art_Piece_Title: "",
-      Date_Created: "",
-      Medium: "",
-      Creator_F_Name: "",
-      Creator_L_Name: "",
-      Being_Refurbished: "",
-      Culture: "",
-      Piece_Height: "",
-      Piece_Length: "",
-      Piece_Width: "",
-      Gallery_Loc: "",
-      Exhibit_ID: "",
-    };
-    setRowsData([...rowsData, rowsInput]);
+
+
+  const handleEditClick = (event, artdata) => {
+      event.preventDefault();
+      setEditartID(artdata.Art_Piece_Title)
+
+      const FormValues = {
+        Art_Piece_Title: artdata.Art_Piece_Title,
+        Date_Created: artdata.Date_Created,
+        Medium: artdata.Medium,
+        Creator_F_Name: artdata.Creator_F_Name,
+        Creator_L_Name: artdata.Creator_L_Name,
+        Being_Refurbished: artdata.Being_Refurbished,
+        Culture: artdata.Culture,
+        Piece_Height: artdata.Piece_Height,
+        Piece_Length: artdata.Piece_Length,
+        Piece_Width: artdata.Piece_Width,
+        Gallery_Loc: artdata.Gallery_Loc,
+        Exhibit_ID: artdata.Exhibit_ID,
+      }
+        
+        setEditFormData(FormValues);
+      
   };
 
-  const deleteArtpiece_Table = (index) => {
-    const rows = [...rowsData];
-    rows.splice(index, 1);
-    setRowsData(rows);
-  };
+  const handleEditFormChange = (event) => {
+    event.preventDefault();
+    
+    const fieldName = event.target.getAttribute('title')
+    const fieldValue = event.target.value;
 
-  const editArtpiece_Table = (index) => {
-    const rows = [...rowsData];
-    rows.splice(index, 1);
-    setRowsData(rows);
-  };
+    const newFormData = {...editFormData};
+    newFormData[fieldName] = fieldValue;
 
-  const handleChange = (index, evnt) => {
-    const { name, value } = evnt.target;
-    const rowsInput = [...rowsData];
-    rowsInput[index][name] = value;
-    setRowsData(rowsInput);
-  };
+    setEditFormData(newFormData);
+};
 
   return (
     <div className="container">
       <div className="row">
         <div className="col-sm-8">
+            <form>
           <table className="table">
             <thead>
               <tr>
+
                 <th>Title</th>
                 <th>Date Created</th>
                 <th>Medium</th>
@@ -97,7 +115,19 @@ function ArtPieceTable() {
               </tr>
             </thead>
             <tbody>
-              <Artpiece_Table
+                {artData.map((artdata) => (
+                    <Fragment>
+                        {editartID ===artdata.Art_Piece_Title ?(
+                        <ArtpieceEdit   editFormData = {editFormData} handleEditFormChange = {handleEditFormChange}  />
+                        ): (
+
+                <Artpiece_Table artdata={artdata} handleEditClick =  {handleEditClick}  />
+                        )}
+                </Fragment>
+                ))}
+
+
+              {/* <Artpiece_Table
                 rowsData={artData}
                 deleteArtpiece_Table={deleteArtpiece_Table}
                 handleChange={handleChange}
@@ -106,9 +136,11 @@ function ArtPieceTable() {
                 rowsData={rowsData}
                 editArtpiece_Table={editArtpiece_Table}
                 handleChange={handleChange}
-              />
+              /> */}
             </tbody>
+            
           </table>
+          </form>
         </div>
       </div>
     </div>

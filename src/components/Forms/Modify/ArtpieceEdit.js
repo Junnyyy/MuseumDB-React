@@ -1,19 +1,14 @@
-import React from "react";
+import React from 'react'
 
-const ArtpieceEditRows = ({
-  editFormData,
-  handleEditFormChange,
-  handleCancelClick,
-}) => {
+const ArtpieceEdit = ({editFormData, handleEditFormChange}) => {
   return (
     <tr>
       <td>
         <input
           type="text"
           required="required"
-          placeholder="Enter a name..."
-          name="fullName"
-          value={editFormData.fullName}
+          Title="Art_Piece_Title"
+          value = {editFormData.Title}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -21,9 +16,8 @@ const ArtpieceEditRows = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter an address..."
-          name="address"
-          value={editFormData.address}
+          Title="Art_Piece_Title"
+          value = {editFormData.Title}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -31,30 +25,104 @@ const ArtpieceEditRows = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter a phone number..."
-          name="phoneNumber"
-          value={editFormData.phoneNumber}
+          Title="Art_Piece_Title"
+          value = {editFormData.Title}
           onChange={handleEditFormChange}
         ></input>
       </td>
       <td>
         <input
-          type="email"
+          type="text"
           required="required"
-          placeholder="Enter an email..."
-          name="email"
-          value={editFormData.email}
+          Title="Art_Piece_Title"
+          value = {editFormData.Title}
           onChange={handleEditFormChange}
         ></input>
       </td>
       <td>
-        <button type="submit">Save</button>
-        <button type="button" onClick={handleCancelClick}>
-          Cancel
-        </button>
+        <input
+          type="text"
+          required="required"
+          Title="Art_Piece_Title"
+          value = {editFormData.Title}
+          onChange={handleEditFormChange}
+        ></input>
       </td>
-    </tr>
-  );
-};
+      <td>
+        <input
+          type="text"
+          required="required"
+          Title="Art_Piece_Title"
+          value = {editFormData.Title}
+          onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
+        <input
+          type="text"
+          required="required"
+          Title="Art_Piece_Title"
+          value = {editFormData.Title}
+          onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
+        <input
+          type="text"
+          required="required"
+          Title="Art_Piece_Title"
+          value = {editFormData.Title}
+          onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
+        <input
+          type="text"
+          required="required"
+          Title="Art_Piece_Title"
+          value = {editFormData.Title}
+          onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
+        <input
+          type="text"
+          required="required"
+          Title="Art_Piece_Title"
+          value = {editFormData.Title}
+          onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
+        <input
+          type="text"
+          required="required"
+          Title="Art_Piece_Title"
+          value = {editFormData.Title}
+          onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
+        <input
+          type="text"
+          required="required"
+          Title="Art_Piece_Title"
+          value = {editFormData.Title}
+          onChange={handleEditFormChange}
+        ></input>
+      </td>
 
-export default ArtpieceEditRows;
+
+      <td>
+        <button className="btn btn-outline-success" type = "submit"> Submit</button>
+      </td>
+      <td>
+        <button className="btn btn-outline-success" type = "submit"> Cancel</button>
+      </td>
+      
+      
+    </tr>
+  )
+}
+
+export default ArtpieceEdit

@@ -12,19 +12,21 @@ function ArtPieceTable() {
   };
 
   const [editFormData, setEditFormData] = useState({
-    Art_Piece_Title: "",
-    Date_Created: "",
-    Medium: "",
-    Creator_F_Name: "",
-    Creator_L_Name: "",
-    Being_Refurbished: "",
-    Culture: "",
-    Piece_Height: "",
-    Piece_Length: "",
-    Piece_Width: "",
-    Gallery_Loc: "",
-    Exhibit_ID: "",
-  })
+    Art_Piece_Title: " ",
+    Date_Created: " ",
+    Medium: " ",
+    Creator_F_Name: " ",
+    Creator_L_Name: " ",
+    Being_Refurbished: " ",
+    Culture: " ",
+    Piece_Height: " ",
+    Piece_Length: " ",
+    Piece_Width: " ",
+    Gallery_Loc: " ",
+    Exhibit_ID: " ",
+  });
+
+
   const [artData, setData] = useState([]);
   const[editartID,setEditartID] = useState(null);
 
@@ -51,7 +53,6 @@ function ArtPieceTable() {
 
   console.log(artData);
 
-  const [rowsData, setRowsData] = useState([]);
 
 
 
@@ -81,10 +82,10 @@ function ArtPieceTable() {
   const handleEditFormChange = (event) => {
     event.preventDefault();
     
-    const fieldName = event.target.getAttribute('title')
+    const fieldName = event.target.getAttribute("name")
     const fieldValue = event.target.value;
 
-    const newFormData = {...editFormData};
+    const newFormData = { ...editFormData};
     newFormData[fieldName] = fieldValue;
 
     setEditFormData(newFormData);

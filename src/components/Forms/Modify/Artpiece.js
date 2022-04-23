@@ -11,24 +11,11 @@ function ArtPieceTable() {
     return userToken?.token;
   };
 
-  const [editFormData, setEditFormData] = useState({
-    Art_Piece_Title: " ",
-    Date_Created: " ",
-    Medium: " ",
-    Creator_F_Name: " ",
-    Creator_L_Name: " ",
-    Being_Refurbished: " ",
-    Culture: " ",
-    Piece_Height: " ",
-    Piece_Length: " ",
-    Piece_Width: " ",
-    Gallery_Loc: " ",
-    Exhibit_ID: " ",
-  });
+
 
 
   const [artData, setData] = useState([]);
-  const[editartID,setEditartID] = useState(null);
+  const[editartID,setEditartID] = useState( "Starry Night");
 
   const fetchData = () => {
     fetch("https://cst2-api.azurewebsites.net/artpiece", {
@@ -53,42 +40,56 @@ function ArtPieceTable() {
 
   console.log(artData);
 
+  const [editFormData, setEditFormData] = useState({
+    Art_Piece_Title: " ",
+    Date_Created: " ",
+    Medium: " ",
+    Creator_F_Name: " ",
+    Creator_L_Name: " ",
+    Being_Refurbished: " ",
+    Culture: " ",
+    Piece_Height: " ",
+    Piece_Length: " ",
+    Piece_Width: " ",
+    Gallery_Loc: " ",
+    Exhibit_ID: " ",
 
-
-
-  const handleEditClick = (event, artdata) => {
-      event.preventDefault();
-      setEditartID(artdata.Art_Piece_Title)
-
-      const FormValues = {
-        Art_Piece_Title: artdata.Art_Piece_Title,
-        Date_Created: artdata.Date_Created,
-        Medium: artdata.Medium,
-        Creator_F_Name: artdata.Creator_F_Name,
-        Creator_L_Name: artdata.Creator_L_Name,
-        Being_Refurbished: artdata.Being_Refurbished,
-        Culture: artdata.Culture,
-        Piece_Height: artdata.Piece_Height,
-        Piece_Length: artdata.Piece_Length,
-        Piece_Width: artdata.Piece_Width,
-        Gallery_Loc: artdata.Gallery_Loc,
-        Exhibit_ID: artdata.Exhibit_ID,
-      }
-        
-        setEditFormData(FormValues);
-      
-  };
+      });
 
   const handleEditFormChange = (event) => {
     event.preventDefault();
     
-    const fieldName = event.target.getAttribute("name")
+    const fieldName = event.target.getAttribute("name");
     const fieldValue = event.target.value;
 
-    const newFormData = { ...editFormData};
+    const newFormData = { ...editFormData };
     newFormData[fieldName] = fieldValue;
 
     setEditFormData(newFormData);
+};
+
+
+const handleEditClick = (event, artdata) => {
+  event.preventDefault();
+  setEditartID(artdata.Art_Piece_Title)
+
+  const FormValues = {
+    Art_Piece_Title: artdata.Art_Piece_Title,
+    Date_Created: artdata.Date_Created,
+    Medium: artdata.Medium,
+    Creator_F_Name: artdata.Creator_F_Name,
+    Creator_L_Name: artdata.Creator_L_Name,
+    Being_Refurbished: artdata.Being_Refurbished,
+    Culture: artdata.Culture,
+    Piece_Height: artdata.Piece_Height,
+    Piece_Length: artdata.Piece_Length,
+    Piece_Width: artdata.Piece_Width,
+    Gallery_Loc: artdata.Gallery_Loc,
+    Exhibit_ID: artdata.Exhibit_ID,
+  }
+    
+    setEditFormData(FormValues);
+  
 };
 
   return (
@@ -118,7 +119,7 @@ function ArtPieceTable() {
             <tbody>
                 {artData.map((artdata) => (
                     <Fragment>
-                        {editartID ===artdata.Art_Piece_Title ?(
+                        {editartID ===  artdata.Art_Piece_Title ?(
                         <ArtpieceEdit   editFormData = {editFormData} handleEditFormChange = {handleEditFormChange}  />
                         ): (
 

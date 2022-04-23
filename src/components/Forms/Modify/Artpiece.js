@@ -12,11 +12,6 @@ function ArtPieceTable() {
   };
 
 
-
-
-  const [artData, setData] = useState([]);
-  const[editartID,setEditartID] = useState( "Starry Night");
-
   const fetchData = () => {
     fetch("https://cst2-api.azurewebsites.net/artpiece", {
       method: "GET",
@@ -30,7 +25,7 @@ function ArtPieceTable() {
         return response.json();
       })
       .then((data) => {
-        setData(data);
+        setartData(data);
       });
   };
 
@@ -38,7 +33,11 @@ function ArtPieceTable() {
     fetchData();
   }, []);
 
-  console.log(artData);
+
+
+  const [artData, setartData] = useState([]);
+  const[editartID,setEditartID] = useState( null);
+
 
   const [editFormData, setEditFormData] = useState({
     Art_Piece_Title: " ",
@@ -55,6 +54,36 @@ function ArtPieceTable() {
     Exhibit_ID: " ",
 
       });
+
+      const handleEditFormSubmit =(event) => {
+        event.preventDefault();
+
+        const editedartdata = {
+
+          Art_Piece_Title: editFormData.Art_Piece_Title,
+          Date_Created: editFormData.Date_Created,
+          Medium: editFormData.Medium,
+          Creator_F_Name: editFormData.Creator_F_Name,
+          Creator_L_Name: editFormData.Creator_L_Name,
+          Being_Refurbished: editFormData.Being_Refurbished,
+          Culture: editFormData.Culture,
+          Piece_Height: editFormData.Piece_Height,
+          Piece_Length: editFormData.Piece_Length,
+          Piece_Width: editFormData.Piece_Width,
+          Gallery_Loc: editFormData.Gallery_Loc,
+          Exhibit_ID: editFormData.Exhibit_ID,
+
+        }
+
+        const newartData = [   ...artData  ];
+
+        const index = artData.findIndex((artdata)=> artdata.id === editartID );
+
+        newartData[index] = editedartdata;
+
+        setEditartID(newartData);
+        setEditartID(null)
+      }
 
   const handleEditFormChange = (event) => {
     event.preventDefault();
@@ -92,11 +121,27 @@ const handleEditClick = (event, artdata) => {
   
 };
 
+const handleCancelClick = () => {
+  setEditartID(null);
+}
+
+
+const handleDeleteClick = (artdataID) => {
+  const newartData = [ ... artData];
+
+  const index = artData.findIndex((artdata)=> artdata.Art_Piece_Title === artdataID );
+ 
+  newartData.splice(index, 1);
+
+  setartData(newartData);
+
+}
+
   return (
     <div className="container">
       <div className="row">
         <div className="col-sm-8">
-            <form>
+            <form onSubmit={handleEditFormSubmit}>
           <table className="table">
             <thead>
               <tr>
@@ -120,10 +165,10 @@ const handleEditClick = (event, artdata) => {
                 {artData.map((artdata) => (
                     <Fragment>
                         {editartID ===  artdata.Art_Piece_Title ?(
-                        <ArtpieceEdit   editFormData = {editFormData} handleEditFormChange = {handleEditFormChange}  />
+                        <ArtpieceEdit   editFormData = {editFormData} handleEditFormChange = {handleEditFormChange} handleCancelClick = {handleCancelClick} />
                         ): (
 
-                <Artpiece_Table artdata={artdata} handleEditClick =  {handleEditClick}  />
+                <Artpiece_Table artdata={artdata} handleEditClick =  {handleEditClick} handleDeleteClick = {handleDeleteClick} />
                         )}
                 </Fragment>
                 ))}

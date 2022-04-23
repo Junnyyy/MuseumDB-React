@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ArtpieceTable = ({artdata, handleEditClick}) => {
+const ArtpieceTable = ({artdata, handleEditClick,handleDeleteClick}) => {
   return (
     <tr>
     
@@ -16,8 +16,8 @@ const ArtpieceTable = ({artdata, handleEditClick}) => {
     <td>{artdata.Piece_Width}</td>
     <td>{artdata.Gallery_Loc}</td>
     <td>{artdata.Exhibit_ID}</td>
-    <td><button className="btn btn-outline-success" type='button' onClick={(event) => handleEditClick(event, artdata)}>Edit</button></td>
-    <td><button className="btn btn-outline-danger" >Delete</button></td>
+    <td><button className="btn btn-outline-success"  onClick={(event) => handleEditClick(event, artdata)}>Edit</button></td>
+    <td><button className="btn btn-outline-danger"  onClick={(event) => handleDeleteClick(artdata.Art_Piece_Title)} >Delete</button></td>
     </tr>
   )
 }

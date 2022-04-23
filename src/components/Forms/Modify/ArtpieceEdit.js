@@ -1,6 +1,6 @@
 import React from 'react'
-
-const ArtpieceEdit = ({editFormData, handleEditFormChange}) => {
+import "./modify.css";
+const ArtpieceEdit = ({editFormData, handleEditFormChange, handleCancelClick}) => {
   return (
     <tr>
       <td>
@@ -117,7 +117,7 @@ const ArtpieceEdit = ({editFormData, handleEditFormChange}) => {
         <button className="btn btn-outline-success" type = "submit"> Submit</button>
       </td>
       <td>
-        <button className="btn btn-outline-success" type = "submit"> Cancel</button>
+        <button className="btn btn-outline-success" type = "button" onClick={handleCancelClick}> Cancel</button>
       </td>
       
       

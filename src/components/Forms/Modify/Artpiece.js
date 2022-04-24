@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Artpiece_Table from "./ArtpieceTable";
 import ArtpieceEdit from "./ArtpieceEdit";
-import "./modify.css";
+// import "./modify.css";
 import { Fragment } from "react";
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 function ArtPieceTable() {
   const getToken = () => {
@@ -11,7 +11,6 @@ function ArtPieceTable() {
     const userToken = JSON.parse(tokenString);
     return userToken?.token;
   };
-
 
   const fetchData = () => {
     fetch("https://cst2-api.azurewebsites.net/artpiece", {
@@ -50,9 +49,6 @@ function ArtPieceTable() {
   const [artData, setartData] = useState([]);
   const [editartID, setEditartID] = useState(null);
 
-
-
-
   const [editFormData, setEditFormData] = useState({
     Art_Piece_Title: " ",
     Date_Created: " ",
@@ -66,14 +62,12 @@ function ArtPieceTable() {
     Piece_Width: " ",
     Gallery_Loc: " ",
     Exhibit_ID: " ",
-
   });
 
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
 
     const editedartdata = {
-
       Art_Piece_Title: editFormData.Art_Piece_Title,
       Date_Created: editFormData.Date_Created,
       Medium: editFormData.Medium,
@@ -86,8 +80,7 @@ function ArtPieceTable() {
       Piece_Width: editFormData.Piece_Width,
       Gallery_Loc: editFormData.Gallery_Loc,
       Exhibit_ID: editFormData.Exhibit_ID,
-
-    }
+    };
 
     const newartData = [...artData];
 
@@ -96,8 +89,8 @@ function ArtPieceTable() {
     newartData[index] = editedartdata;
 
     setEditartID(newartData);
-    setEditartID(null)
-  }
+    setEditartID(null);
+  };
 
   const handleEditFormChange = (event) => {
     event.preventDefault();
@@ -111,10 +104,9 @@ function ArtPieceTable() {
     setEditFormData(newFormData);
   };
 
-
   const handleEditClick = (event, artdata) => {
     event.preventDefault();
-    setEditartID(artdata.Art_Piece_Title)
+    setEditartID(artdata.Art_Piece_Title);
 
     const FormValues = {
       Art_Piece_Title: artdata.Art_Piece_Title,
@@ -129,28 +121,26 @@ function ArtPieceTable() {
       Piece_Width: artdata.Piece_Width,
       Gallery_Loc: artdata.Gallery_Loc,
       Exhibit_ID: artdata.Exhibit_ID,
-    }
+    };
 
     setEditFormData(FormValues);
-
   };
 
   const handleCancelClick = () => {
     setEditartID(null);
-  }
-
-
+  };
 
   const handleDeleteClick = (artdataID) => {
     const newartData = [...artData];
 
-    const index = artData.findIndex((artdata) => artdata.Art_Piece_Title === artdataID);
+    const index = artData.findIndex(
+      (artdata) => artdata.Art_Piece_Title === artdataID
+    );
 
     newartData.splice(index, 1);
 
     setartData(newartData);
-
-  }
+  };
 
   return (
     <div className="container">
@@ -160,7 +150,6 @@ function ArtPieceTable() {
             <table className="table">
               <thead>
                 <tr>
-
                   <th>Title</th>
                   <th>Date Created</th>
                   <th>Medium</th>
@@ -180,14 +169,20 @@ function ArtPieceTable() {
                 {artData.map((artdata) => (
                   <Fragment>
                     {editartID === artdata.Art_Piece_Title ? (
-                      <ArtpieceEdit editFormData={editFormData} handleEditFormChange={handleEditFormChange} handleCancelClick={handleCancelClick} />
+                      <ArtpieceEdit
+                        editFormData={editFormData}
+                        handleEditFormChange={handleEditFormChange}
+                        handleCancelClick={handleCancelClick}
+                      />
                     ) : (
-
-                      <Artpiece_Table artdata={artdata} handleEditClick={handleEditClick} handleDeleteClick={handleDeleteClick} />
+                      <Artpiece_Table
+                        artdata={artdata}
+                        handleEditClick={handleEditClick}
+                        handleDeleteClick={handleDeleteClick}
+                      />
                     )}
                   </Fragment>
                 ))}
-
 
                 {/* <Artpiece_Table
                 rowsData={artData}
@@ -200,7 +195,6 @@ function ArtPieceTable() {
                 handleChange={handleChange}
               /> */}
               </tbody>
-
             </table>
           </form>
         </div>

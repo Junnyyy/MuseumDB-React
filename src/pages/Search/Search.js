@@ -3,6 +3,11 @@ import { Dropdown, DropdownButton } from "react-bootstrap";
 import "./Search.css";
 
 import Artpiece from "../../components/Search/Options/artpiece";
+import Customer from "../../components/Search/Options/customer";
+import Department from "../../components/Search/Options/department";
+import Employee from "../../components/Search/Options/employee";
+import Exhibit from "../../components/Search/Options/exhibit";
+import Gallery from "../../components/Search/Options/gallery";
 
 export default function Search() {
   var searchType = <></>;
@@ -15,51 +20,21 @@ export default function Search() {
     case "artpiece":
       searchType = <Artpiece />;
       break;
-    // case "customer":
-    //   searchType = (
-    //     <Customer
-    //       setType={setType}
-    //       setValid={setValid}
-    //       setMessage={setMessage}
-    //     />
-    //   );
-    //   break;
-    // case "department":
-    //   searchType = (
-    //     <Department
-    //       setType={setType}
-    //       setValid={setValid}
-    //       setMessage={setMessage}
-    //     />
-    //   );
-    //   break;
-    // case "employee":
-    //   searchType = (
-    //     <Employee
-    //       setType={setType}
-    //       setValid={setValid}
-    //       setMessage={setMessage}
-    //     />
-    //   );
-    //   break;
-    // case "exhibit":
-    //   searchType = (
-    //     <Exhibit
-    //       setType={setType}
-    //       setValid={setValid}
-    //       setMessage={setMessage}
-    //     />
-    //   );
-    //   break;
-    // case "gallery":
-    //   searchType = (
-    //     <Gallery
-    //       setType={setType}
-    //       setValid={setValid}
-    //       setMessage={setMessage}
-    //     />
-    //   );
-    //   break;
+    case "customer":
+      searchType = <Customer />;
+      break;
+    case "department":
+      searchType = <Department />;
+      break;
+    case "employee":
+      searchType = <Employee />;
+      break;
+    case "exhibit":
+      searchType = <Exhibit />;
+      break;
+    case "gallery":
+      searchType = <Gallery />;
+      break;
     // case "store-item":
     //   searchType = (
     //     <StoreItem

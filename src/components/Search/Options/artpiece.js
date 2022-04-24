@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Datatable from "../artdatatable";
+import Datatable from "../datatables/artDatatable";
 
 const getToken = () => {
   const tokenString = sessionStorage.getItem("token");
@@ -56,7 +56,6 @@ export default function Artpiece() {
   return (
     <div>
       <br></br>
-
       <h2 className="title">Artpieces</h2>
       <div className="filter">
         <input

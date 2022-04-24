@@ -60,7 +60,7 @@ console.log(salesData)
     for (var i = 0;i < salesData.length;i++)
     {
         itemSum += parseInt(salesData[i].Number_Sold);
-        profitSum += salesData[i].Current_Month_Sales_Profit;
+        profitSum += Math.round(salesData[i].Current_Month_Sales_Profit);
     }
 
   return (

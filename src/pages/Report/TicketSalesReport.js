@@ -59,7 +59,7 @@ console.log(salesData)
     for (var i = 0;i < salesData.length;i++)
     {
         ticketSum += parseInt(salesData[i].Number_Tickets_Sold);
-        profitSum += salesData[i].Current_Month_Ticket_Profit;
+        profitSum += Math.round(salesData[i].Current_Month_Ticket_Profit);
     }
 
   return (

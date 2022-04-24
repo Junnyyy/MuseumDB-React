@@ -10,6 +10,7 @@ import Exhibit from "../../components/Search/Options/exhibit";
 import Gallery from "../../components/Search/Options/gallery";
 import StoreItem from "../../components/Search/Options/storeitem";
 import Store_Transaction from "../../components/Search/Options/storetransaction";
+import Ticket_Transaction from "../../components/Search/Options/tickettransaction";
 
 export default function Search() {
   var searchType = <></>;
@@ -43,15 +44,9 @@ export default function Search() {
     case "store-transaction":
       searchType = <Store_Transaction />;
       break;
-    // case "ticket-transaction":
-    //   searchType = (
-    //     <Ticket_Transaction
-    //       setType={setType}
-    //       setValid={setValid}
-    //       setMessage={setMessage}
-    //     />
-    //   );
-    //   break;
+    case "ticket-transaction":
+      searchType = <Ticket_Transaction />;
+      break;
   }
 
   return (

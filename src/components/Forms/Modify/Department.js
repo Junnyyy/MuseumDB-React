@@ -1,99 +1,113 @@
-import { useEffect, useState } from "react"
-import "./modify.css"
+import { useEffect, useState } from "react";
+import "./modify.css";
+
+function Department_Table() {
+  const getToken = () => {
+    const tokenString = sessionStorage.getItem("token");
+    const userToken = JSON.parse(tokenString);
+    return userToken?.token;
+  };
+
+  const [departmentData, setData] = useState([]);
+
+  const fetchData = () => {
+    fetch("https://cst2-api.azurewebsites.net/department", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${getToken()}`,
+      },
+      mode: "cors",
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setData(data);
+      });
+  };
+
+  async function departmentModify(data) {
+    return fetch("https://cst2-api.azurewebsites.net/department", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${getToken()}`,
+      },
+      mode: "cors",
+      body: data,
+    }).then((data) => data.json())
+    .then(response => {
+      console.log(response)
+      return response.json();
+    })
+  }
+
+  async function departmentDelete(data) {
+    return fetch("https://cst2-api.azurewebsites.net/department", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${getToken()}`,
+      },
+      mode: "cors",
+      body: JSON.stringify(data),
+    }).then((data) => data.json());
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
 
-function AddDeleteTableRows(){
+  const delete_Table = (index) => {
+    const rows = [...departmentData];
+    departmentDelete(rows[index]);
+    rows.splice(index, 1);
+    setData(rows);
+  };
 
-    const getToken = () => {
-        const tokenString = sessionStorage.getItem("token");
-        const userToken = JSON.parse(tokenString);
-        return userToken?.token;
-      };
+  const edit_Table = (index) => {
+    const rows = [...departmentData];
+    console.log(rows[index]);
+    let json = JSON.stringify(rows[index]);
+    setData(rows);
+    departmentModify(json);
+  };
 
-      const [artData, setData] = useState([])
-
-      const fetchData = () => {
-          fetch("https://cst2-api.azurewebsites.net/department", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              authorization: `Bearer ${getToken()}`,
-            },
-            mode: "cors",
-          })
-          .then(response => {
-              return response.json()
-          })
-          .then(data => {
-              setData(data)
-          })
-      }
-
-    useEffect(() => {
-          fetchData()
-      }, [])
-    
-    console.log(artData)
-
-    const [rowsData, setRowsData] = useState([]);
-
-    const addTableRows = ()=>{
-
-        const rowsInput={
-            Art_Piece_Title:'',
-            Date_Created:'',
-            Medium:'',
-            Creator_F_Name:'',
-            Creator_L_Name:'',
-            Being_Refurbished:'',
-            Culture:'',
-            Piece_Height:'',
-            Piece_Length:'',
-            Piece_Width:'',
-            Gallery_Loc:'',
-            Exhibit_ID:''
-        } 
-        setRowsData([...rowsData, rowsInput])
-    }
-
-   const deleteTableRows = (index)=>
-   {
-        const rows = [...rowsData];
-        rows.splice(index, 1);
-        setRowsData(rows);
-   }
- 
-   const handleChange = (index, evnt)=>
-   {
+  const handleChange = (index, evnt) => {
     const { name, value } = evnt.target;
-    const rowsInput = [...rowsData];
+    const rowsInput = [...departmentData];
     rowsInput[index][name] = value;
-    setRowsData(rowsInput);
-    }
+    setData(rowsInput);
+  };
 
-    return(
-        <div className="container" >
-            <div className="row">
-                <div className="col-sm-8">
+  return (
 
-                <table className="table">
-                    <thead>
-                      <tr>
-                          <th>Department Name</th>
-                          <th>Location</th>
-                          <th>Supervisor ID</th>
-                          <th>Action</th>
-                      </tr>
-                    </thead>
-                   <tbody>
-                   </tbody> 
-                </table>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Department Name</th>
+                <th>Location</th>
+                <th>Supervisor ID</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            {departmentData.map((data, index)=> {
+                      return(
+                        <tr key={index}>
+                        <td><input type="text" value={data.Department_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Department_Name" className="form-control"/> </td>
+                        <td><input type="text" value={data.Location}  onChange={(evnt)=>(handleChange(index, evnt))} name="Location" className="form-control" /> </td>
+                        <td><input type="text" value={data.Supervisor_ID} onChange={(evnt)=>(handleChange(index, evnt))} name="Supervisor_ID" className="form-control"/> </td>
+                    
+                        <td><button className="btn btn-outline-success" onClick={()=>(edit_Table(index))}>Edit</button></td>
+                        <td><button className="btn btn-outline-danger" onClick={()=>(delete_Table(index))}>Delete</button></td>
+                        </tr>
+                      )})}
+            </tbody>
+          </table>
 
-                </div>
-
-            </div>
-        </div>
-    )
-
+  );
 }
-export default AddDeleteTableRows
+export default Department_Table;

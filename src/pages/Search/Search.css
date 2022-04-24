@@ -1,0 +1,52 @@
+.selection {
+  z-index: 100;
+}
+
+.datatable {
+  z-index: 1;
+  overflow: visible;
+}
+
+.table {
+  width: 100%;
+  box-sizing: content-box;
+  border-radius: 8px;
+  display: table;
+  position: relative;
+  table-layout: auto;
+  z-index: 0;
+}
+
+.col-sm-8,
+.row {
+  width: 100%;
+  display: inline;
+}
+
+.tr,
+.td,
+.tbody,
+.form-control {
+  display: block;
+  width: 100%;
+  font-size: 12px;
+  table-layout: auto;
+}
+
+.total {
+  font-size: 25px;
+}
+
+.search-input {
+  appearance: none;
+  color: white;
+  border: none;
+  font-size: 16px;
+  text-align: center;
+  background: #3e3e42;
+  outline: #3e3e42;
+  padding: 9px 28px;
+  border-radius: 8px;
+  transition: 0.4s;
+  font-size: 20px;
+}

@@ -84,9 +84,7 @@ function ArtPieceTable() {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-sm-8">
+
           <table className="table">
             <thead>
               <tr>
@@ -127,9 +125,6 @@ function ArtPieceTable() {
                       )})}
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
   );
 }
 export default ArtPieceTable;

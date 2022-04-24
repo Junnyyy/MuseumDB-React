@@ -83,9 +83,7 @@ function Employee_Table() {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-sm-8">
+
           <table className="table">
             <thead>
               <tr>
@@ -110,7 +108,7 @@ function Employee_Table() {
                         <td><input type="text" value={data.Employee_L_Name} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_L_Name" className="form-control"/> </td>
                         <td><input type="text" value={data.Department_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Department_Name" className="form-control"/> </td>
                         <td><input type="text" value={data.Employee_Salary}  onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_Salary" className="form-control" /> </td>
-                        <td><input type="text" value={data.Employee_DOB} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_DOB" className="form-control"/> </td>
+                        <td><input type="text" value={data.Employee_DOB.slice(0,10)} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_DOB" className="form-control"/> </td>
                         <td><input type="text" value={data.Employee_Username} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_Username" className="form-control"/> </td>
                         <td><input type="text" value={data.Admin_Flag} onChange={(evnt)=>(handleChange(index, evnt))} name="Admin_Flag" className="form-control"/> </td>
                         <td><button className="btn btn-outline-success" onClick={()=>(edit_Table(index))}>Edit</button></td>
@@ -119,9 +117,7 @@ function Employee_Table() {
                       )})}
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
+
   );
 }
 export default Employee_Table;

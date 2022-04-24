@@ -83,9 +83,7 @@ function Storeitem_Table() {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-sm-8">
+
           <table className="table">
             <thead>
               <tr>
@@ -113,9 +111,7 @@ function Storeitem_Table() {
                       )})}
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
+
   );
 }
 export default Storeitem_Table;

@@ -83,9 +83,7 @@ function Exhibit_Table() {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-sm-8">
+
           <table className="table">
             <thead>
               <tr>
@@ -107,8 +105,8 @@ function Exhibit_Table() {
                         <tr key={index}>
                        
                         <td><input type="text" value={data.Exhibit_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Exhibit_Name" className="form-control"/> </td>
-                        <td><input type="text" value={data.Arrival_Date}  onChange={(evnt)=>(handleChange(index, evnt))} name="Arrival_Date" className="form-control" /> </td>
-                        <td><input type="text" value={data.Departure_Date} onChange={(evnt)=>(handleChange(index, evnt))} name="Departure_Date" className="form-control"/> </td>
+                        <td><input type="text" value={data.Arrival_Date.slice(0,10)}  onChange={(evnt)=>(handleChange(index, evnt))} name="Arrival_Date" className="form-control" /> </td>
+                        <td><input type="text" value={data.Departure_Date.slice(0,10)} onChange={(evnt)=>(handleChange(index, evnt))} name="Departure_Date" className="form-control"/> </td>
                         <td><input type="text" value={data.Permanent}  onChange={(evnt)=>(handleChange(index, evnt))} name="Permanent" className="form-control"/> </td>
                         <td><input type="text" value={data.Ticket_Price}  onChange={(evnt)=>(handleChange(index, evnt))} name="Ticket_Price" className="form-control" /> </td>
                         <td><input type="text" value={data.Number_Tickets_Sold} onChange={(evnt)=>(handleChange(index, evnt))} name="Number_Tickets_Sold" className="form-control"/> </td>
@@ -120,9 +118,7 @@ function Exhibit_Table() {
                       )})}
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
+
   );
 }
 export default Exhibit_Table;

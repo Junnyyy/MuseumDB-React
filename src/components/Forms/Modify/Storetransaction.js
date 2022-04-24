@@ -84,9 +84,7 @@ function Storetransaction_Table() {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-sm-8">
+
           <table className="table">
             <thead>
               <tr>
@@ -114,9 +112,7 @@ function Storetransaction_Table() {
                       )})}
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
+
   );
 }
 export default Storetransaction_Table;

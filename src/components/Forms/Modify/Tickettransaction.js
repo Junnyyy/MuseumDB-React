@@ -84,9 +84,7 @@ function Tickettransaction_Table() {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-sm-8">
+
           <table className="table">
             <thead>
               <tr>
@@ -94,7 +92,7 @@ function Tickettransaction_Table() {
                           <th>Customer ID</th>
                           <th>Total Bill</th>
                           <th>Exhibit ID</th>
-                          <th>ransaction Date</th>
+                          <th>Transaction Date</th>
                           <th>Action</th>
             </tr>
             </thead>
@@ -102,11 +100,11 @@ function Tickettransaction_Table() {
             {tickettransactionData.map((data, index)=> {
                       return(
                         <tr key={index}>
-                        <td><input type="text" value={data.Ticket_Transaction_ID} onChange={(evnt)=>(handleChange(index, evnt))} name="Ticket_Transaction_ID" className="form-control"/> </td>
-                        <td><input type="text" value={data.Ticket_Customer_ID} onChange={(evnt)=>(handleChange(index, evnt))} name="Ticket_Customer_ID" className="form-control"/> </td>
-                        <td><input type="text" value={data.Ticket_Total_Bill}  onChange={(evnt)=>(handleChange(index, evnt))} name="Ticket_Total_Bill" className="form-control"/> </td>
-                        <td><input type="text" value={data.Ticket_Exhibit_ID}  onChange={(evnt)=>(handleChange(index, evnt))} name="Ticket_Exhibit_ID" className="form-control" /> </td>
-                        <td><input type="text" value={data.Ticket_Transaction_Date.slice(0, 10)} onChange={(evnt)=>(handleChange(index, evnt))} name="Ticket_Transaction_Date" className="form-control"/> </td>
+                        <td><input type="text" value={data.Ticket_Transaction_ID} onChange={(evnt)=>(handleChange(index, evnt))} name="Store_Transaction_ID" className="form-control"/> </td>
+                        <td><input type="text" value={data.Ticket_Customer_ID} onChange={(evnt)=>(handleChange(index, evnt))} name="Store_Customer_ID" className="form-control"/> </td>
+                        <td><input type="text" value={data.Ticket_Total_Bill}  onChange={(evnt)=>(handleChange(index, evnt))} name="Store_Total_Bill" className="form-control"/> </td>
+                        <td><input type="text" value={data.Ticket_Exhibit_ID}  onChange={(evnt)=>(handleChange(index, evnt))} name="Store_Item_ID" className="form-control" /> </td>
+                        <td><input type="text" value={data.Ticket_Transaction_Date.slice(0, 10)} onChange={(evnt)=>(handleChange(index, evnt))} name="Store_Transaction_Date" className="form-control"/> </td>
                        
                         <td><button className="btn btn-outline-success" onClick={()=>(edit_Table(index))}>Edit</button></td>
                         <td><button className="btn btn-outline-danger" onClick={()=>(delete_Table(index))}>Delete</button></td>
@@ -114,9 +112,7 @@ function Tickettransaction_Table() {
                       )})}
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
+
   );
 }
 export default Tickettransaction_Table;

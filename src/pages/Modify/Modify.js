@@ -7,8 +7,8 @@ import Employee from "../../components/Forms/Modify/Employee";
 import Exhibit from "../../components/Forms/Modify/Exhibit";
 import Gallery from "../../components/Forms/Modify/Gallery";
 import Store_Item from "../../components/Forms/Modify/Storeitem";
-import Store_Transaction from "../../components/Forms/Modify/Storetransaction";
-import Ticket_Transaction from "../../components/Forms/Modify/Tickettransaction";
+import StoreTransaction from "../../components/Forms/Modify/Storetransaction";
+import TicketTransaction from "../../components/Forms/Modify/Tickettransaction";
 import "../../components/Forms/Modify/modify.css";
 
 export default function Insert() {
@@ -41,10 +41,10 @@ export default function Insert() {
       formType = <Store_Item />;
       break;
     case "store-transaction":
-      formType = <Store_Transaction />;
+      formType = <StoreTransaction />;
       break;
     case "ticket-transaction":
-      formType = <Ticket_Transaction />;
+      formType = <TicketTransaction />;
       break;
   }
 
@@ -65,12 +65,8 @@ export default function Insert() {
           <Dropdown.Item eventKey="exhibit">Exhibit</Dropdown.Item>
           <Dropdown.Item eventKey="gallery">Gallery</Dropdown.Item>
           <Dropdown.Item eventKey="store-item">Store Item</Dropdown.Item>
-          <Dropdown.Item eventKey="store-transaction">
-            Store Transaction
-          </Dropdown.Item>
-          <Dropdown.Item value="ticket-transaction">
-            Ticket Transaction
-          </Dropdown.Item>
+          <Dropdown.Item eventKey="store-transaction">Store Transaction</Dropdown.Item>
+          <Dropdown.Item eventKey="ticket-transaction">Ticket Transaction </Dropdown.Item>
         </DropdownButton>
         <br></br>
       </div>

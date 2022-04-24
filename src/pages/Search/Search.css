@@ -1,12 +1,3 @@
-.selection {
-  z-index: 100;
-}
-
-.datatable {
-  z-index: 1;
-  overflow: visible;
-}
-
 .table {
   width: 100%;
   box-sizing: content-box;

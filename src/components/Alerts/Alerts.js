@@ -23,7 +23,7 @@ export default function AlertDismissible(props) {
   } else if (props.type == "warning") {
     if (show) {
       return (
-        <div className="AlertBox0">
+        <div className="AlertBox">
           <Alert
             className="AlertBox"
             variant="warning"

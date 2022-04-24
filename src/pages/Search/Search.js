@@ -8,6 +8,7 @@ import Department from "../../components/Search/Options/department";
 import Employee from "../../components/Search/Options/employee";
 import Exhibit from "../../components/Search/Options/exhibit";
 import Gallery from "../../components/Search/Options/gallery";
+import StoreItem from "../../components/Search/Options/store-item";
 
 export default function Search() {
   var searchType = <></>;
@@ -35,15 +36,9 @@ export default function Search() {
     case "gallery":
       searchType = <Gallery />;
       break;
-    // case "store-item":
-    //   searchType = (
-    //     <StoreItem
-    //       setType={setType}
-    //       setValid={setValid}
-    //       setMessage={setMessage}
-    //     />
-    //   );
-    //   break;
+    case "store-item":
+      searchType = <StoreItem />;
+      break;
     // case "store-transaction":
     //   searchType = (
     //     <Store_Transaction

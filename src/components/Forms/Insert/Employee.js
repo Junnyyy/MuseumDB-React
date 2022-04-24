@@ -69,6 +69,7 @@ export default function Employee() {
   const [EmployeeEmail, setEmployeeEmail] = useState();
   const [EmployeeSalary, setEmployeeSalary] = useState();
   const [EmployeeDOB, setEmployeeDOB] = useState();
+  const [EmployeeAdminFlag, setAdminFlag] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -83,6 +84,7 @@ export default function Employee() {
       EmployeeUsername,
       Employeepassword,
       EmployeeEmail,
+      EmployeeAdminFlag,
     });
   };
 
@@ -169,6 +171,17 @@ export default function Employee() {
           className="Employee"
           onChange={(e) => setEmployeepassword(e.target.value)}
         />
+      </div>
+      <div>
+        <label>Admin</label>
+        <select
+          className="Employee"
+          defaultValue={"1"}
+          onChange={(e) => setAdminFlag(e.target.value)}
+        >
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
       </div>
 
       <button className="submit">Submit</button>

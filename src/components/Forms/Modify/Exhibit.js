@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react"
-import Exhibit_Table from "./ExhibitTable";
-import "./modify.css"
-
+import { useEffect, useState } from "react";
+import "./modify.css";
 
 function AddDeleteTableRows(){
 
@@ -93,8 +91,6 @@ function AddDeleteTableRows(){
                       </tr>
                     </thead>
                    <tbody>
-                   <Exhibit_Table rowsData={artData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
-                   <Exhibit_Table rowsData={rowsData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
                    </tbody> 
                 </table>
 

@@ -23,7 +23,7 @@ function ArtPieceTable() {
         return response.json();
       })
       .then((data) => {
-        setartData(data);
+        setData(data);
       });
   };
 

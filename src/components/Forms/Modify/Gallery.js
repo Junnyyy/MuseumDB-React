@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
-import Gallery_Table from "./GalleryTable";
-import "./modify.css"
+import { useEffect, useState } from "react";
+import "./modify.css";
 
 
 function AddDeleteTableRows(){
@@ -88,8 +87,6 @@ function AddDeleteTableRows(){
                       </tr>
                     </thead>
                    <tbody>
-                   <Gallery_Table rowsData={artData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
-                   <Gallery_Table rowsData={rowsData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
                    </tbody> 
                 </table>
 

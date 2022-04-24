@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import Depart_Table from "./DepartmentTable";
 import "./modify.css"
 
 
@@ -87,8 +86,6 @@ function AddDeleteTableRows(){
                       </tr>
                     </thead>
                    <tbody>
-                   <Depart_Table rowsData={artData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
-                   <Depart_Table rowsData={rowsData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
                    </tbody> 
                 </table>
 

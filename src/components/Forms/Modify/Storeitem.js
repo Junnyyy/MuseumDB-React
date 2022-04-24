@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
-import Storeitem_Table from "./StoreitemTable";
-import "./modify.css"
+import { useEffect, useState } from "react";
+import "./modify.css";
 
 
 function AddDeleteTableRows(){
@@ -90,8 +89,6 @@ function AddDeleteTableRows(){
                       </tr>
                     </thead>
                    <tbody>
-                   <Storeitem_Table rowsData={artData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
-                   <Storeitem_Table rowsData={rowsData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
                    </tbody> 
                 </table>
 

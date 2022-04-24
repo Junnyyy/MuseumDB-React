@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react"
-import TableRows from "./ArtpieceTable"
-import "./modify.css"
-import Employee_Table from "./EmployeeTable";
-
+import { useEffect, useState } from "react";
+import "./modify.css";
 
 function AddDeleteTableRows(){
 
@@ -94,8 +91,6 @@ function AddDeleteTableRows(){
                       </tr>
                     </thead>
                    <tbody>
-                   <Employee_Table rowsData={artData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
-                   <Employee_Table rowsData={rowsData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
                    </tbody> 
                 </table>
 

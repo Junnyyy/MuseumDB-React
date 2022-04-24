@@ -6,7 +6,6 @@ const ArtpieceEdit = ({editFormData, handleEditFormChange}) => {
       <td>
         <input
           type="text"
-          required="required"
           Title="Art_Piece_Title"
           value = {editFormData.Title}
           onChange={handleEditFormChange}
@@ -15,7 +14,6 @@ const ArtpieceEdit = ({editFormData, handleEditFormChange}) => {
       <td>
         <input
           type="text"
-          required="required"
           Title="Art_Piece_Title"
           value = {editFormData.Title}
           onChange={handleEditFormChange}
@@ -24,7 +22,6 @@ const ArtpieceEdit = ({editFormData, handleEditFormChange}) => {
       <td>
         <input
           type="text"
-          required="required"
           Title="Art_Piece_Title"
           value = {editFormData.Title}
           onChange={handleEditFormChange}
@@ -33,7 +30,6 @@ const ArtpieceEdit = ({editFormData, handleEditFormChange}) => {
       <td>
         <input
           type="text"
-          required="required"
           Title="Art_Piece_Title"
           value = {editFormData.Title}
           onChange={handleEditFormChange}
@@ -42,7 +38,6 @@ const ArtpieceEdit = ({editFormData, handleEditFormChange}) => {
       <td>
         <input
           type="text"
-          required="required"
           Title="Art_Piece_Title"
           value = {editFormData.Title}
           onChange={handleEditFormChange}
@@ -51,7 +46,6 @@ const ArtpieceEdit = ({editFormData, handleEditFormChange}) => {
       <td>
         <input
           type="text"
-          required="required"
           Title="Art_Piece_Title"
           value = {editFormData.Title}
           onChange={handleEditFormChange}
@@ -60,7 +54,6 @@ const ArtpieceEdit = ({editFormData, handleEditFormChange}) => {
       <td>
         <input
           type="text"
-          required="required"
           Title="Art_Piece_Title"
           value = {editFormData.Title}
           onChange={handleEditFormChange}
@@ -69,7 +62,6 @@ const ArtpieceEdit = ({editFormData, handleEditFormChange}) => {
       <td>
         <input
           type="text"
-          required="required"
           Title="Art_Piece_Title"
           value = {editFormData.Title}
           onChange={handleEditFormChange}
@@ -78,7 +70,6 @@ const ArtpieceEdit = ({editFormData, handleEditFormChange}) => {
       <td>
         <input
           type="text"
-          required="required"
           Title="Art_Piece_Title"
           value = {editFormData.Title}
           onChange={handleEditFormChange}

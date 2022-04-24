@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import Artpiece_Table from "./ArtpieceTable";
-import ArtpieceEdit from "./ArtpieceEdit";
 import "./modify.css";
-import { Fragment } from "react";
 
 function ArtPieceTable() {
   const getToken = () => {
@@ -11,22 +8,7 @@ function ArtPieceTable() {
     return userToken?.token;
   };
 
-  const [editFormData, setEditFormData] = useState({
-    Art_Piece_Title: "",
-    Date_Created: "",
-    Medium: "",
-    Creator_F_Name: "",
-    Creator_L_Name: "",
-    Being_Refurbished: "",
-    Culture: "",
-    Piece_Height: "",
-    Piece_Length: "",
-    Piece_Width: "",
-    Gallery_Loc: "",
-    Exhibit_ID: "",
-  })
   const [artData, setData] = useState([]);
-  const[editartID,setEditartID] = useState(null);
 
   const fetchData = () => {
     fetch("https://cst2-api.azurewebsites.net/artpiece", {
@@ -45,60 +27,72 @@ function ArtPieceTable() {
       });
   };
 
+  async function artModify(data) {
+    return fetch("https://cst2-api.azurewebsites.net/artpiece", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${getToken()}`,
+      },
+      mode: "cors",
+      body: data,
+    }).then((data) => data.json())
+    .then(response => {
+      console.log(response)
+      return response.json();
+    })
+  }
+
+  async function artDelete(data) {
+    return fetch("https://cst2-api.azurewebsites.net/artpiece", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${getToken()}`,
+      },
+      mode: "cors",
+      body: JSON.stringify(data),
+    }).then((data) => data.json());
+  }
+
   useEffect(() => {
     fetchData();
   }, []);
 
   console.log(artData);
 
-  const [rowsData, setRowsData] = useState([]);
 
-
-
-  const handleEditClick = (event, artdata) => {
-      event.preventDefault();
-      setEditartID(artdata.Art_Piece_Title)
-
-      const FormValues = {
-        Art_Piece_Title: artdata.Art_Piece_Title,
-        Date_Created: artdata.Date_Created,
-        Medium: artdata.Medium,
-        Creator_F_Name: artdata.Creator_F_Name,
-        Creator_L_Name: artdata.Creator_L_Name,
-        Being_Refurbished: artdata.Being_Refurbished,
-        Culture: artdata.Culture,
-        Piece_Height: artdata.Piece_Height,
-        Piece_Length: artdata.Piece_Length,
-        Piece_Width: artdata.Piece_Width,
-        Gallery_Loc: artdata.Gallery_Loc,
-        Exhibit_ID: artdata.Exhibit_ID,
-      }
-        
-        setEditFormData(FormValues);
-      
+  const deleteArtpiece_Table = (index) => {
+    const rows = [...artData];
+    artDelete(rows[index]);
+    rows.splice(index, 1);
+    setData(rows);
   };
 
-  const handleEditFormChange = (event) => {
-    event.preventDefault();
-    
-    const fieldName = event.target.getAttribute('title')
-    const fieldValue = event.target.value;
+  const editArtpiece_Table = (index) => {
+    const rows = [...artData];
+    rows[index].Date_Created = rows[index].Date_Created.slice(0,10);
+    console.log(rows[index]);
+    let json = JSON.stringify(rows[index]);
+    setData(rows);
+    artModify(json);
 
-    const newFormData = {...editFormData};
-    newFormData[fieldName] = fieldValue;
+  };
 
-    setEditFormData(newFormData);
-};
+  const handleChange = (index, evnt) => {
+    const { name, value } = evnt.target;
+    const rowsInput = [...artData];
+    rowsInput[index][name] = value;
+    setData(rowsInput);
+  };
 
   return (
     <div className="container">
       <div className="row">
         <div className="col-sm-8">
-            <form>
           <table className="table">
             <thead>
               <tr>
-
                 <th>Title</th>
                 <th>Date Created</th>
                 <th>Medium</th>
@@ -115,32 +109,27 @@ function ArtPieceTable() {
               </tr>
             </thead>
             <tbody>
-                {artData.map((artdata) => (
-                    <Fragment>
-                        {editartID ===artdata.Art_Piece_Title ?(
-                        <ArtpieceEdit   editFormData = {editFormData} handleEditFormChange = {handleEditFormChange}  />
-                        ): (
-
-                <Artpiece_Table artdata={artdata} handleEditClick =  {handleEditClick}  />
-                        )}
-                </Fragment>
-                ))}
-
-
-              {/* <Artpiece_Table
-                rowsData={artData}
-                deleteArtpiece_Table={deleteArtpiece_Table}
-                handleChange={handleChange}
-              />
-              <Artpiece_Table
-                rowsData={rowsData}
-                editArtpiece_Table={editArtpiece_Table}
-                handleChange={handleChange}
-              /> */}
+            {artData.map((data, index)=> {
+                      return(
+                        <tr key={index}>
+                        <td><input type="text" value={data.Art_Piece_Title} onChange={(evnt)=>(handleChange(index, evnt))} name="Art_Piece_Title" className="form-control"/> </td>
+                        <td><input type="text" value={data.Date_Created.slice(0,10)}  onChange={(evnt)=>(handleChange(index, evnt))} name="Date_Created" className="form-control"/> </td>
+                        <td><input type="text" value={data.Medium}  onChange={(evnt)=>(handleChange(index, evnt))} name="Medium" className="form-control" /> </td>
+                        <td><input type="text" value={data.Creator_F_Name} onChange={(evnt)=>(handleChange(index, evnt))} name="Creator_F_Name" className="form-control"/> </td>
+                        <td><input type="text" value={data.Creator_L_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Creator_L_Name" className="form-control"/> </td>
+                        <td><input type="text" value={data.Being_Refurbished}  onChange={(evnt)=>(handleChange(index, evnt))} name="Being_Refurbished" className="form-control" /> </td>
+                        <td><input type="text" value={data.Culture} onChange={(evnt)=>(handleChange(index, evnt))} name="Culture" className="form-control"/> </td>
+                        <td><input type="text" value={data.Piece_Height}  onChange={(evnt)=>(handleChange(index, evnt))} name="Piece_Height" className="form-control"/> </td>
+                        <td><input type="text" value={data.Piece_Length}  onChange={(evnt)=>(handleChange(index, evnt))} name="Piece_Length" className="form-control" /> </td>
+                        <td><input type="text" value={data.Piece_Width} onChange={(evnt)=>(handleChange(index, evnt))} name="Piece_Width" className="form-control"/> </td>
+                        <td><input type="text" value={data.Gallery_Loc}  onChange={(evnt)=>(handleChange(index, evnt))} name="Gallery_Loc" className="form-control"/> </td>
+                        <td><input type="text" value={data.Exhibit_ID}  onChange={(evnt)=>(handleChange(index, evnt))} name="Exhibit_ID" className="form-control" /> </td>
+                        <td><button className="btn btn-outline-success" onClick={()=>(editArtpiece_Table(index))}>Edit</button></td>
+                        <td><button className="btn btn-outline-danger" onClick={()=>(deleteArtpiece_Table(index))}>Delete</button></td>
+                        </tr>
+                      )})}
             </tbody>
-            
           </table>
-          </form>
         </div>
       </div>
     </div>

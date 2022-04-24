@@ -32,6 +32,8 @@ async function ArtInsert(data) {
 
 export default function Art_Piece({ setType, setValid, setMessage }) {
   const [exhibitData, setExData] = useState([]);
+  const [complete, setComplete] = useState(false);
+  const [error, setError] = useState(false);
 
   const fetchExData = () => {
     fetch("https://cst2-api.azurewebsites.net/exhibit", {
@@ -45,9 +47,7 @@ export default function Art_Piece({ setType, setValid, setMessage }) {
       .then((response) => {
         setValid(true);
         if (!response.ok) {
-          setType("danger");
-          setValid(false);
-          setMessage("The server has encountered an error.");
+          setError(true);
           throw new Error("Network response was not OK");
         }
         return response.json();
@@ -86,6 +86,7 @@ export default function Art_Piece({ setType, setValid, setMessage }) {
     })
       .then((response) => {
         if (!response.ok) {
+          setError(true);
           throw new Error("Network response was not OK");
         }
         return response.json();
@@ -125,11 +126,10 @@ export default function Art_Piece({ setType, setValid, setMessage }) {
   const [galLoc, setgalLoc] = useState();
   const [EID, setEID] = useState();
 
-  const [complete, setComplete] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setValid(true);
-    const art = await ArtInsert({
+    const response = await ArtInsert({
       title,
       created,
       medium,
@@ -144,7 +144,13 @@ export default function Art_Piece({ setType, setValid, setMessage }) {
       galLoc,
       EID,
     });
-    setComplete(true);
+    if (response.error) {
+      setType("danger");
+      setValid(false);
+      setMessage(response.error);
+    } else {
+      setComplete(true);
+    }
   };
 
   useEffect(() => {
@@ -152,6 +158,11 @@ export default function Art_Piece({ setType, setValid, setMessage }) {
       setType("success");
       setValid(false);
       setMessage("Art piece successfully created!");
+    }
+    if (error == true) {
+      setType("danger");
+      setValid(false);
+      setMessage("The server has encountered an error.");
     }
   });
 

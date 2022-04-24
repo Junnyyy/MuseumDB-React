@@ -8,7 +8,7 @@ import Department from "../../components/Search/Options/department";
 import Employee from "../../components/Search/Options/employee";
 import Exhibit from "../../components/Search/Options/exhibit";
 import Gallery from "../../components/Search/Options/gallery";
-import StoreItem from "../../components/Search/Options/store-item";
+import StoreItem from "../../components/Search/Options/storeitem";
 
 export default function Search() {
   var searchType = <></>;

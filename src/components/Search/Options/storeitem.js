@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Datatable from "../datatables/store-itemDatatable";
+import Datatable from "../datatables/storeitemDatatable";
 
 const getToken = () => {
   const tokenString = sessionStorage.getItem("token");

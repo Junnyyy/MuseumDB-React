@@ -6,7 +6,7 @@ export default function Home(props) {
   return (
     <div className="info">
       <div className="textContainer">
-        <h2 className="welcome">Welcome {props.user}! 📢</h2>
+        <h2 className="welcome">Welcome {props.user}!</h2>
         <ul className="link">
           <li>
             <Link to="/Collection" className="link">

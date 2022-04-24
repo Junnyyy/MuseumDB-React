@@ -20,9 +20,11 @@ async function storetransaction(data) {
   }).then((data) => data.json());
 }
 
-export default function Store_Transaction() {
+export default function Store_Transaction({ setType, setValid, setMessage }) {
   const [itemData, setItData] = useState([]);
   const [customerData, setCuData] = useState([]);
+  const [complete, setComplete] = useState(false);
+  const [fetcherror, setFetcherror] = useState(false);
 
   async function fetchItData() {
     let storeResponse = await fetch(
@@ -38,6 +40,7 @@ export default function Store_Transaction() {
     )
       .then((response) => {
         if (!response.ok) {
+          setFetcherror(true);
           throw new Error("Network response was not OK");
         }
         return response.json();
@@ -100,11 +103,31 @@ export default function Store_Transaction() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(CID);
-    const token = await storetransaction({
+    const response = await storetransaction({
       CID,
       IID,
     });
+    if (response.error) {
+      setType("danger");
+      setValid(false);
+      setMessage(response.error);
+    } else {
+      setComplete(true);
+    }
   };
+
+  useEffect(() => {
+    if (complete == true) {
+      setType("success");
+      setValid(false);
+      setMessage("Art piece successfully created!");
+    }
+    if (fetcherror == true) {
+      setType("danger");
+      setValid(false);
+      setMessage("The server has encountered an error.");
+    }
+  });
 
   return (
     <form onSubmit={handleSubmit}>

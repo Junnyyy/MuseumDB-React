@@ -72,7 +72,7 @@ export default function Employee() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await Employee({
+    const response = await Employee({
       EmployeeID,
       EmployeeFirstName,
       EmployeeMiddleName,

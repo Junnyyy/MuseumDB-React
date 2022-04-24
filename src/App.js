@@ -6,6 +6,9 @@ import "./app.css";
 import LoginForm from "./components/LoginForm/LoginForm";
 import useToken from "./components/LoginForm/useToken";
 import useUser from "./pages/Home/useUser";
+import useValid from "./components/Alerts/useValid";
+import useMessage from "./components/Alerts/useMessage";
+import useType from "./components/Alerts/useType";
 
 import Home from "./pages/Home/Home";
 import Insert from "./pages/Insert/Insert";
@@ -23,12 +26,22 @@ import Alerts from "./components/Alerts/Alerts";
 function App() {
   const { token, setToken } = useToken();
   const { user, setUser } = useUser();
+  const { type, setType } = useType();
+  const { valid, setValid } = useValid();
+  const { message, setMessage } = useMessage();
 
   if (!token) {
     return (
       <div className="app">
+        {valid ? <></> : <Alerts type={type} message={message} />}
         <div className="login">
-          <LoginForm setToken={setToken} setUser={setUser} />
+          <LoginForm
+            setToken={setToken}
+            setUser={setUser}
+            setType={setType}
+            setValid={setValid}
+            setMessage={setMessage}
+          />
         </div>
       </div>
     );
@@ -38,10 +51,19 @@ function App() {
     <div className="app">
       <BrowserRouter>
         <Navbar />
-        <Alerts />
+        {valid ? <></> : <Alerts type={type} message={message} />}
         <Routes>
           <Route path="/" element={<Home user={user} />} />
-          <Route path="/Insert" element={<Insert />} />
+          <Route
+            path="/Insert"
+            element={
+              <Insert
+                setType={setType}
+                setValid={setValid}
+                setMessage={setMessage}
+              />
+            }
+          />
           <Route path="/Delete" element={<Delete />} />
           <Route path="/Modify" element={<Modify />} />
           <Route path="/Report" element={<Report />} />

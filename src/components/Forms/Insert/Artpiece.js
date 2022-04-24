@@ -30,8 +30,10 @@ async function ArtInsert(data) {
   );
 }
 
-export default function Art_Piece() {
+export default function Art_Piece({ setType, setValid, setMessage }) {
   const [exhibitData, setExData] = useState([]);
+  const [complete, setComplete] = useState(false);
+  const [fetcherror, setFetcherror] = useState(false);
 
   const fetchExData = () => {
     fetch("https://cst2-api.azurewebsites.net/exhibit", {
@@ -43,7 +45,9 @@ export default function Art_Piece() {
       mode: "cors",
     })
       .then((response) => {
+        setValid(true);
         if (!response.ok) {
+          setFetcherror(true);
           throw new Error("Network response was not OK");
         }
         return response.json();
@@ -82,6 +86,7 @@ export default function Art_Piece() {
     })
       .then((response) => {
         if (!response.ok) {
+          setFetcherror(true);
           throw new Error("Network response was not OK");
         }
         return response.json();
@@ -123,7 +128,8 @@ export default function Art_Piece() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await ArtInsert({
+    setValid(true);
+    const response = await ArtInsert({
       title,
       created,
       medium,
@@ -138,7 +144,27 @@ export default function Art_Piece() {
       galLoc,
       EID,
     });
+    if (response.error) {
+      setType("danger");
+      setValid(false);
+      setMessage(response.error);
+    } else {
+      setComplete(true);
+    }
   };
+
+  useEffect(() => {
+    if (complete == true) {
+      setType("success");
+      setValid(false);
+      setMessage("Art piece successfully created!");
+    }
+    if (fetcherror == true) {
+      setType("danger");
+      setValid(false);
+      setMessage("The server has encountered an error.");
+    }
+  });
 
   return (
     <form onSubmit={handleSubmit} className="artForm">

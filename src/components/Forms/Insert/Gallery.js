@@ -20,8 +20,10 @@ async function gallery(data) {
   }).then((data) => data.json());
 }
 
-export default function Gallery() {
+export default function Gallery({ setType, setValid, setMessage }) {
   const [departmentData, setData] = useState([]);
+  const [complete, setComplete] = useState(false);
+  const [fetcherror, setFetcherror] = useState(false);
 
   const fetchData = () => {
     fetch("https://cst2-api.azurewebsites.net/department", {
@@ -34,6 +36,7 @@ export default function Gallery() {
     })
       .then((response) => {
         if (!response.ok) {
+          setFetcherror(true);
           throw new Error("Network response was not OK");
         }
         return response.json();
@@ -65,15 +68,35 @@ export default function Gallery() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await gallery({
+    const response = await gallery({
       name,
       manager,
       capacity,
     });
+    if (response.error) {
+      setType("danger");
+      setValid(false);
+      setMessage(response.error);
+    } else {
+      setComplete(true);
+    }
   };
 
+  useEffect(() => {
+    if (complete == true) {
+      setType("success");
+      setValid(false);
+      setMessage("Gallery successfully created!");
+    }
+    if (fetcherror == true) {
+      setType("danger");
+      setValid(false);
+      setMessage("The server has encountered an error.");
+    }
+  });
+
   return (
-    <main>
+    <form onSubmit={handleSubmit}>
       <h1>Gallery</h1>
       <div>
         <label>Gallery Name</label>
@@ -102,6 +125,6 @@ export default function Gallery() {
       </div>
 
       <button className="submit">Submit</button>
-    </main>
+    </form>
   );
 }

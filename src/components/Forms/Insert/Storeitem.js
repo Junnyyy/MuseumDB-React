@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import "./Insert.css";
 // import PropTypes from "prop-types";
 
@@ -20,22 +20,39 @@ async function storeitem(data) {
   }).then((data) => data.json());
 }
 
-export default function StoreItem() {
+export default function StoreItem({ setType, setValid, setMessage }) {
   const [name, setname] = useState();
   const [quantity, setquantity] = useState();
   const [price, setprice] = useState();
+  const [complete, setComplete] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await storeitem({
+    const response = await storeitem({
       name,
       quantity,
       price,
     });
+
+    if (response.error) {
+      setType("danger");
+      setValid(false);
+      setMessage(response.error);
+    } else {
+      setComplete(true);
+    }
   };
 
+  useEffect(() => {
+    if (complete == true) {
+      setType("success");
+      setValid(false);
+      setMessage("Art piece successfully created!");
+    }
+  });
+
   return (
-    <main>
+    <form onSubmit={handleSubmit}>
       <h1>Store Item</h1>
       <div>
         <label>Item Name</label>
@@ -63,6 +80,6 @@ export default function StoreItem() {
       </div>
 
       <button className="submit">Submit</button>
-    </main>
+    </form>
   );
 }

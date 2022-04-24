@@ -29,28 +29,76 @@ export default function Insert({ setType, setValid, setMessage }) {
       );
       break;
     case "customer":
-      formType = <Customer />;
+      formType = (
+        <Customer
+          setType={setType}
+          setValid={setValid}
+          setMessage={setMessage}
+        />
+      );
       break;
     case "department":
-      formType = <Department />;
+      formType = (
+        <Department
+          setType={setType}
+          setValid={setValid}
+          setMessage={setMessage}
+        />
+      );
       break;
     case "employee":
-      formType = <Employee />;
+      formType = (
+        <Employee
+          setType={setType}
+          setValid={setValid}
+          setMessage={setMessage}
+        />
+      );
       break;
     case "exhibit":
-      formType = <Exhibit />;
+      formType = (
+        <Exhibit
+          setType={setType}
+          setValid={setValid}
+          setMessage={setMessage}
+        />
+      );
       break;
     case "gallery":
-      formType = <Gallery />;
+      formType = (
+        <Gallery
+          setType={setType}
+          setValid={setValid}
+          setMessage={setMessage}
+        />
+      );
       break;
     case "store-item":
-      formType = <StoreItem />;
+      formType = (
+        <StoreItem
+          setType={setType}
+          setValid={setValid}
+          setMessage={setMessage}
+        />
+      );
       break;
     case "store-transaction":
-      formType = <Store_Transaction />;
+      formType = (
+        <Store_Transaction
+          setType={setType}
+          setValid={setValid}
+          setMessage={setMessage}
+        />
+      );
       break;
     case "ticket-transaction":
-      formType = <Ticket_Transaction />;
+      formType = (
+        <Ticket_Transaction
+          setType={setType}
+          setValid={setValid}
+          setMessage={setMessage}
+        />
+      );
       break;
   }
 

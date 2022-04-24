@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import "./Insert.css";
 // import PropTypes from "prop-types";
 
@@ -20,7 +20,7 @@ async function customer(data) {
   }).then((data) => data.json());
 }
 
-export default function Customer() {
+export default function Customer({ setType, setValid, setMessage }) {
   const [fname, setfname] = useState();
   const [mname, setmname] = useState();
   const [lname, setlname] = useState();
@@ -29,9 +29,11 @@ export default function Customer() {
   const [password, setpassword] = useState();
   const [email, setemail] = useState();
 
+  const [complete, setComplete] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await customer({
+    const response = await customer({
       fname,
       mname,
       lname,
@@ -40,7 +42,22 @@ export default function Customer() {
       password,
       email,
     });
+    if (response.error) {
+      setType("danger");
+      setValid(false);
+      setMessage(response.error);
+    } else {
+      setComplete(true);
+    }
   };
+
+  useEffect(() => {
+    if (complete == true) {
+      setType("success");
+      setValid(false);
+      setMessage("Customer successfully added!");
+    }
+  });
 
   return (
     <form onSubmit={handleSubmit}>

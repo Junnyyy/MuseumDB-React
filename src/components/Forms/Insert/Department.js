@@ -20,8 +20,10 @@ async function department(data) {
   }).then((data) => data.json());
 }
 
-export default function Department() {
+export default function Department({ setType, setValid, setMessage }) {
   const [employeeData, setData] = useState([]);
+  const [complete, setComplete] = useState(false);
+  const [fetcherror, setFetcherror] = useState(false);
 
   const fetchData = () => {
     fetch("https://cst2-api.azurewebsites.net/employee", {
@@ -34,6 +36,7 @@ export default function Department() {
     })
       .then((response) => {
         if (!response.ok) {
+          setFetcherror(true);
           throw new Error("Network response was not OK");
         }
         return response.json();
@@ -65,12 +68,32 @@ export default function Department() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await department({
+    const response = await department({
       name,
       loc,
       SID,
     });
+    if (response.error) {
+      setType("danger");
+      setValid(false);
+      setMessage(response.error);
+    } else {
+      setComplete(true);
+    }
   };
+
+  useEffect(() => {
+    if (complete == true) {
+      setType("success");
+      setValid(false);
+      setMessage("Department successfully created!");
+    }
+    if (fetcherror == true) {
+      setType("danger");
+      setValid(false);
+      setMessage("The server has encountered an error.");
+    }
+  });
 
   return (
     <form onSubmit={handleSubmit}>

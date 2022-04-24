@@ -20,14 +20,15 @@ async function storeitem(data) {
   }).then((data) => data.json());
 }
 
-export default function StoreItem() {
+export default function StoreItem({ setType, setValid, setMessage }) {
   const [name, setname] = useState();
   const [quantity, setquantity] = useState();
   const [price, setprice] = useState();
+  const [complete, setComplete] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await storeitem({
+    const response = await storeitem({
       name,
       quantity,
       price,

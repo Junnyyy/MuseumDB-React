@@ -20,8 +20,10 @@ async function exhibit(data) {
   }).then((data) => data.json());
 }
 
-export default function Exhibit() {
+export default function Exhibit({ setType, setValid, setMessage }) {
   const [departmentData, setDeData] = useState([]);
+  const [complete, setComplete] = useState(false);
+  const [fetcherror, setFetcherror] = useState(false);
 
   const fetchDeData = () => {
     fetch("https://cst2-api.azurewebsites.net/department", {
@@ -34,6 +36,7 @@ export default function Exhibit() {
     })
       .then((response) => {
         if (!response.ok) {
+          setFetcherror(true);
           throw new Error("Network response was not OK");
         }
         return response.json();
@@ -109,7 +112,7 @@ export default function Exhibit() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await exhibit({
+    const response = await exhibit({
       name,
       arr,
       depart,
@@ -117,17 +120,37 @@ export default function Exhibit() {
       price,
       manager,
       loc,
-    })
-      .then(() => {
-        setErrStatus({ type: "success" });
-      })
-      .catch((error) => {
-        setErrStatus({ type: "error", error });
-      });
+    });
+    // .then(() => {
+    //   setErrStatus({ type: "success" });
+    // })
+    // .catch((error) => {
+    //   setErrStatus({ type: "error", error });
+    // });
+    if (response.error) {
+      setType("danger");
+      setValid(false);
+      setMessage(response.error);
+    } else {
+      setComplete(true);
+    }
   };
 
+  useEffect(() => {
+    if (complete == true) {
+      setType("success");
+      setValid(false);
+      setMessage("Exhibit successfully created!");
+    }
+    if (fetcherror == true) {
+      setType("danger");
+      setValid(false);
+      setMessage("The server has encountered an error.");
+    }
+  });
+
   return (
-    <main>
+    <form onSubmit={handleSubmit}>
       <h1>Exhibit Info</h1>
 
       <div>
@@ -158,7 +181,6 @@ export default function Exhibit() {
         <label>Permanent Exhibit</label>
         <select
           className="exhibit"
-          defaultState={"1"}
           onChange={(e) => setpermanent(e.target.value)}
         >
           <option value="1">Yes</option>
@@ -191,8 +213,8 @@ export default function Exhibit() {
 
       <button className="submit">Submit</button>
 
-      {errStatus?.type === "success" && <p>"Submit Successful"</p>}
-      {errStatus?.type === "error" && <p>"Error: Submit Failed"</p>}
-    </main>
+      {/* {errStatus?.type === "success" && <p>"Submit Successful"</p>}
+      {errStatus?.type === "error" && <p>"Error: Submit Failed"</p>} */}
+    </form>
   );
 }

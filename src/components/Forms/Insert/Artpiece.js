@@ -33,7 +33,7 @@ async function ArtInsert(data) {
 export default function Art_Piece({ setType, setValid, setMessage }) {
   const [exhibitData, setExData] = useState([]);
   const [complete, setComplete] = useState(false);
-  const [error, setError] = useState(false);
+  const [fetcherror, setFetcherror] = useState(false);
 
   const fetchExData = () => {
     fetch("https://cst2-api.azurewebsites.net/exhibit", {
@@ -47,7 +47,7 @@ export default function Art_Piece({ setType, setValid, setMessage }) {
       .then((response) => {
         setValid(true);
         if (!response.ok) {
-          setError(true);
+          setFetcherror(true);
           throw new Error("Network response was not OK");
         }
         return response.json();
@@ -86,7 +86,7 @@ export default function Art_Piece({ setType, setValid, setMessage }) {
     })
       .then((response) => {
         if (!response.ok) {
-          setError(true);
+          setFetcherror(true);
           throw new Error("Network response was not OK");
         }
         return response.json();
@@ -159,7 +159,7 @@ export default function Art_Piece({ setType, setValid, setMessage }) {
       setValid(false);
       setMessage("Art piece successfully created!");
     }
-    if (error == true) {
+    if (fetcherror == true) {
       setType("danger");
       setValid(false);
       setMessage("The server has encountered an error.");

@@ -1,4 +1,5 @@
 import React from 'react'
+import ArtPieceTable from './Artpiece'
 
 const ArtpieceTable = ({artdata, handleEditClick,handleDeleteClick}) => {
   return (
@@ -18,6 +19,7 @@ const ArtpieceTable = ({artdata, handleEditClick,handleDeleteClick}) => {
     <td>{artdata.Exhibit_ID}</td>
     <td><button className="btn btn-outline-success"  onClick={(event) => handleEditClick(event, artdata)}>Edit</button></td>
     <td><button className="btn btn-outline-danger"  onClick={(event) => handleDeleteClick(artdata.Art_Piece_Title)} >Delete</button></td>
+    {/* <td><button className="btn btn-outline-danger"  onClick={() => DeleteArtPiece(artdata.Art_Piece_Title)} >Delete</button></td> */}
     </tr>
   )
 }

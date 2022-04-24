@@ -66,19 +66,14 @@ export default function Search() {
           <Dropdown.Item eventKey="gallery">Gallery</Dropdown.Item>
           <Dropdown.Item eventKey="store-item">Store Item</Dropdown.Item>
           <Dropdown.Item eventKey="store-transaction">
-            {" "}
             Store Transaction
           </Dropdown.Item>
           <Dropdown.Item eventKey="ticket-transaction">
-            {" "}
             Ticket Transaction
           </Dropdown.Item>
         </DropdownButton>
       </div>
       <div className="render">{searchType}</div>
-      {/* <br></br>
-      <h2>Search</h2> */}
-      {/* <Artpiece /> */}
     </div>
   );
 }

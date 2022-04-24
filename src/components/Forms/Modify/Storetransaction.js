@@ -1,101 +1,122 @@
 import { useEffect, useState } from "react";
 import "./modify.css";
 
-function AddDeleteTableRows(){
+function Storetransaction_Table() {
+  const getToken = () => {
+    const tokenString = sessionStorage.getItem("token");
+    const userToken = JSON.parse(tokenString);
+    return userToken?.token;
+  };
 
-    const getToken = () => {
-        const tokenString = sessionStorage.getItem("token");
-        const userToken = JSON.parse(tokenString);
-        return userToken?.token;
-      };
+  const [storetransactionData, setData] = useState([]);
 
-      const [artData, setData] = useState([])
+  const fetchData = () => {
+    fetch("https://cst2-api.azurewebsites.net/storetransaction", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${getToken()}`,
+      },
+      mode: "cors",
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setData(data);
+      });
+  };
 
-      const fetchData = () => {
-          fetch("https://cst2-api.azurewebsites.net/storetransaction", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              authorization: `Bearer ${getToken()}`,
-            },
-            mode: "cors",
-          })
-          .then(response => {
-              return response.json()
-          })
-          .then(data => {
-              setData(data)
-          })
-      }
+  async function storetransactionModify(data) {
+    return fetch("https://cst2-api.azurewebsites.net/storetransaction", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${getToken()}`,
+      },
+      mode: "cors",
+      body: data,
+    }).then((data) => data.json())
+    .then(response => {
+      console.log(response)
+      return response.json();
+    })
+  }
 
-    useEffect(() => {
-          fetchData()
-      }, [])
-    
-    console.log(artData)
+  async function storetransactionDelete(data) {
+    return fetch("https://cst2-api.azurewebsites.net/storetransaction", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${getToken()}`,
+      },
+      mode: "cors",
+      body: JSON.stringify(data),
+    }).then((data) => data.json());
+  }
 
-    const [rowsData, setRowsData] = useState([]);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    const addTableRows = ()=>{
 
-        const rowsInput={
-            Art_Piece_Title:'',
-            Date_Created:'',
-            Medium:'',
-            Creator_F_Name:'',
-            Creator_L_Name:'',
-            Being_Refurbished:'',
-            Culture:'',
-            Piece_Height:'',
-            Piece_Length:'',
-            Piece_Width:'',
-            Gallery_Loc:'',
-            Exhibit_ID:''
-        } 
-        setRowsData([...rowsData, rowsInput])
-    }
+  const delete_Table = (index) => {
+    const rows = [...storetransactionData];
+    storetransactionDelete(rows[index]);
+    rows.splice(index, 1);
+    setData(rows);
+  };
 
-   const deleteTableRows = (index)=>
-   {
-        const rows = [...rowsData];
-        rows.splice(index, 1);
-        setRowsData(rows);
-   }
- 
-   const handleChange = (index, evnt)=>
-   {
+  const edit_Table = (index) => {
+    const rows = [...storetransactionData];
+    rows[index].Store_Transaction_Date = rows[index].Store_Transaction_Date.slice(0,10);
+    console.log(rows[index]);
+    let json = JSON.stringify(rows[index]);
+    setData(rows);
+    storetransactionModify(json);
+  };
+
+  const handleChange = (index, evnt) => {
     const { name, value } = evnt.target;
-    const rowsInput = [...rowsData];
+    const rowsInput = [...storetransactionData];
     rowsInput[index][name] = value;
-    setRowsData(rowsInput);
-    }
+    setData(rowsInput);
+  };
 
-    return(
-        <div className="container" >
-            <div className="row">
-                <div className="col-sm-8">
-
-                <table className="table">
-                    <thead>
-                      <tr>
-                          <th>Store Transaction ID</th>
-                          <th>Store Customer ID</th>
-                          <th>Store Total Bill</th>
-                          <th>Store Item ID</th>
-                          <th>Store Transaction Date</th>
-                         
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-sm-8">
+          <table className="table">
+            <thead>
+              <tr>
+                        <th>Transaction ID</th>
+                          <th>Customer ID</th>
+                          <th>Total Bill</th>
+                          <th>Item ID</th>
+                          <th>Transaction Date</th>
                           <th>Action</th>
-                      </tr>
-                    </thead>
-                   <tbody>
-                   </tbody> 
-                </table>
-
-                </div>
-
-            </div>
+            </tr>
+            </thead>
+            <tbody>
+            {storetransactionData.map((data, index)=> {
+                      return(
+                        <tr key={index}>
+                        <td><input type="text" value={data.Store_Transaction_ID} onChange={(evnt)=>(handleChange(index, evnt))} name="Store_Transaction_ID" className="form-control"/> </td>
+                        <td><input type="text" value={data.Store_Customer_ID} onChange={(evnt)=>(handleChange(index, evnt))} name="Store_Customer_ID" className="form-control"/> </td>
+                        <td><input type="text" value={data.Store_Total_Bill}  onChange={(evnt)=>(handleChange(index, evnt))} name="Store_Total_Bill" className="form-control"/> </td>
+                        <td><input type="text" value={data.Store_Item_ID}  onChange={(evnt)=>(handleChange(index, evnt))} name="Store_Item_ID" className="form-control" /> </td>
+                        <td><input type="text" value={data.Store_Transaction_Date.slice(0, 10)} onChange={(evnt)=>(handleChange(index, evnt))} name="Store_Transaction_Date" className="form-control"/> </td>
+                       
+                        <td><button className="btn btn-outline-success" onClick={()=>(edit_Table(index))}>Edit</button></td>
+                        <td><button className="btn btn-outline-danger" onClick={()=>(delete_Table(index))}>Delete</button></td>
+                        </tr>
+                      )})}
+            </tbody>
+          </table>
         </div>
-    )
-
+      </div>
+    </div>
+  );
 }
-export default AddDeleteTableRows
+export default Storetransaction_Table;

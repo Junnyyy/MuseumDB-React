@@ -9,6 +9,7 @@ import Employee from "../../components/Search/Options/employee";
 import Exhibit from "../../components/Search/Options/exhibit";
 import Gallery from "../../components/Search/Options/gallery";
 import StoreItem from "../../components/Search/Options/storeitem";
+import Store_Transaction from "../../components/Search/Options/storetransaction";
 
 export default function Search() {
   var searchType = <></>;
@@ -39,15 +40,9 @@ export default function Search() {
     case "store-item":
       searchType = <StoreItem />;
       break;
-    // case "store-transaction":
-    //   searchType = (
-    //     <Store_Transaction
-    //       setType={setType}
-    //       setValid={setValid}
-    //       setMessage={setMessage}
-    //     />
-    //   );
-    //   break;
+    case "store-transaction":
+      searchType = <Store_Transaction />;
+      break;
     // case "ticket-transaction":
     //   searchType = (
     //     <Ticket_Transaction

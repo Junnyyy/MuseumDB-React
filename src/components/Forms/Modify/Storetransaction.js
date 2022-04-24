@@ -77,8 +77,12 @@ function Storetransaction_Table() {
   };
 
   const handleChange = (index, evnt) => {
-    const { name, value } = evnt.target;
+    let { name, value } = evnt.target;
     const rowsInput = [...storetransactionData];
+    if(value === "")
+    {
+        value = null;
+    }
     rowsInput[index][name] = value;
     setData(rowsInput);
   };

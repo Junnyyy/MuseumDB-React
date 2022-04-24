@@ -76,8 +76,12 @@ function Storeitem_Table() {
   };
 
   const handleChange = (index, evnt) => {
-    const { name, value } = evnt.target;
+    let { name, value } = evnt.target;
     const rowsInput = [...storeitemData];
+    if(value === "")
+    {
+        value = null;
+    }
     rowsInput[index][name] = value;
     setData(rowsInput);
   };

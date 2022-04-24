@@ -76,8 +76,12 @@ function Department_Table() {
   };
 
   const handleChange = (index, evnt) => {
-    const { name, value } = evnt.target;
+    let { name, value } = evnt.target;
     const rowsInput = [...departmentData];
+    if(value === "")
+    {
+        value = null;
+    }
     rowsInput[index][name] = value;
     setData(rowsInput);
   };

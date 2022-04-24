@@ -59,15 +59,6 @@ function ArtPieceTable() {
     fetchData();
   }, []);
 
-  // const DeleteArtPiece = (Art_Piece_Title) => {
-  //   fetch(`https://cst2-api.azurewebsites.net/artpiece/${Art_Piece_Title}`, {
-  //     method: 'Delete'
-  //   })
-  //   .then((result) => {
-  //     result.json().then((resp) => {
-  //       console.warn(resp)
-
-
   const deleteArtpiece_Table = (index) => {
     const rows = [...artData];
     artDelete(rows[index]);

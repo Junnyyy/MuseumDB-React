@@ -1,84 +1,95 @@
 import { useEffect, useState } from "react";
 import "./modify.css";
 
-function AddDeleteTableRows(){
+function Employee_Table() {
+  const getToken = () => {
+    const tokenString = sessionStorage.getItem("token");
+    const userToken = JSON.parse(tokenString);
+    return userToken?.token;
+  };
 
-    const getToken = () => {
-        const tokenString = sessionStorage.getItem("token");
-        const userToken = JSON.parse(tokenString);
-        return userToken?.token;
-      };
+  const [employeeData, setData] = useState([]);
 
-      const [artData, setData] = useState([])
+  const fetchData = () => {
+    fetch("https://cst2-api.azurewebsites.net/employee", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${getToken()}`,
+      },
+      mode: "cors",
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setData(data);
+      });
+  };
 
-      const fetchData = () => {
-          fetch("https://cst2-api.azurewebsites.net/employee", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              authorization: `Bearer ${getToken()}`,
-            },
-            mode: "cors",
-          })
-          .then(response => {
-              return response.json()
-          })
-          .then(data => {
-              setData(data)
-          })
-      }
+  async function employeeModify(data) {
+    return fetch("https://cst2-api.azurewebsites.net/employee", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${getToken()}`,
+      },
+      mode: "cors",
+      body: data,
+    }).then((data) => data.json())
+    .then(response => {
+      console.log(response)
+      return response.json();
+    })
+  }
 
-    useEffect(() => {
-          fetchData()
-      }, [])
-    
-    console.log(artData)
+  async function employeeDelete(data) {
+    return fetch("https://cst2-api.azurewebsites.net/employee", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${getToken()}`,
+      },
+      mode: "cors",
+      body: JSON.stringify(data),
+    }).then((data) => data.json());
+  }
 
-    const [rowsData, setRowsData] = useState([]);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    const addTableRows = ()=>{
 
-        const rowsInput={
-            Art_Piece_Title:'',
-            Date_Created:'',
-            Medium:'',
-            Creator_F_Name:'',
-            Creator_L_Name:'',
-            Being_Refurbished:'',
-            Culture:'',
-            Piece_Height:'',
-            Piece_Length:'',
-            Piece_Width:'',
-            Gallery_Loc:'',
-            Exhibit_ID:''
-        } 
-        setRowsData([...rowsData, rowsInput])
-    }
+  const delete_Table = (index) => {
+    const rows = [...employeeData];
+    employeeDelete(rows[index]);
+    rows.splice(index, 1);
+    setData(rows);
+  };
 
-   const deleteTableRows = (index)=>
-   {
-        const rows = [...rowsData];
-        rows.splice(index, 1);
-        setRowsData(rows);
-   }
- 
-   const handleChange = (index, evnt)=>
-   {
+  const edit_Table = (index) => {
+    const rows = [...employeeData];
+    console.log(rows[index]);
+    let json = JSON.stringify(rows[index]);
+    setData(rows);
+    employeeModify(json);
+  };
+
+  const handleChange = (index, evnt) => {
     const { name, value } = evnt.target;
-    const rowsInput = [...rowsData];
+    const rowsInput = [...employeeData];
     rowsInput[index][name] = value;
-    setRowsData(rowsInput);
-    }
+    setData(rowsInput);
+  };
 
-    return(
-        <div className="container" >
-            <div className="row">
-                <div className="col-sm-8">
-
-                <table className="table">
-                    <thead>
-                      <tr>
-                            <th>Employee ID</th>
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-sm-8">
+          <table className="table">
+            <thead>
+              <tr>
+              <th>Employee ID</th>
                           <th>Employee First Name</th>
                           <th>Employee Middle Name</th>
                           <th>Employee Last Name</th>
@@ -88,17 +99,30 @@ function AddDeleteTableRows(){
                           <th>Employee Email</th>
                           <th>Emplyee Username</th>
                           <th>Action</th>
-                      </tr>
-                    </thead>
-                   <tbody>
-                   </tbody> 
-                </table>
-
-                </div>
-
-            </div>
+              </tr>
+            </thead>
+            <tbody>
+            {employeeData.map((data, index)=> {
+                      return(
+                        <tr key={index}>
+                        <td><input type="text" value={data.Employee_ID} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_ID" className="form-control"/> </td>
+                        <td><input type="text" value={data.Employee_F_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_F_Name" className="form-control"/> </td>
+                        <td><input type="text" value={data.Employee_M_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_M_Name" className="form-control" /> </td>
+                        <td><input type="text" value={data.Employee_L_Name} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_L_Name" className="form-control"/> </td>
+                        <td><input type="text" value={data.Department_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Department_Name" className="form-control"/> </td>
+                        <td><input type="text" value={data.Employee_Salary}  onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_Salary" className="form-control" /> </td>
+                        <td><input type="text" value={data.Employee_DOB} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_DOB" className="form-control"/> </td>
+                        <td><input type="text" value={data.Employee_Email}  onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_Email" className="form-control" /> </td>
+                        <td><input type="text" value={data.Employee_Username} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_Username" className="form-control"/> </td>
+                        <td><button className="btn btn-outline-success" onClick={()=>(edit_Table(index))}>Edit</button></td>
+                        <td><button className="btn btn-outline-danger" onClick={()=>(delete_Table(index))}>Delete</button></td>
+                        </tr>
+                      )})}
+            </tbody>
+          </table>
         </div>
-    )
-
+      </div>
+    </div>
+  );
 }
-export default AddDeleteTableRows
+export default Employee_Table;

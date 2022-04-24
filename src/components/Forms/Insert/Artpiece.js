@@ -30,7 +30,7 @@ async function ArtInsert(data) {
   );
 }
 
-export default function Art_Piece() {
+export default function Art_Piece({ setType, setValid, setMessage }) {
   const [exhibitData, setExData] = useState([]);
 
   const fetchExData = () => {
@@ -43,7 +43,11 @@ export default function Art_Piece() {
       mode: "cors",
     })
       .then((response) => {
+        setValid(true);
         if (!response.ok) {
+          setType("danger");
+          setValid(false);
+          setMessage("The server has encountered an error.");
           throw new Error("Network response was not OK");
         }
         return response.json();
@@ -121,9 +125,11 @@ export default function Art_Piece() {
   const [galLoc, setgalLoc] = useState();
   const [EID, setEID] = useState();
 
+  const [complete, setComplete] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await ArtInsert({
+    setValid(true);
+    const art = await ArtInsert({
       title,
       created,
       medium,
@@ -138,7 +144,16 @@ export default function Art_Piece() {
       galLoc,
       EID,
     });
+    setComplete(true);
   };
+
+  useEffect(() => {
+    if (complete == true) {
+      setType("success");
+      setValid(false);
+      setMessage("Art piece successfully created!");
+    }
+  });
 
   return (
     <form onSubmit={handleSubmit} className="artForm">

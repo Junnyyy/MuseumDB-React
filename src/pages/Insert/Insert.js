@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import Artpiece from "../../components/Forms/Insert/Artpiece";
-import Customer from "../../components/Forms/Insert/Customer"
+import Customer from "../../components/Forms/Insert/Customer";
 import Department from "../../components/Forms/Insert/Department";
 import Employee from "../../components/Forms/Insert/Employee";
 import Exhibit from "../../components/Forms/Insert/Exhibit";
@@ -10,9 +10,8 @@ import StoreItem from "../../components/Forms/Insert/Storeitem";
 import Store_Transaction from "../../components/Forms/Insert/Storetransaction";
 import Ticket_Transaction from "../../components/Forms/Insert/Tickettransaction";
 
-
-
-export default function Insert() {
+export default function Insert({ setType, setValid, setMessage }) {
+  setValid(true);
   var formType = <></>;
   const [value, setValue] = useState("");
   const handleSelect = (e) => {
@@ -21,32 +20,38 @@ export default function Insert() {
 
   switch (value) {
     case "artpiece":
-      formType = <Artpiece />;
-      break
-    case"customer":
-      formType = <Customer/>;
-      break
-    case"department":
-      formType = <Department/>;
-      break
-    case"employee":
-      formType = <Employee/>;
-      break
-    case"exhibit":
-      formType = <Exhibit/>;
-      break
-    case"gallery":
-      formType = <Gallery/>;
-      break
-    case"store-item":
-      formType = <StoreItem/>;
-      break
-    case"store-transaction":
-      formType = <Store_Transaction/>;
-      break
-    case"ticket-transaction":
-      formType = <Ticket_Transaction/>;
-      break
+      formType = (
+        <Artpiece
+          setType={setType}
+          setValid={setValid}
+          setMessage={setMessage}
+        />
+      );
+      break;
+    case "customer":
+      formType = <Customer />;
+      break;
+    case "department":
+      formType = <Department />;
+      break;
+    case "employee":
+      formType = <Employee />;
+      break;
+    case "exhibit":
+      formType = <Exhibit />;
+      break;
+    case "gallery":
+      formType = <Gallery />;
+      break;
+    case "store-item":
+      formType = <StoreItem />;
+      break;
+    case "store-transaction":
+      formType = <Store_Transaction />;
+      break;
+    case "ticket-transaction":
+      formType = <Ticket_Transaction />;
+      break;
   }
 
   return (
@@ -65,8 +70,14 @@ export default function Insert() {
           <Dropdown.Item eventKey="exhibit">Exhibit</Dropdown.Item>
           <Dropdown.Item eventKey="gallery">Gallery</Dropdown.Item>
           <Dropdown.Item eventKey="store-item">Store Item</Dropdown.Item>
-          <Dropdown.Item eventKey="store-transaction"> Store Transaction</Dropdown.Item>
-          <Dropdown.Item eventKey="ticket-transaction"> Ticket Transaction</Dropdown.Item>
+          <Dropdown.Item eventKey="store-transaction">
+            {" "}
+            Store Transaction
+          </Dropdown.Item>
+          <Dropdown.Item eventKey="ticket-transaction">
+            {" "}
+            Ticket Transaction
+          </Dropdown.Item>
         </DropdownButton>
       </div>
       <div className="render">{formType}</div>

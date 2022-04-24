@@ -7,7 +7,7 @@ export default function AlertDismissible(props) {
   if (props.type == "danger") {
     if (show) {
       return (
-        <div className="AlertBox0">
+        <div className="AlertBox">
           <Alert
             className="AlertBox"
             variant="danger"
@@ -15,7 +15,7 @@ export default function AlertDismissible(props) {
             dismissible
           >
             <Alert.Heading>Oh snap!</Alert.Heading>
-            <p class="text-danger">{props.message}</p>
+            <p className="text-danger">{props.message}</p>
           </Alert>
         </div>
       );
@@ -31,7 +31,7 @@ export default function AlertDismissible(props) {
             dismissible
           >
             <Alert.Heading>Head up!</Alert.Heading>
-            <p class="text-warning">{props.message}</p>
+            <p className="text-warning">{props.message}</p>
           </Alert>
         </div>
       );
@@ -39,7 +39,7 @@ export default function AlertDismissible(props) {
   } else if (props.type == "success") {
     if (show) {
       return (
-        <div className="AlertBox0">
+        <div className="AlertBox">
           <Alert
             className="AlertBox"
             variant="success"
@@ -47,7 +47,7 @@ export default function AlertDismissible(props) {
             dismissible
           >
             <Alert.Heading>Success!</Alert.Heading>
-            <p class="text-success">{props.message}</p>
+            <p className="text-success">{props.message}</p>
           </Alert>
         </div>
       );
@@ -55,7 +55,7 @@ export default function AlertDismissible(props) {
   } else if (props.type == "info") {
     if (show) {
       return (
-        <div className="AlertBox0">
+        <div className="AlertBox">
           <Alert
             className="AlertBox"
             variant="info"
@@ -63,7 +63,7 @@ export default function AlertDismissible(props) {
             dismissible
           >
             <Alert.Heading>Info!</Alert.Heading>
-            <p class="text-info">{props.message}</p>
+            <p className="text-info">{props.message}</p>
           </Alert>
         </div>
       );

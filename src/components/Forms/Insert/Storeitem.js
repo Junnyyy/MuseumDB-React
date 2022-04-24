@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import "./Insert.css";
 // import PropTypes from "prop-types";
 
@@ -33,10 +33,26 @@ export default function StoreItem({ setType, setValid, setMessage }) {
       quantity,
       price,
     });
+
+    if (response.error) {
+      setType("danger");
+      setValid(false);
+      setMessage(response.error);
+    } else {
+      setComplete(true);
+    }
   };
 
+  useEffect(() => {
+    if (complete == true) {
+      setType("success");
+      setValid(false);
+      setMessage("Art piece successfully created!");
+    }
+  });
+
   return (
-    <main>
+    <form onSubmit={handleSubmit}>
       <h1>Store Item</h1>
       <div>
         <label>Item Name</label>
@@ -64,6 +80,6 @@ export default function StoreItem({ setType, setValid, setMessage }) {
       </div>
 
       <button className="submit">Submit</button>
-    </main>
+    </form>
   );
 }

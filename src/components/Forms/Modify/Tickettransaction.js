@@ -62,7 +62,7 @@ function Tickettransaction_Table() {
 
   const delete_Table = (index) => {
     const rows = [...tickettransactionData];
-    storetransactionDelete(rows[index]);
+    tickettransactionDelete(rows[index]);
     rows.splice(index, 1);
     setData(rows);
   };
@@ -73,7 +73,7 @@ function Tickettransaction_Table() {
     console.log(rows[index]);
     let json = JSON.stringify(rows[index]);
     setData(rows);
-    storetransactionModify(json);
+    tickettransactionModify(json);
   };
 
   const handleChange = (index, evnt) => {
@@ -90,9 +90,9 @@ function Tickettransaction_Table() {
           <table className="table">
             <thead>
               <tr>
-                        <th>=Transaction ID</th>
-                          <th>=Customer ID</th>
-                          <th>=Total Bill</th>
+                        <th>Transaction ID</th>
+                          <th>Customer ID</th>
+                          <th>Total Bill</th>
                           <th>Exhibit ID</th>
                           <th>ransaction Date</th>
                           <th>Action</th>

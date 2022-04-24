@@ -89,7 +89,6 @@ function Customer_Table() {
           <table className="table">
             <thead>
               <tr>
-              <th>Customer ID</th>
                 <th>Customer First Name</th>
                 <th>Customer Middle Name</th>
                 <th>Customer Last Name</th>
@@ -103,7 +102,6 @@ function Customer_Table() {
             {customerData.map((data, index)=> {
                       return(
                         <tr key={index}>
-                        <td><input type="text" value={data.Customer_ID} onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_ID" className="form-control"/> </td>
                         <td><input type="text" value={data.Customer_F_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_F_Name" className="form-control"/> </td>
                         <td><input type="text" value={data.Customer_M_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_M_Name" className="form-control" /> </td>
                         <td><input type="text" value={data.Customer_L_Name} onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_L_Name" className="form-control"/> </td>

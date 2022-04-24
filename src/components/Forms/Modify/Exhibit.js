@@ -89,7 +89,7 @@ function Exhibit_Table() {
           <table className="table">
             <thead>
               <tr>
-              <th>Exhibit_ID</th>
+
                           <th>Exhibit Name</th>
                           <th>Arrival Date</th>
                           <th>Departure Date</th>
@@ -105,7 +105,7 @@ function Exhibit_Table() {
             {exhibitData.map((data, index)=> {
                       return(
                         <tr key={index}>
-                        <td><input type="text" value={data.Exhibit_ID} onChange={(evnt)=>(handleChange(index, evnt))} name="Exhibit_ID" className="form-control"/> </td>
+                       
                         <td><input type="text" value={data.Exhibit_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Exhibit_Name" className="form-control"/> </td>
                         <td><input type="text" value={data.Arrival_Date}  onChange={(evnt)=>(handleChange(index, evnt))} name="Arrival_Date" className="form-control" /> </td>
                         <td><input type="text" value={data.Departure_Date} onChange={(evnt)=>(handleChange(index, evnt))} name="Departure_Date" className="form-control"/> </td>

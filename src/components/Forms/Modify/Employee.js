@@ -89,15 +89,14 @@ function Employee_Table() {
           <table className="table">
             <thead>
               <tr>
-              <th>Employee ID</th>
                           <th>Employee First Name</th>
                           <th>Employee Middle Name</th>
                           <th>Employee Last Name</th>
                           <th>Department Name</th>
                           <th>Employee Salary</th>
                           <th>Employee DOB</th>
-                          <th>Employee Email</th>
-                          <th>Emplyee Username</th>
+                          <th>Employee Username</th>
+                          <th>Employee Admin Flag</th>
                           <th>Action</th>
               </tr>
             </thead>
@@ -105,15 +104,15 @@ function Employee_Table() {
             {employeeData.map((data, index)=> {
                       return(
                         <tr key={index}>
-                        <td><input type="text" value={data.Employee_ID} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_ID" className="form-control"/> </td>
+                    
                         <td><input type="text" value={data.Employee_F_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_F_Name" className="form-control"/> </td>
                         <td><input type="text" value={data.Employee_M_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_M_Name" className="form-control" /> </td>
                         <td><input type="text" value={data.Employee_L_Name} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_L_Name" className="form-control"/> </td>
                         <td><input type="text" value={data.Department_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Department_Name" className="form-control"/> </td>
                         <td><input type="text" value={data.Employee_Salary}  onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_Salary" className="form-control" /> </td>
                         <td><input type="text" value={data.Employee_DOB} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_DOB" className="form-control"/> </td>
-                        <td><input type="text" value={data.Employee_Email}  onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_Email" className="form-control" /> </td>
                         <td><input type="text" value={data.Employee_Username} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_Username" className="form-control"/> </td>
+                        <td><input type="text" value={data.Admin_Flag} onChange={(evnt)=>(handleChange(index, evnt))} name="Admin_Flag" className="form-control"/> </td>
                         <td><button className="btn btn-outline-success" onClick={()=>(edit_Table(index))}>Edit</button></td>
                         <td><button className="btn btn-outline-danger" onClick={()=>(delete_Table(index))}>Delete</button></td>
                         </tr>

@@ -9,6 +9,7 @@ import Gallery from "../../components/Forms/Modify/Gallery";
 import Store_Item from "../../components/Forms/Modify/Storeitem";
 import Store_Transaction from "../../components/Forms/Modify/Storetransaction";
 import Ticket_Transaction from "../../components/Forms/Modify/Tickettransaction";
+import "../../components/Forms/Modify/modify.css";
 
 export default function Insert() {
   var formType = <></>;

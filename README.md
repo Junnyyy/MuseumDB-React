@@ -18,6 +18,10 @@ version >= 14.17.6
 
 Installs all required modules. (If the app is throwing missing errors, check this first)
 
+`npm start`
+
+This will let you run the site locally in development mode.
+Ideal for testing and non-production runs.
 
 `npm test`
 

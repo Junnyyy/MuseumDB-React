@@ -36,11 +36,12 @@ function Customer_Table() {
       },
       mode: "cors",
       body: data,
-    }).then((data) => data.json())
-    .then(response => {
-      console.log(response)
-      return response.json();
     })
+      .then((data) => data.json())
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      });
   }
 
   async function customerDelete(data) {
@@ -58,7 +59,6 @@ function Customer_Table() {
   useEffect(() => {
     fetchData();
   }, []);
-
 
   const delete_Table = (index) => {
     const rows = [...customerData];
@@ -78,52 +78,106 @@ function Customer_Table() {
   const handleChange = (index, evnt) => {
     let { name, value } = evnt.target;
     const rowsInput = [...customerData];
-    if(value === "")
-    {
-        value = null;
+    if (value === "") {
+      value = null;
     }
     rowsInput[index][name] = value;
     setData(rowsInput);
   };
 
   return (
-
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Customer First Name</th>
-                <th>Customer Middle Name</th>
-                <th>Customer Last Name</th>
-                <th>Membership Status</th>
-                <th>Customer Username</th>
-                <th>Customer Email</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-            {customerData.map((data, index)=> {
-                      return(
-                        <tr key={index}>
-                        <td><input type="text" value={data.Customer_F_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_F_Name" className="form-control"/> </td>
-                        <td><input type="text" value={data.Customer_M_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_M_Name" className="form-control" /> </td>
-                        <td><input type="text" value={data.Customer_L_Name} onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_L_Name" className="form-control"/> </td>
-                        <td>        <select
-                                className="form-control"
-                                name="Membership_Status"
-                                defaultValue={data.Membership_Status}
-                                onChange={(evnt)=>(handleChange(index, evnt))}>
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
-                              </select> </td>
-                        <td><input type="text" value={data.Customer_Username}  onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_Username" className="form-control" /> </td>
-                        <td><input type="text" value={data.Customer_Email} onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_Email" className="form-control"/> </td>
-                        <td><button className="btn btn-outline-success" onClick={()=>(edit_Table(index))}>Edit</button></td>
-                        <td><button className="btn btn-outline-danger" onClick={()=>(delete_Table(index))}>Delete</button></td>
-                        </tr>
-                      )})}
-            </tbody>
-          </table>
-
+    <table className="table">
+      <thead>
+        <tr>
+          <th>Customer First Name</th>
+          <th>Customer Middle Name</th>
+          <th>Customer Last Name</th>
+          <th>Membership Status</th>
+          <th>Customer Username</th>
+          <th>Customer Email</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {customerData.map((data, index) => {
+          return (
+            <tr key={index}>
+              <td>
+                <input
+                  type="text"
+                  value={data.Customer_F_Name}
+                  onChange={(evnt) => handleChange(index, evnt)}
+                  name="Customer_F_Name"
+                  className="form-control"
+                />{" "}
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={data.Customer_M_Name}
+                  onChange={(evnt) => handleChange(index, evnt)}
+                  name="Customer_M_Name"
+                  className="form-control"
+                />{" "}
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={data.Customer_L_Name}
+                  onChange={(evnt) => handleChange(index, evnt)}
+                  name="Customer_L_Name"
+                  className="form-control"
+                />{" "}
+              </td>
+              <td>        
+                <select
+                    className="form-control"
+                    name="Membership_Status"
+                    defaultValue={data.Membership_Status}
+                    onChange={(evnt)=>(handleChange(index, evnt))}>
+                    <option value="1">Yes</option>
+                   <option value="0">No</option>
+                </select>
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={data.Customer_Username}
+                  onChange={(evnt) => handleChange(index, evnt)}
+                  name="Customer_Username"
+                  className="form-control"
+                />{" "}
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={data.Customer_Email}
+                  onChange={(evnt) => handleChange(index, evnt)}
+                  name="Customer_Email"
+                  className="form-control"
+                />{" "}
+              </td>
+              <td>
+                <button
+                  className="btn btn-outline-success"
+                  onClick={() => edit_Table(index)}
+                >
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button
+                  className="btn btn-outline-danger"
+                  onClick={() => delete_Table(index)}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 }
 export default Customer_Table;

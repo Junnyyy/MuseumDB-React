@@ -7,10 +7,17 @@ The frontend is entirely built with ReactJS.
 
 ## Installation/Scripts guide 🔨
 
+### Installation guide
+
+1. Install node
+
 Node version requirement 
 ```
 version >= 14.17.6
 ```
+2. npm install in directory
+3. npm start (the page will auto open)
+4. You're good to go!
 
 ### Scripts 📜
 

@@ -59,14 +59,13 @@ export default function Employee() {
       );
     });
 
-  const [EmployeeID, setEmployeeID] = useState();
+
   const [EmployeeFirstName, setEmployeeFirstName] = useState();
   const [EmployeeMiddleName, setEmployeeMiddleName] = useState();
   const [EmployeeLastName, setEmployeeLastName] = useState();
   const [DepartmentName, setDepartmentName] = useState("Administration");
   const [EmployeeUsername, setEmployeeUsername] = useState();
   const [Employeepassword, setEmployeepassword] = useState();
-  const [EmployeeEmail, setEmployeeEmail] = useState();
   const [EmployeeSalary, setEmployeeSalary] = useState();
   const [EmployeeDOB, setEmployeeDOB] = useState();
   const [EmployeeAdminFlag, setAdminFlag] = useState();
@@ -74,7 +73,7 @@ export default function Employee() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await Employee({
-      EmployeeID,
+
       EmployeeFirstName,
       EmployeeMiddleName,
       EmployeeLastName,
@@ -83,7 +82,7 @@ export default function Employee() {
       EmployeeDOB,
       EmployeeUsername,
       Employeepassword,
-      EmployeeEmail,
+
       EmployeeAdminFlag,
     });
   };
@@ -91,14 +90,6 @@ export default function Employee() {
   return (
     <form onSubmit={handleSubmit}>
       <h1>Employee Info</h1>
-      <div>
-        <label>Employee ID</label>
-        <input
-          type="number"
-          className="Employee"
-          onChange={(e) => setEmployeeID(e.target.value)}
-        />
-      </div>
       <div>
         <label>First Name</label>
         <input
@@ -110,7 +101,7 @@ export default function Employee() {
       <div>
         <label>Middle Name</label>
         <input
-          type="date"
+          type="text"
           className="datebox"
           onChange={(e) => setEmployeeMiddleName(e.target.value)}
         />
@@ -146,14 +137,6 @@ export default function Employee() {
           type="date"
           className="Employee"
           onChange={(e) => setEmployeeDOB(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type="text"
-          className="Employee"
-          onChange={(e) => setEmployeeEmail(e.target.value)}
         />
       </div>
       <div>

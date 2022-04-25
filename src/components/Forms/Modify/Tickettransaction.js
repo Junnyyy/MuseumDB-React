@@ -69,7 +69,7 @@ function Tickettransaction_Table() {
 
   const edit_Table = (index) => {
     const rows = [...tickettransactionData];
-    rows[index].Ticket_Transaction_Date = rows[index].Ticket_Transaction_Date.slice(0,10);
+    rows[index].Ticket_Transaction_Date = rows[index].Ticket_Transaction_Date?.slice(0,10);
     console.log(rows[index]);
     let json = JSON.stringify(rows[index]);
     setData(rows);
@@ -94,7 +94,6 @@ function Tickettransaction_Table() {
               <tr>
                         <th>Transaction ID</th>
                           <th>Customer ID</th>
-                          <th>Total Bill</th>
                           <th>Exhibit ID</th>
                           <th>Transaction Date</th>
                           <th>Action</th>
@@ -106,9 +105,8 @@ function Tickettransaction_Table() {
                         <tr key={index}>
                         <td><input type="text" value={data.Ticket_Transaction_ID} onChange={(evnt)=>(handleChange(index, evnt))} name="Store_Transaction_ID" className="form-control"/> </td>
                         <td><input type="text" value={data.Ticket_Customer_ID} onChange={(evnt)=>(handleChange(index, evnt))} name="Store_Customer_ID" className="form-control"/> </td>
-                        <td><input type="text" value={data.Ticket_Total_Bill}  onChange={(evnt)=>(handleChange(index, evnt))} name="Store_Total_Bill" className="form-control"/> </td>
                         <td><input type="text" value={data.Ticket_Exhibit_ID}  onChange={(evnt)=>(handleChange(index, evnt))} name="Store_Item_ID" className="form-control" /> </td>
-                        <td><input type="text" value={data.Ticket_Transaction_Date.slice(0, 10)} onChange={(evnt)=>(handleChange(index, evnt))} name="Store_Transaction_Date" className="form-control"/> </td>
+                        <td><input type="text" value={data.Ticket_Transaction_Date?.slice(0, 10)} onChange={(evnt)=>(handleChange(index, evnt))} name="Store_Transaction_Date" className="form-control"/> </td>
                        
                         <td><button className="btn btn-outline-success" onClick={()=>(edit_Table(index))}>Edit</button></td>
                         <td><button className="btn btn-outline-danger" onClick={()=>(delete_Table(index))}>Delete</button></td>

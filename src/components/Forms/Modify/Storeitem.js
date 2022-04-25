@@ -95,7 +95,6 @@ function Storeitem_Table() {
                           <th>Item Name</th>
                           <th>Quantity In Stock</th>
                           <th>Item Price</th>
-                          <th>Number Sold</th>
 
                           <th>Action</th>
             </tr>
@@ -107,8 +106,6 @@ function Storeitem_Table() {
                         <td><input type="text" value={data.Item_Name} onChange={(evnt)=>(handleChange(index, evnt))} name="Item_ID" className="form-control"/> </td>
                         <td><input type="text" value={data.Quantity_In_Stock}  onChange={(evnt)=>(handleChange(index, evnt))} name="Quantity_in_Stock" className="form-control"/> </td>
                         <td><input type="text" value={data.Item_Price}  onChange={(evnt)=>(handleChange(index, evnt))} name="Item_Price" className="form-control" /> </td>
-                        <td><input type="text" value={data.Number_Sold} onChange={(evnt)=>(handleChange(index, evnt))} name="Number_Sold" className="form-control"/> </td>
-            
                         <td><button className="btn btn-outline-success" onClick={()=>(edit_Table(index))}>Edit</button></td>
                         <td><button className="btn btn-outline-danger" onClick={()=>(delete_Table(index))}>Delete</button></td>
                         </tr>

@@ -69,6 +69,7 @@ function Employee_Table() {
 
   const edit_Table = (index) => {
     const rows = [...employeeData];
+    rows[index].Employee_DOB = rows[index].Employee_DOB?.slice(0,10);
     console.log(rows[index]);
     let json = JSON.stringify(rows[index]);
     setData(rows);
@@ -112,7 +113,7 @@ function Employee_Table() {
                         <td><input type="text" value={data.Employee_L_Name} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_L_Name" className="form-control"/> </td>
                         <td><input type="text" value={data.Department_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Department_Name" className="form-control"/> </td>
                         <td><input type="text" value={data.Employee_Salary}  onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_Salary" className="form-control" /> </td>
-                        <td><input type="text" value={data.Employee_DOB.slice(0,10)} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_DOB" className="form-control"/> </td>
+                        <td><input type="text" value={data.Employee_DOB?.slice(0,10)} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_DOB" className="form-control"/> </td>
                         <td><input type="text" value={data.Employee_Username} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_Username" className="form-control"/> </td>
                         <td><input type="text" value={data.Admin_Flag} onChange={(evnt)=>(handleChange(index, evnt))} name="Admin_Flag" className="form-control"/> </td>
                         <td><button className="btn btn-outline-success" onClick={()=>(edit_Table(index))}>Edit</button></td>

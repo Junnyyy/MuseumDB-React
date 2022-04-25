@@ -68,7 +68,7 @@ function ArtPieceTable() {
 
   const editArtpiece_Table = (index) => {
     const rows = [...artData];
-    rows[index].Date_Created = rows[index].Date_Created.slice(0,10);
+    rows[index].Date_Created = rows[index].Date_Created?.slice(0,10);
     console.log(rows[index]);
     let json = JSON.stringify(rows[index]);
     setData(rows);
@@ -97,7 +97,7 @@ function ArtPieceTable() {
                 <th>Medium</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Refurbished</th>
+                <th>Being Refurbished</th>
                 <th>Culture</th>
                 <th>Height</th>
                 <th>Length</th>
@@ -112,7 +112,7 @@ function ArtPieceTable() {
                       return(
                         <tr key={index}>
                         <td><input type="text" value={data.Art_Piece_Title} onChange={(evnt)=>(handleChange(index, evnt))} name="Art_Piece_Title" className="form-control"/> </td>
-                        <td><input type="text" value={data.Date_Created.slice(0,10)}  onChange={(evnt)=>(handleChange(index, evnt))} name="Date_Created" className="form-control"/> </td>
+                        <td><input type="text" value={data.Date_Created?.slice(0,10)}  onChange={(evnt)=>(handleChange(index, evnt))} name="Date_Created" className="form-control"/> </td>
                         <td><input type="text" value={data.Medium}  onChange={(evnt)=>(handleChange(index, evnt))} name="Medium" className="form-control" /> </td>
                         <td><input type="text" value={data.Creator_F_Name} onChange={(evnt)=>(handleChange(index, evnt))} name="Creator_F_Name" className="form-control"/> </td>
                         <td><input type="text" value={data.Creator_L_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Creator_L_Name" className="form-control"/> </td>

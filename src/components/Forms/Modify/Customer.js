@@ -107,7 +107,14 @@ function Customer_Table() {
                         <td><input type="text" value={data.Customer_F_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_F_Name" className="form-control"/> </td>
                         <td><input type="text" value={data.Customer_M_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_M_Name" className="form-control" /> </td>
                         <td><input type="text" value={data.Customer_L_Name} onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_L_Name" className="form-control"/> </td>
-                        <td><input type="text" value={data.Membership_Status}  onChange={(evnt)=>(handleChange(index, evnt))} name="Membership_Status" className="form-control"/> </td>
+                        <td>        <select
+                                className="form-control"
+                                name="Membership_Status"
+                                defaultValue={data.Membership_Status}
+                                onChange={(evnt)=>(handleChange(index, evnt))}>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                              </select> </td>
                         <td><input type="text" value={data.Customer_Username}  onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_Username" className="form-control" /> </td>
                         <td><input type="text" value={data.Customer_Email} onChange={(evnt)=>(handleChange(index, evnt))} name="Customer_Email" className="form-control"/> </td>
                         <td><button className="btn btn-outline-success" onClick={()=>(edit_Table(index))}>Edit</button></td>

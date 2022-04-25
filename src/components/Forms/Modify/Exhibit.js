@@ -113,7 +113,14 @@ function Exhibit_Table() {
                         <td><input type="text" value={data.Exhibit_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Exhibit_Name" className="form-control"/> </td>
                         <td><input type="text" value={data.Arrival_Date?.slice(0,10)}  onChange={(evnt)=>(handleChange(index, evnt))} name="Arrival_Date" className="form-control" /> </td>
                         <td><input type="text" value={data.Departure_Date?.slice(0,10)} onChange={(evnt)=>(handleChange(index, evnt))} name="Departure_Date" className="form-control"/> </td>
-                        <td><input type="text" value={data.Permanent}  onChange={(evnt)=>(handleChange(index, evnt))} name="Permanent" className="form-control"/> </td>
+                        <td>        <select
+                                className="form-control"
+                                defaultValue={data.Permanent}
+                                name="Permanent"
+                                onChange={(evnt)=>(handleChange(index, evnt))}>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                              </select> </td>
                         <td><input type="text" value={data.Ticket_Price}  onChange={(evnt)=>(handleChange(index, evnt))} name="Ticket_Price" className="form-control" /> </td>
                         <td><input type="text" value={data.Number_Tickets_Sold} onChange={(evnt)=>(handleChange(index, evnt))} name="Number_Tickets_Sold" className="form-control"/> </td>
                         <td><input type="text" value={data.Managing_Department}  onChange={(evnt)=>(handleChange(index, evnt))} name="Managing_Department" className="form-control" /> </td>

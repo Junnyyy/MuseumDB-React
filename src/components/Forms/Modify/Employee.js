@@ -115,7 +115,14 @@ function Employee_Table() {
                         <td><input type="text" value={data.Employee_Salary}  onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_Salary" className="form-control" /> </td>
                         <td><input type="text" value={data.Employee_DOB?.slice(0,10)} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_DOB" className="form-control"/> </td>
                         <td><input type="text" value={data.Employee_Username} onChange={(evnt)=>(handleChange(index, evnt))} name="Employee_Username" className="form-control"/> </td>
-                        <td><input type="text" value={data.Admin_Flag} onChange={(evnt)=>(handleChange(index, evnt))} name="Admin_Flag" className="form-control"/> </td>
+                        <td>        <select
+                                className="form-control"
+                                name="Admin_Flag"
+                                defaultValue={data.Admin_Flag}
+                                onChange={(evnt)=>(handleChange(index, evnt))}>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                              </select> </td>
                         <td><button className="btn btn-outline-success" onClick={()=>(edit_Table(index))}>Edit</button></td>
                         <td><button className="btn btn-outline-danger" onClick={()=>(delete_Table(index))}>Delete</button></td>
                         </tr>

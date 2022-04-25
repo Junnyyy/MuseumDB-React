@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import "./modify.css";
 
+
+
+
 function ArtPieceTable() {
   const getToken = () => {
     const tokenString = sessionStorage.getItem("token");
@@ -116,7 +119,14 @@ function ArtPieceTable() {
                         <td><input type="text" value={data.Medium}  onChange={(evnt)=>(handleChange(index, evnt))} name="Medium" className="form-control" /> </td>
                         <td><input type="text" value={data.Creator_F_Name} onChange={(evnt)=>(handleChange(index, evnt))} name="Creator_F_Name" className="form-control"/> </td>
                         <td><input type="text" value={data.Creator_L_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Creator_L_Name" className="form-control"/> </td>
-                        <td><input type="text" value={data.Being_Refurbished}  onChange={(evnt)=>(handleChange(index, evnt))} name="Being_Refurbished" className="form-control" /> </td>
+                        <td>  <select className="form-control"
+                                      defaultValue={data.Being_Refurbished}
+                                      name="Being_Refurbished"
+                                      onChange={(evnt)=>(handleChange(index, evnt))}>
+                                      <option value="1">Yes</option>
+                                      <option value="0">No</option>
+                                    </select> 
+                        </td>
                         <td><input type="text" value={data.Culture} onChange={(evnt)=>(handleChange(index, evnt))} name="Culture" className="form-control"/> </td>
                         <td><input type="text" value={data.Piece_Height}  onChange={(evnt)=>(handleChange(index, evnt))} name="Piece_Height" className="form-control"/> </td>
                         <td><input type="text" value={data.Piece_Length}  onChange={(evnt)=>(handleChange(index, evnt))} name="Piece_Length" className="form-control" /> </td>

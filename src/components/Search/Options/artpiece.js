@@ -26,30 +26,12 @@ export default function Artpiece() {
 
   function search(rows) {
     const columns = rows[0] && Object.keys(rows[0]);
-    return rows.filter(
-      (row) =>
-        columns.some(
-          (column) =>
-            row[column]
-              ?.toString()
-              .toLowerCase()
-              .indexOf(filter.toLowerCase()) > -1
-        )
-      // row.Art_Piece_ID?.toString().indexOf(filter.toLowerCase()) > -1 ||
-      // row.Art_Piece_Title.toLowerCase().indexOf(filter.toLowerCase()) > -1 ||
-      // row.Date_Created.toLowerCase().indexOf(filter.toLowerCase()) > -1 ||
-      // row.Medium.toLowerCase().indexOf(filter.toLowerCase()) > -1 ||
-      // row.Creator_F_Name.toLowerCase().indexOf(filter.toLowerCase()) > -1 ||
-      // row.Creator_L_Name.toLowerCase().indexOf(filter.toLowerCase()) > -1 ||
-      // row.Being_Refurbished.toString().indexOf(filter.toLowerCase()) > -1 ||
-      // row.On_Display.toString().indexOf(filter.toLowerCase()) > -1 ||
-      // row.Year_Acquired.toString().indexOf(filter.toLowerCase()) > -1 ||
-      // row.Culture.toLowerCase().indexOf(filter.toLowerCase()) > -1 ||
-      // row.Piece_Height?.toString().indexOf(filter.toLowerCase()) > -1 ||
-      // row.Piece_Length?.toString().indexOf(filter.toLowerCase()) > -1 ||
-      // row.Piece_Width?.toString().indexOf(filter) > -1 ||
-      // row.Gallery_Loc.toLowerCase().indexOf(filter.toLowerCase()) > -1 ||
-      // row.Exhibit_ID.toString().indexOf(filter.toLowerCase()) > -1
+    return rows.filter((row) =>
+      columns.some(
+        (column) =>
+          row[column]?.toString().toLowerCase().indexOf(filter.toLowerCase()) >
+          -1
+      )
     );
   }
 

@@ -27,7 +27,7 @@ export default function Report() {
   return (
     <div className="insert-wrapper">
       <div className="selection">
-        <p>Please select a report.</p>
+        <h2>Please select a report.</h2>
         <DropdownButton
           id="dropdown-basic-button"
           title="Select Report"

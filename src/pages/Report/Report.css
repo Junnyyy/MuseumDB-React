@@ -1,21 +1,25 @@
-.table{
-    width: 100%;
-    box-sizing: content-box;
-    border-radius: 8px;
-    display: table;
-    position: relative;
-    table-layout: auto;
+.table {
+  width: 100%;
+  box-sizing: content-box;
+  border-radius: 8px;
+  display: table;
+  position: relative;
+  table-layout: auto;
 }
-.col-sm-8, .row  {
-    width: 100%;
-    display: inline;
+.col-sm-8,
+.row {
+  width: 100%;
+  display: inline;
 }
-.tr, .td, .tbody, .form-control {
-    display:block;
-    width: 100%;
-    font-size: 12px;
-    table-layout: auto;
+.tr,
+.td,
+.tbody,
+.form-control {
+  display: block;
+  width: 100%;
+  font-size: 12px;
+  table-layout: auto;
 }
 .total {
-    font-size: 25px;
+  font-size: 25px;
 }

@@ -16,8 +16,8 @@ export default function Navigationbar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/Insert">Insert ✔️</Nav.Link>
-            <Nav.Link href="/Modify">Modify ✏️</Nav.Link>
-            <Nav.Link href="/Delete">Delete ❌</Nav.Link>
+            <Nav.Link href="/Modify">Modify ✏️ </Nav.Link>
+            {/* <Nav.Link href="/Delete">Delete ❌</Nav.Link> */}
             <Nav.Link href="/Report">Report 📁</Nav.Link>
             <Nav.Link href="/Search">Search 🔍</Nav.Link>
           </Nav>

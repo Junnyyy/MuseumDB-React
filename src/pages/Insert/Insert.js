@@ -105,7 +105,7 @@ export default function Insert({ setType, setValid, setMessage }) {
   return (
     <div className="insert-wrapper">
       <div className="selection">
-        <p>Please select a table to insert new data.</p>
+        <h2>Please select a table to insert new data.</h2>
         <DropdownButton
           id="dropdown-basic-button"
           title="Select Table"

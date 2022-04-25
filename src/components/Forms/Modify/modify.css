@@ -1,0 +1,18 @@
+/* .table {
+    align-items: left;
+    table-layout: left;
+    width: 150%;
+    font-size: 15px;
+
+} */
+.selection {
+  color: white;
+}
+
+.table {
+  color: white;
+}
+
+.td {
+  color: black;
+}

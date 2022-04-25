@@ -1,5 +1,4 @@
 import React from "react";
-import { Table } from "react-bootstrap";
 
 export default function CustomerDatatable({ data }) {
   const columns = data[0] && Object.keys(data[0]);
@@ -7,7 +6,7 @@ export default function CustomerDatatable({ data }) {
     // <table cellPadding={0} cellSpacing={0}>
     // <Table id="table" className="table">
     <>
-      <Table responsive className="datatable">
+      <table className="table">
         <thread>
           {/* <tr>{data[0] && columns.map((heading) => <th>{heading}</th>)}</tr> */}
           <tr>
@@ -25,7 +24,7 @@ export default function CustomerDatatable({ data }) {
             </tr>
           ))}
         </tbody>
-      </Table>
+      </table>
     </>
   );
 }

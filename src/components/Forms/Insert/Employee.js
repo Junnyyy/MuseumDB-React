@@ -59,7 +59,6 @@ export default function Employee() {
       );
     });
 
-
   const [EmployeeFirstName, setEmployeeFirstName] = useState();
   const [EmployeeMiddleName, setEmployeeMiddleName] = useState();
   const [EmployeeLastName, setEmployeeLastName] = useState();
@@ -73,7 +72,6 @@ export default function Employee() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await Employee({
-
       EmployeeFirstName,
       EmployeeMiddleName,
       EmployeeLastName,

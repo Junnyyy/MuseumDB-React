@@ -36,11 +36,12 @@ function Storeitem_Table() {
       },
       mode: "cors",
       body: data,
-    }).then((data) => data.json())
-    .then(response => {
-      console.log(response)
-      return response.json();
     })
+      .then((data) => data.json())
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      });
   }
 
   async function storeitemDelete(data) {
@@ -58,7 +59,6 @@ function Storeitem_Table() {
   useEffect(() => {
     fetchData();
   }, []);
-
 
   const delete_Table = (index) => {
     const rows = [...storeitemData];
@@ -78,41 +78,76 @@ function Storeitem_Table() {
   const handleChange = (index, evnt) => {
     let { name, value } = evnt.target;
     const rowsInput = [...storeitemData];
-    if(value === "")
-    {
-        value = null;
+    if (value === "") {
+      value = null;
     }
     rowsInput[index][name] = value;
     setData(rowsInput);
   };
 
   return (
+    <table className="table">
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Quantity In Stock</th>
+          <th>Item Price</th>
 
-          <table className="table">
-            <thead>
-              <tr>
-
-                          <th>Item Name</th>
-                          <th>Quantity In Stock</th>
-                          <th>Item Price</th>
-
-                          <th>Action</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {storeitemData.map((data, index) => {
+          return (
+            <tr key={index}>
+              <td>
+                <input
+                  type="text"
+                  value={data.Item_Name}
+                  onChange={(evnt) => handleChange(index, evnt)}
+                  name="Item_ID"
+                  className="form-control"
+                />{" "}
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={data.Quantity_In_Stock}
+                  onChange={(evnt) => handleChange(index, evnt)}
+                  name="Quantity_in_Stock"
+                  className="form-control"
+                />{" "}
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={data.Item_Price}
+                  onChange={(evnt) => handleChange(index, evnt)}
+                  name="Item_Price"
+                  className="form-control"
+                />{" "}
+              </td>
+              <td>
+                <button
+                  className="btn btn-outline-success"
+                  onClick={() => edit_Table(index)}
+                >
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button
+                  className="btn btn-outline-danger"
+                  onClick={() => delete_Table(index)}
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
-            </thead>
-            <tbody>
-            {storeitemData.map((data, index)=> {
-                      return(
-                        <tr key={index}>
-                        <td><input type="text" value={data.Item_Name} onChange={(evnt)=>(handleChange(index, evnt))} name="Item_ID" className="form-control"/> </td>
-                        <td><input type="text" value={data.Quantity_In_Stock}  onChange={(evnt)=>(handleChange(index, evnt))} name="Quantity_in_Stock" className="form-control"/> </td>
-                        <td><input type="text" value={data.Item_Price}  onChange={(evnt)=>(handleChange(index, evnt))} name="Item_Price" className="form-control" /> </td>
-                        <td><button className="btn btn-outline-success" onClick={()=>(edit_Table(index))}>Edit</button></td>
-                        <td><button className="btn btn-outline-danger" onClick={()=>(delete_Table(index))}>Delete</button></td>
-                        </tr>
-                      )})}
-            </tbody>
-          </table>
-
+          );
+        })}
+      </tbody>
+    </table>
   );
 }
 export default Storeitem_Table;

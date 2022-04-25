@@ -36,11 +36,12 @@ function Department_Table() {
       },
       mode: "cors",
       body: data,
-    }).then((data) => data.json())
-    .then(response => {
-      console.log(response)
-      return response.json();
     })
+      .then((data) => data.json())
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      });
   }
 
   async function departmentDelete(data) {
@@ -58,7 +59,6 @@ function Department_Table() {
   useEffect(() => {
     fetchData();
   }, []);
-
 
   const delete_Table = (index) => {
     const rows = [...departmentData];
@@ -78,40 +78,76 @@ function Department_Table() {
   const handleChange = (index, evnt) => {
     let { name, value } = evnt.target;
     const rowsInput = [...departmentData];
-    if(value === "")
-    {
-        value = null;
+    if (value === "") {
+      value = null;
     }
     rowsInput[index][name] = value;
     setData(rowsInput);
   };
 
   return (
+    <table className="table">
+      <thead>
+        <tr>
+          <th>Department Name</th>
+          <th>Location</th>
+          <th>Supervisor ID</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {departmentData.map((data, index) => {
+          return (
+            <tr key={index}>
+              <td>
+                <input
+                  type="text"
+                  value={data.Department_Name}
+                  onChange={(evnt) => handleChange(index, evnt)}
+                  name="Department_Name"
+                  className="form-control"
+                />{" "}
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={data.Location}
+                  onChange={(evnt) => handleChange(index, evnt)}
+                  name="Location"
+                  className="form-control"
+                />{" "}
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={data.Supervisor_ID}
+                  onChange={(evnt) => handleChange(index, evnt)}
+                  name="Supervisor_ID"
+                  className="form-control"
+                />{" "}
+              </td>
 
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Department Name</th>
-                <th>Location</th>
-                <th>Supervisor ID</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-            {departmentData.map((data, index)=> {
-                      return(
-                        <tr key={index}>
-                        <td><input type="text" value={data.Department_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Department_Name" className="form-control"/> </td>
-                        <td><input type="text" value={data.Location}  onChange={(evnt)=>(handleChange(index, evnt))} name="Location" className="form-control" /> </td>
-                        <td><input type="text" value={data.Supervisor_ID} onChange={(evnt)=>(handleChange(index, evnt))} name="Supervisor_ID" className="form-control"/> </td>
-                    
-                        <td><button className="btn btn-outline-success" onClick={()=>(edit_Table(index))}>Edit</button></td>
-                        <td><button className="btn btn-outline-danger" onClick={()=>(delete_Table(index))}>Delete</button></td>
-                        </tr>
-                      )})}
-            </tbody>
-          </table>
-
+              <td>
+                <button
+                  className="btn btn-outline-success"
+                  onClick={() => edit_Table(index)}
+                >
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button
+                  className="btn btn-outline-danger"
+                  onClick={() => delete_Table(index)}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 }
 export default Department_Table;

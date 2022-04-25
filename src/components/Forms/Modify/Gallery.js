@@ -36,11 +36,12 @@ function Gallery_Table() {
       },
       mode: "cors",
       body: data,
-    }).then((data) => data.json())
-    .then(response => {
-      console.log(response)
-      return response.json();
     })
+      .then((data) => data.json())
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      });
   }
 
   async function galleryDelete(data) {
@@ -58,7 +59,6 @@ function Gallery_Table() {
   useEffect(() => {
     fetchData();
   }, []);
-
 
   const delete_Table = (index) => {
     const rows = [...galleryData];
@@ -78,40 +78,76 @@ function Gallery_Table() {
   const handleChange = (index, evnt) => {
     let { name, value } = evnt.target;
     const rowsInput = [...galleryData];
-    if(value === "")
-    {
-        value = null;
+    if (value === "") {
+      value = null;
     }
     rowsInput[index][name] = value;
     setData(rowsInput);
   };
 
   return (
+    <table className="table">
+      <thead>
+        <tr>
+          <th>Gallery Name</th>
+          <th>Managing Department</th>
+          <th>Capacity</th>
 
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Gallery Name</th>
-                <th>Managing Department</th>
-                <th>Capacity</th>
-                          
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-            {galleryData.map((data, index)=> {
-                      return(
-                        <tr key={index}>
-                        <td><input type="text" value={data.Gallery_Name}  onChange={(evnt)=>(handleChange(index, evnt))} name="Gallery_Name" className="form-control"/> </td>
-                        <td><input type="text" value={data.Managing_Department}  onChange={(evnt)=>(handleChange(index, evnt))} name="Managing_Department" className="form-control" /> </td>
-                        <td><input type="text" value={data.Capacity} onChange={(evnt)=>(handleChange(index, evnt))} name="Capacity" className="form-control"/> </td>
-                        <td><button className="btn btn-outline-success" onClick={()=>(edit_Table(index))}>Edit</button></td>
-                        <td><button className="btn btn-outline-danger" onClick={()=>(delete_Table(index))}>Delete</button></td>
-                        </tr>
-                      )})}
-            </tbody>
-          </table>
-
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {galleryData.map((data, index) => {
+          return (
+            <tr key={index}>
+              <td>
+                <input
+                  type="text"
+                  value={data.Gallery_Name}
+                  onChange={(evnt) => handleChange(index, evnt)}
+                  name="Gallery_Name"
+                  className="form-control"
+                />{" "}
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={data.Managing_Department}
+                  onChange={(evnt) => handleChange(index, evnt)}
+                  name="Managing_Department"
+                  className="form-control"
+                />{" "}
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={data.Capacity}
+                  onChange={(evnt) => handleChange(index, evnt)}
+                  name="Capacity"
+                  className="form-control"
+                />{" "}
+              </td>
+              <td>
+                <button
+                  className="btn btn-outline-success"
+                  onClick={() => edit_Table(index)}
+                >
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button
+                  className="btn btn-outline-danger"
+                  onClick={() => delete_Table(index)}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 }
 export default Gallery_Table;

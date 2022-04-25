@@ -1,10 +1,15 @@
+/* .datatable {
+  display: table-row;
+  z-index: 0;
+} */
+
 .table {
   width: 100%;
   box-sizing: content-box;
   border-radius: 8px;
   display: table;
   position: relative;
-  table-layout: auto;
+  table-layout: fixed;
   z-index: 0;
 }
 

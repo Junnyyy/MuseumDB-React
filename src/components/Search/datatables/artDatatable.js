@@ -7,12 +7,14 @@ export default function ArtDatatable({ data }) {
     // <table cellPadding={0} cellSpacing={0}>
     // <Table id="table" className="table">
     <>
-      <Table responsive className="datatable">
+      <table className="table">
+        {/* <Table responsive className="datatable"> */}
+        {/* <table id="table" className="table"> */}
         <thread>
           {/* <tr>{data[0] && columns.map((heading) => <th>{heading}</th>)}</tr> */}
           <tr>
             <th>ID #</th>
-            <th>Title</th>
+            <th>Title </th>
             <th>Data created</th>
             <th>Medium</th>
             <th>Creator firstname</th>
@@ -59,7 +61,7 @@ export default function ArtDatatable({ data }) {
             </tr>
           ))}
         </tbody>
-      </Table>
+      </table>
     </>
   );
 }
